@@ -152,7 +152,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 group animate-pulse hover:animate-none"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 group animate-pulse hover:animate-none"
         >
           <div className="relative">
             <Bot className="h-7 w-7" />
@@ -175,7 +175,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
           isMinimized ? 'w-80 h-16' : 'w-[420px] h-[650px]'
         }`}>
           {/* Enhanced Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 text-white rounded-t-2xl">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white rounded-t-2xl">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <Bot className="h-6 w-6" />
@@ -183,7 +183,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
               </div>
               <div>
                 <span className="font-semibold text-lg">EIP Research AI</span>
-                <div className="flex items-center space-x-1 text-xs text-blue-100">
+                <div className="flex items-center space-x-1 text-xs text-purple-100">
                   <Sparkles className="h-3 w-3" />
                   <span>Powered by ChatGPT</span>
                 </div>
@@ -208,7 +208,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
           {!isMinimized && (
             <>
               {/* Enhanced Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[500px] bg-gradient-to-b from-blue-50/30 to-cyan-50/30">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[500px] bg-gradient-to-b from-purple-50/30 to-pink-50/30">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -217,15 +217,15 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     <div
                       className={`max-w-[85%] p-4 rounded-2xl shadow-sm ${
                         message.type === 'user'
-                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white'
-                          : 'bg-white text-gray-900 border border-blue-100'
+                          ? 'bg-gradient-to-br from-indigo-500 to-purple-500 text-white'
+                          : 'bg-white text-gray-900 border border-purple-100'
                       }`}
                     >
                       <div className="text-sm leading-relaxed">
                         {message.type === 'assistant' ? formatMessage(message.content) : message.content}
                       </div>
                       <div className={`text-xs mt-2 ${
-                        message.type === 'user' ? 'text-blue-100' : 'text-gray-500'
+                        message.type === 'user' ? 'text-purple-100' : 'text-gray-500'
                       }`}>
                         {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
@@ -236,12 +236,12 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                 {/* Enhanced Loading Animation */}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="bg-white border border-blue-100 p-4 rounded-2xl shadow-sm">
+                    <div className="bg-white border border-purple-100 p-4 rounded-2xl shadow-sm">
                       <div className="flex items-center space-x-2">
                         <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                          <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                          <div className="w-2 h-2 bg-pink-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                         </div>
                         <span className="text-sm text-gray-600">ChatGPT is thinking...</span>
                       </div>
@@ -258,7 +258,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                         <button
                           key={index}
                           onClick={() => handleSuggestionClick(suggestion)}
-                          className="text-left p-3 bg-gradient-to-r from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 rounded-lg text-sm text-gray-700 border border-blue-100 hover:border-blue-200 transition-all duration-200"
+                          className="text-left p-3 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 rounded-lg text-sm text-gray-700 border border-purple-100 hover:border-purple-200 transition-all duration-200"
                         >
                           {suggestion}
                         </button>
@@ -279,13 +279,13 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Ask me anything about EIPs..."
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
                     disabled={isLoading}
                   />
                   <button
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim() || isLoading}
-                    className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-3 rounded-xl hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[48px]"
+                    className="bg-gradient-to-br from-indigo-500 to-purple-500 text-white p-3 rounded-xl hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[48px]"
                   >
                     <Send className="h-4 w-4" />
                   </button>
@@ -305,7 +305,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                   </div>
                 </div>
                 
-                {/* Sponsored by Section */}
+                {/* Powered by Section */}
                 <div className="mt-3 pt-3 border-t border-gray-100">
                   <div className="flex items-center justify-center space-x-2 text-xs text-gray-600">
                     <img 
@@ -313,7 +313,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                       alt="ERP Logo" 
                       className="h-4 w-4 object-contain"
                     />
-                    <span>Sponsored by</span>
+                    <span>Powered by</span>
                     <span className="font-semibold text-gray-800">Ethereum Research Papers</span>
                   </div>
                 </div>

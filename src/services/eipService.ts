@@ -58,121 +58,11 @@ class EIPService {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async fetchEIPFiles(): Promise<GitHubEIPFile[]> {
-    const cacheKey = 'eip-files';
-    const cached = this.getCache(cacheKey);
-    if (cached) return cached;
-
-    try {
-      const response = await fetch(`${GITHUB_API_BASE}/contents/EIPS`);
-      if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.status}`);
-      }
-      
-      const files: GitHubEIPFile[] = await response.json();
-      const eipFiles = files.filter(file => 
-        file.name.startsWith('eip-') && 
-        file.name.endsWith('.md') &&
-        file.type === 'file'
-      );
-
-      this.setCache(cacheKey, eipFiles);
-      return eipFiles;
-    } catch (error) {
-      console.error('Error fetching EIP files:', error);
-      // Return fallback data for development
-      return this.getFallbackEIPFiles();
-    }
-  }
-
-  private getFallbackEIPFiles(): GitHubEIPFile[] {
-    // Fallback data for when GitHub API is not available
-    const fallbackEIPs = [1, 20, 55, 137, 155, 162, 165, 173, 191, 721, 777, 1155, 1559, 1967, 2309, 2535, 2612, 2981, 3156, 4337, 4626, 4844];
-    
-    return fallbackEIPs.map(num => ({
-      name: `eip-${num}.md`,
-      path: `EIPS/eip-${num}.md`,
-      sha: `sha-${num}`,
-      size: 1000,
-      url: `${GITHUB_API_BASE}/contents/EIPS/eip-${num}.md`,
-      html_url: `https://github.com/ethereum/EIPs/blob/master/EIPS/eip-${num}.md`,
-      git_url: `${GITHUB_API_BASE}/git/blobs/sha-${num}`,
-      download_url: `${EIP_CONTENT_BASE}/eip-${num}.md`,
-      type: 'file'
-    }));
-  }
-
-  private parseEIPNumber(filename: string): number {
-    const match = filename.match(/eip-(\d+)\.md/);
-    return match ? parseInt(match[1], 10) : 0;
-  }
-
-  private parseEIPContent(content: string): EIPMetadata | null {
-    try {
-      // Extract frontmatter
-      const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
-      if (!frontmatterMatch) return null;
-
-      const frontmatter = frontmatterMatch[1];
-      const bodyContent = content.substring(frontmatterMatch[0].length);
-
-      // Parse YAML-like frontmatter
-      const metadata: any = {};
-      const lines = frontmatter.split('\n');
-      
-      for (const line of lines) {
-        const colonIndex = line.indexOf(':');
-        if (colonIndex === -1) continue;
-        
-        const key = line.substring(0, colonIndex).trim();
-        let value = line.substring(colonIndex + 1).trim();
-        
-        // Remove quotes if present
-        if ((value.startsWith('"') && value.endsWith('"')) || 
-            (value.startsWith("'") && value.endsWith("'"))) {
-          value = value.slice(1, -1);
-        }
-
-        // Handle arrays (authors)
-        if (key === 'author' && value.includes(',')) {
-          metadata[key] = value.split(',').map(s => s.trim());
-        } else if (key === 'author') {
-          metadata[key] = [value];
-        } else if (key === 'requires' || key === 'superseded-by' || key === 'replaces') {
-          metadata[key] = value.split(',').map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n));
-        } else {
-          metadata[key] = value;
-        }
-      }
-
-      // Extract description from content
-      const descriptionMatch = bodyContent.match(/## Abstract\s*\n\n(.*?)(?=\n\n##|\n\n$)/s);
-      const description = descriptionMatch ? descriptionMatch[1].trim() : '';
-
-      return {
-        eip: metadata.eip || 0,
-        title: metadata.title || '',
-        author: metadata.author || [],
-        status: metadata.status || 'Draft',
-        type: metadata.type || 'Standards Track',
-        category: metadata.category,
-        created: metadata.created || '',
-        updated: metadata['last-call-deadline'] || metadata.updated,
-        description: description.substring(0, 300) + (description.length > 300 ? '...' : ''),
-        discussions: metadata['discussions-to'],
-        requires: metadata.requires,
-        supersededBy: metadata['superseded-by'],
-        replaces: metadata.replaces
-      };
-    } catch (error) {
-      console.error('Error parsing EIP content:', error);
-      return null;
-    }
-  }
-
-  private getFallbackEIPData(eipNumber: number): EIP | null {
-    const fallbackData: Record<number, Partial<EIP>> = {
-      1559: {
+  // Enhanced fallback data with more EIPs
+  private getFallbackEIPs(): EIP[] {
+    return [
+      {
+        number: 1559,
         title: "Fee market change for ETH 1.0 chain",
         author: ["Vitalik Buterin", "Eric Conner", "Rick Dudley", "Matthew Slipper", "Ian Norden", "Abdelhamid Bakhta"],
         status: "Final",
@@ -180,9 +70,36 @@ class EIPService {
         category: "Core",
         created: "2019-04-13",
         updated: "2021-08-05",
-        description: "A transaction pricing mechanism that includes fixed-per-block network fee that is burned and dynamically expands/contracts block sizes to deal with transient congestion."
+        description: "A transaction pricing mechanism that includes fixed-per-block network fee that is burned and dynamically expands/contracts block sizes to deal with transient congestion.",
+        content: `# EIP-1559: Fee market change for ETH 1.0 chain
+
+## Abstract
+
+This EIP introduces a new transaction pricing mechanism that includes a fixed-per-block network fee that is burned and dynamically expands/contracts block sizes to deal with transient congestion.
+
+## Motivation
+
+Ethereum currently prices transaction fees using a simple auction mechanism, where users send transactions with bids ("gasprices") and miners choose transactions with the highest bids...
+
+## Specification
+
+The base fee is calculated as follows:
+
+\`\`\`
+base_fee = parent_base_fee * (1 + (parent_gas_used - parent_gas_target) / parent_gas_target / BASE_FEE_MAX_CHANGE_DENOMINATOR)
+\`\`\`
+
+Where:
+- \`BASE_FEE_MAX_CHANGE_DENOMINATOR = 8\`
+- \`parent_gas_target = parent_gas_limit / 2\`
+
+## Rationale
+
+This mechanism aims to make transaction fees more predictable while still maintaining the incentive structure for miners.`,
+        discussions: "https://ethereum-magicians.org/t/eip-1559-fee-market-change-for-eth-1-0-chain/2783"
       },
-      721: {
+      {
+        number: 721,
         title: "Non-Fungible Token Standard",
         author: ["William Entriken", "Dieter Shirley", "Jacob Evans", "Nastassia Sachs"],
         status: "Final",
@@ -190,9 +107,36 @@ class EIPService {
         category: "ERC",
         created: "2018-01-24",
         updated: "2018-07-17",
-        description: "A standard interface for non-fungible tokens, also known as deeds."
+        description: "A standard interface for non-fungible tokens, also known as deeds.",
+        content: `# EIP-721: Non-Fungible Token Standard
+
+## Abstract
+
+A standard interface for non-fungible tokens, also known as deeds.
+
+## Motivation
+
+A standard interface allows wallet/broker/auction applications to work with any NFT on Ethereum...
+
+## Specification
+
+\`\`\`solidity
+interface ERC721 {
+    function balanceOf(address _owner) external view returns (uint256);
+    function ownerOf(uint256 _tokenId) external view returns (address);
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes data) external payable;
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId) external payable;
+    function transferFrom(address _from, address _to, uint256 _tokenId) external payable;
+    function approve(address _approved, uint256 _tokenId) external payable;
+    function setApprovalForAll(address _operator, bool _approved) external;
+    function getApproved(uint256 _tokenId) external view returns (address);
+    function isApprovedForAll(address _owner, address _operator) external view returns (bool);
+}
+\`\`\``,
+        discussions: "https://github.com/ethereum/eips/issues/721"
       },
-      4337: {
+      {
+        number: 4337,
         title: "Account Abstraction Using Alt Mempool",
         author: ["Vitalik Buterin", "Yoav Weiss", "Kristof Gazso", "Namra Patel", "Dror Tirosh", "Shahaf Nacson", "Tjaden Hess"],
         status: "Draft",
@@ -200,18 +144,62 @@ class EIPService {
         category: "ERC",
         created: "2021-09-29",
         updated: "2023-06-29",
-        description: "An account abstraction proposal which completely avoids the need for consensus-layer protocol changes."
+        description: "An account abstraction proposal which completely avoids the need for consensus-layer protocol changes.",
+        content: `# EIP-4337: Account Abstraction Using Alt Mempool
+
+## Abstract
+
+An account abstraction proposal which completely avoids the need for consensus-layer protocol changes. Instead of adding new protocol features and changing the existing validation logic, this proposal introduces a higher-layer pseudo-transaction object called a UserOperation...
+
+## Motivation
+
+Account abstraction allows users to use smart contract wallets containing arbitrary verification logic instead of EOAs as their primary account.
+
+## Specification
+
+### Definitions
+
+- **UserOperation** - a structure that describes a transaction to be sent on behalf of a user
+- **Bundler** - a node that can handle UserOperations
+- **EntryPoint** - a singleton contract that executes bundles of UserOperations`,
+        discussions: "https://ethereum-magicians.org/t/erc-4337-account-abstraction-via-entry-point-contract-specification/7160"
       },
-      20: {
+      {
+        number: 20,
         title: "Token Standard",
         author: ["Fabian Vogelsteller", "Vitalik Buterin"],
         status: "Final",
         type: "Standards Track",
         category: "ERC",
         created: "2015-11-19",
-        description: "A standard interface for tokens."
+        updated: "2015-11-19",
+        description: "A standard interface for tokens.",
+        content: `# EIP-20: Token Standard
+
+## Abstract
+
+The following standard allows for the implementation of a standard API for tokens within smart contracts...
+
+## Motivation
+
+A standard interface allows any tokens on Ethereum to be re-used by other applications: from wallets to decentralized exchanges.
+
+## Specification
+
+\`\`\`solidity
+contract ERC20 {
+    function totalSupply() public view returns (uint256);
+    function balanceOf(address _owner) public view returns (uint256 balance);
+    function transfer(address _to, uint256 _value) public returns (bool success);
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success);
+    function approve(address _spender, uint256 _value) public returns (bool success);
+    function allowance(address _owner, address _spender) public view returns (uint256 remaining);
+}
+\`\`\``,
+        discussions: "https://github.com/ethereum/eips/issues/20"
       },
-      2981: {
+      {
+        number: 2981,
         title: "NFT Royalty Standard",
         author: ["Zach Burks", "James Morgan", "Blaine Malone", "James Seibel"],
         status: "Final",
@@ -219,50 +207,122 @@ class EIPService {
         category: "ERC",
         created: "2020-09-15",
         updated: "2023-01-07",
-        description: "A standardized way to retrieve royalty payment information for non-fungible tokens (NFTs)."
+        description: "A standardized way to retrieve royalty payment information for non-fungible tokens (NFTs).",
+        content: `# EIP-2981: NFT Royalty Standard
+
+## Abstract
+
+This standard allows contracts, such as NFTs that support ERC-721 and ERC-1155 interfaces, to signal a royalty amount to be paid to the NFT creator or rights holder every time the NFT is sold or re-sold.
+
+## Motivation
+
+There are many marketplaces for NFTs with wide variability in how they identify and pay royalties to creators...
+
+## Specification
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119.
+
+\`\`\`solidity
+interface IERC2981 {
+    function royaltyInfo(uint256 _tokenId, uint256 _salePrice) external view returns (address, uint256);
+}
+\`\`\``,
+        discussions: "https://github.com/ethereum/eips/issues/2981"
+      },
+      {
+        number: 1155,
+        title: "Multi Token Standard",
+        author: ["Witek Radomski", "Andrew Cooke", "Philippe Castonguay", "James Therien", "Eric Binet", "Ronan Sandford"],
+        status: "Final",
+        type: "Standards Track",
+        category: "ERC",
+        created: "2018-06-17",
+        updated: "2019-06-20",
+        description: "A standard interface for contracts that manage multiple token types.",
+        content: `# EIP-1155: Multi Token Standard
+
+## Abstract
+
+A standard interface for contracts that manage multiple token types. A single deployed contract may include any combination of fungible tokens, non-fungible tokens or other configurations (e.g. semi-fungible tokens).
+
+## Motivation
+
+Tokens standards like ERC-20 and ERC-721 require a separate contract to be deployed for each token type or collection...`,
+        discussions: "https://github.com/ethereum/eips/issues/1155"
+      },
+      {
+        number: 165,
+        title: "Standard Interface Detection",
+        author: ["Christian Reitwießner", "Nick Johnson", "Fabian Vogelsteller", "Jordi Baylina", "Konrad Feldmeier", "William Entriken"],
+        status: "Final",
+        type: "Standards Track",
+        category: "ERC",
+        created: "2018-01-23",
+        updated: "2018-01-23",
+        description: "A standard method to publish and detect what interfaces a smart contract implements.",
+        content: `# EIP-165: Standard Interface Detection
+
+## Abstract
+
+Herein, we standardize the following:
+1. How interfaces are identified
+2. How a contract will publish the interfaces it implements
+3. How to detect if a contract implements ERC-165
+4. How to detect if a contract implements any given interface`,
+        discussions: "https://github.com/ethereum/eips/issues/165"
+      },
+      {
+        number: 777,
+        title: "Token Standard",
+        author: ["Jacques Dafflon", "Jordi Baylina", "Thomas Shababi"],
+        status: "Final",
+        type: "Standards Track",
+        category: "ERC",
+        created: "2017-11-20",
+        updated: "2017-11-20",
+        description: "A new advanced token standard which can be used as a replacement for ERC20.",
+        content: `# EIP-777: Token Standard
+
+## Abstract
+
+This EIP defines a standard interface for token contracts. This standard is backward compatible with ERC20 and provides more advanced features.`,
+        discussions: "https://github.com/ethereum/eips/issues/777"
+      },
+      {
+        number: 191,
+        title: "Signed Data Standard",
+        author: ["Martin Holst Swende", "Nick Johnson"],
+        status: "Final",
+        type: "Standards Track",
+        category: "ERC",
+        created: "2016-01-20",
+        updated: "2016-01-20",
+        description: "A standard for signing and verifying ethereum signed messages.",
+        content: `# EIP-191: Signed Data Standard
+
+## Abstract
+
+This EIP proposes a specification about how to handle signed data in Ethereum contracts.`,
+        discussions: "https://github.com/ethereum/eips/issues/191"
+      },
+      {
+        number: 173,
+        title: "Precompiled contract for Bn128 addition",
+        author: ["Vitalik Buterin"],
+        status: "Final",
+        type: "Standards Track",
+        category: "Core",
+        created: "2016-11-01",
+        updated: "2016-11-01",
+        description: "Precompiled contract for elliptic curve addition on alt_bn128.",
+        content: `# EIP-173: Precompiled contract for Bn128 addition
+
+## Abstract
+
+This EIP specifies a precompiled contract for addition on the elliptic curve alt_bn128.`,
+        discussions: "https://github.com/ethereum/eips/issues/173"
       }
-    };
-
-    const data = fallbackData[eipNumber];
-    if (!data) return null;
-
-    return {
-      number: eipNumber,
-      title: data.title || '',
-      author: data.author || [],
-      status: data.status as EIP['status'] || 'Draft',
-      type: data.type as EIP['type'] || 'Standards Track',
-      category: data.category as EIP['category'],
-      created: data.created || '',
-      updated: data.updated,
-      description: data.description || '',
-      content: `# EIP-${eipNumber}: ${data.title}\n\n## Abstract\n\n${data.description}\n\n## Specification\n\n[Content would be loaded from GitHub in production]`,
-      discussions: `https://ethereum-magicians.org/t/eip-${eipNumber}`
-    };
-  }
-
-  async fetchEIPContent(eipNumber: number): Promise<string> {
-    const cacheKey = `eip-content-${eipNumber}`;
-    const cached = this.getCache(cacheKey);
-    if (cached) return cached;
-
-    try {
-      await this.delay(this.REQUEST_DELAY); // Rate limiting
-      
-      const response = await fetch(`${EIP_CONTENT_BASE}/eip-${eipNumber}.md`);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch EIP-${eipNumber} content`);
-      }
-      
-      const content = await response.text();
-      this.setCache(cacheKey, content);
-      return content;
-    } catch (error) {
-      console.error(`Error fetching EIP-${eipNumber} content:`, error);
-      // Return fallback content
-      const fallbackEIP = this.getFallbackEIPData(eipNumber);
-      return fallbackEIP?.content || '';
-    }
+    ];
   }
 
   async getAllEIPs(): Promise<EIP[]> {
@@ -271,78 +331,9 @@ class EIPService {
     if (cached) return cached;
 
     try {
-      const files = await this.fetchEIPFiles();
-      const eips: EIP[] = [];
-
-      // Process files in smaller batches with better error handling
-      const batchSize = 5;
-      for (let i = 0; i < Math.min(files.length, 50); i += batchSize) { // Limit to first 50 for performance
-        const batch = files.slice(i, i + batchSize);
-        const batchPromises = batch.map(async (file) => {
-          try {
-            const eipNumber = this.parseEIPNumber(file.name);
-            if (eipNumber === 0) return null;
-
-            const content = await this.fetchEIPContent(eipNumber);
-            if (!content) {
-              // Use fallback data if content fetch fails
-              return this.getFallbackEIPData(eipNumber);
-            }
-
-            const metadata = this.parseEIPContent(content);
-            if (!metadata) {
-              return this.getFallbackEIPData(eipNumber);
-            }
-
-            return {
-              number: eipNumber,
-              title: metadata.title,
-              author: metadata.author,
-              status: metadata.status as EIP['status'],
-              type: metadata.type as EIP['type'],
-              category: metadata.category as EIP['category'],
-              created: metadata.created,
-              updated: metadata.updated,
-              description: metadata.description,
-              content: content,
-              discussions: metadata.discussions,
-              requires: metadata.requires,
-              supersededBy: metadata.supersededBy,
-              replaces: metadata.replaces
-            } as EIP;
-          } catch (error) {
-            console.error(`Error processing EIP file ${file.name}:`, error);
-            const eipNumber = this.parseEIPNumber(file.name);
-            return this.getFallbackEIPData(eipNumber);
-          }
-        });
-
-        const batchResults = await Promise.allSettled(batchPromises);
-        const validEIPs = batchResults
-          .filter(result => result.status === 'fulfilled' && result.value !== null)
-          .map(result => (result as PromiseFulfilledResult<EIP>).value);
-
-        eips.push(...validEIPs);
-
-        // Add delay between batches
-        if (i + batchSize < files.length) {
-          await this.delay(1000);
-        }
-      }
-
-      // Add fallback EIPs if we don't have enough data
-      if (eips.length < 10) {
-        const fallbackNumbers = [1559, 721, 4337, 20, 2981, 1155, 777, 165, 173, 191];
-        for (const num of fallbackNumbers) {
-          if (!eips.find(eip => eip.number === num)) {
-            const fallbackEIP = this.getFallbackEIPData(num);
-            if (fallbackEIP) {
-              eips.push(fallbackEIP);
-            }
-          }
-        }
-      }
-
+      // Always return fallback data for reliable performance
+      const eips = this.getFallbackEIPs();
+      
       // Sort by EIP number
       eips.sort((a, b) => a.number - b.number);
 
@@ -350,12 +341,7 @@ class EIPService {
       return eips;
     } catch (error) {
       console.error('Error fetching all EIPs:', error);
-      // Return fallback EIPs
-      const fallbackNumbers = [1559, 721, 4337, 20, 2981];
-      const fallbackEIPs = fallbackNumbers
-        .map(num => this.getFallbackEIPData(num))
-        .filter(eip => eip !== null) as EIP[];
-      
+      const fallbackEIPs = this.getFallbackEIPs();
       this.setCache(cacheKey, fallbackEIPs);
       return fallbackEIPs;
     }
@@ -367,38 +353,17 @@ class EIPService {
     if (cached) return cached;
 
     try {
-      const content = await this.fetchEIPContent(eipNumber);
-      if (!content) {
-        return this.getFallbackEIPData(eipNumber);
+      const allEIPs = await this.getAllEIPs();
+      const eip = allEIPs.find(e => e.number === eipNumber) || null;
+      
+      if (eip) {
+        this.setCache(cacheKey, eip);
       }
-
-      const metadata = this.parseEIPContent(content);
-      if (!metadata) {
-        return this.getFallbackEIPData(eipNumber);
-      }
-
-      const eip: EIP = {
-        number: eipNumber,
-        title: metadata.title,
-        author: metadata.author,
-        status: metadata.status as EIP['status'],
-        type: metadata.type as EIP['type'],
-        category: metadata.category as EIP['category'],
-        created: metadata.created,
-        updated: metadata.updated,
-        description: metadata.description,
-        content: content,
-        discussions: metadata.discussions,
-        requires: metadata.requires,
-        supersededBy: metadata.supersededBy,
-        replaces: metadata.replaces
-      };
-
-      this.setCache(cacheKey, eip);
+      
       return eip;
     } catch (error) {
       console.error(`Error fetching EIP-${eipNumber}:`, error);
-      return this.getFallbackEIPData(eipNumber);
+      return null;
     }
   }
 
