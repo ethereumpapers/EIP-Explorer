@@ -128,18 +128,18 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
   const formatMessage = (content: string) => {
     // Enhanced markdown formatting
     return content
-      .replace(/^# (.*$)/gm, '<h1 class="text-xl font-bold text-gray-900 mb-3 border-b border-gray-200 pb-2">$1</h1>')
-      .replace(/^## (.*$)/gm, '<h2 class="text-lg font-semibold text-gray-800 mb-2 mt-4">$1</h2>')
-      .replace(/^### (.*$)/gm, '<h3 class="text-md font-medium text-gray-700 mb-2 mt-3">$1</h3>')
-      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em class="italic text-gray-700">$1</em>')
-      .replace(/`([^`]+)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono text-gray-800">$1</code>')
-      .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto my-3 text-sm"><code>$2</code></pre>')
+      .replace(/^# (.*$)/gm, '<h1 class="text-xl font-bold text-secondary-900 mb-3 border-b border-secondary-200 pb-2">$1</h1>')
+      .replace(/^## (.*$)/gm, '<h2 class="text-lg font-semibold text-secondary-800 mb-2 mt-4">$1</h2>')
+      .replace(/^### (.*$)/gm, '<h3 class="text-md font-medium text-secondary-700 mb-2 mt-3">$1</h3>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-secondary-900">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em class="italic text-secondary-700">$1</em>')
+      .replace(/`([^`]+)`/g, '<code class="bg-secondary-100 px-1 py-0.5 rounded text-sm font-mono text-secondary-800">$1</code>')
+      .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="bg-secondary-900 text-success-400 p-4 rounded-lg overflow-x-auto my-3 text-sm"><code>$2</code></pre>')
       .replace(/^- (.*$)/gm, '<li class="ml-4 mb-1">• $1</li>')
-      .replace(/^✅ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-green-600 mt-0.5">✅</span><span>$1</span></div>')
-      .replace(/^❌ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-red-600 mt-0.5">❌</span><span>$1</span></div>')
-      .replace(/^⚠️ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-yellow-600 mt-0.5">⚠️</span><span>$1</span></div>')
-      .replace(/^🔍 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-blue-600 mt-0.5">🔍</span><span>$1</span></div>')
+      .replace(/^✅ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-success-600 mt-0.5">✅</span><span>$1</span></div>')
+      .replace(/^❌ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-error-600 mt-0.5">❌</span><span>$1</span></div>')
+      .replace(/^⚠️ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-warning-600 mt-0.5">⚠️</span><span>$1</span></div>')
+      .replace(/^🔍 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-primary-600 mt-0.5">🔍</span><span>$1</span></div>')
       .split('\n')
       .map((line, index) => (
         <div key={index} dangerouslySetInnerHTML={{ __html: line || '<br>' }} />
@@ -152,38 +152,38 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 group animate-pulse hover:animate-none"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-br from-primary-500 via-accent-500 to-primary-600 text-white p-4 rounded-full shadow-strong hover:shadow-medium transform hover:scale-110 transition-all duration-300 group animate-pulse hover:animate-none"
         >
           <div className="relative">
             <Bot className="h-7 w-7" />
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-ping"></div>
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full"></div>
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-success-400 to-success-500 rounded-full animate-ping"></div>
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-success-400 rounded-full"></div>
           </div>
-          <div className="absolute -top-16 right-0 bg-gray-900 text-white px-4 py-2 rounded-xl text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-lg">
+          <div className="absolute -top-16 right-0 bg-secondary-900 text-white px-4 py-2 rounded-xl text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-medium">
             <div className="flex items-center space-x-2">
-              <Sparkles className="h-4 w-4 text-yellow-400" />
+              <Sparkles className="h-4 w-4 text-warning-400" />
               <span>Ask ChatGPT about EIPs</span>
             </div>
-            <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-secondary-900"></div>
           </div>
         </button>
       )}
 
       {/* Enhanced AI Chat Interface */}
       {isOpen && (
-        <div className={`fixed bottom-6 right-6 z-50 bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
+        <div className={`fixed bottom-6 right-6 z-50 bg-white rounded-2xl shadow-strong border border-secondary-200 transition-all duration-300 ${
           isMinimized ? 'w-80 h-16' : 'w-[420px] h-[650px]'
         }`}>
           {/* Enhanced Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white rounded-t-2xl">
+          <div className="flex items-center justify-between p-4 border-b border-secondary-200 bg-gradient-to-br from-primary-500 via-accent-500 to-primary-600 text-white rounded-t-2xl">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <Bot className="h-6 w-6" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-success-400 rounded-full animate-pulse"></div>
               </div>
               <div>
                 <span className="font-semibold text-lg">EIP Research AI</span>
-                <div className="flex items-center space-x-1 text-xs text-purple-100">
+                <div className="flex items-center space-x-1 text-xs text-primary-100">
                   <Sparkles className="h-3 w-3" />
                   <span>Powered by ChatGPT</span>
                 </div>
@@ -208,24 +208,24 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
           {!isMinimized && (
             <>
               {/* Enhanced Messages Area */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[500px] bg-gradient-to-b from-purple-50/30 to-pink-50/30">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[500px] bg-gradient-to-b from-accent-50/30 to-primary-50/30">
                 {messages.map((message) => (
                   <div
                     key={message.id}
                     className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[85%] p-4 rounded-2xl shadow-sm ${
+                      className={`max-w-[85%] p-4 rounded-2xl shadow-soft ${
                         message.type === 'user'
-                          ? 'bg-gradient-to-br from-indigo-500 to-purple-500 text-white'
-                          : 'bg-white text-gray-900 border border-purple-100'
+                          ? 'bg-gradient-to-br from-primary-500 to-accent-500 text-white'
+                          : 'bg-white text-secondary-900 border border-accent-100'
                       }`}
                     >
                       <div className="text-sm leading-relaxed">
                         {message.type === 'assistant' ? formatMessage(message.content) : message.content}
                       </div>
                       <div className={`text-xs mt-2 ${
-                        message.type === 'user' ? 'text-purple-100' : 'text-gray-500'
+                        message.type === 'user' ? 'text-accent-100' : 'text-secondary-500'
                       }`}>
                         {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
@@ -236,14 +236,14 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                 {/* Enhanced Loading Animation */}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="bg-white border border-purple-100 p-4 rounded-2xl shadow-sm">
+                    <div className="bg-white border border-accent-100 p-4 rounded-2xl shadow-soft">
                       <div className="flex items-center space-x-2">
                         <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-pink-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                          <div className="w-2 h-2 bg-primary-500 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-accent-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                          <div className="w-2 h-2 bg-primary-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                         </div>
-                        <span className="text-sm text-gray-600">ChatGPT is thinking...</span>
+                        <span className="text-sm text-secondary-600">ChatGPT is thinking...</span>
                       </div>
                     </div>
                   </div>
@@ -252,13 +252,13 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                 {/* Quick Suggestions */}
                 {showSuggestions && messages.length <= 1 && (
                   <div className="space-y-2">
-                    <p className="text-xs text-gray-500 font-medium">💡 Try these suggestions:</p>
+                    <p className="text-xs text-secondary-500 font-medium">💡 Try these suggestions:</p>
                     <div className="grid grid-cols-1 gap-2">
                       {quickSuggestions.map((suggestion, index) => (
                         <button
                           key={index}
                           onClick={() => handleSuggestionClick(suggestion)}
-                          className="text-left p-3 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 rounded-lg text-sm text-gray-700 border border-purple-100 hover:border-purple-200 transition-all duration-200"
+                          className="text-left p-3 bg-gradient-to-r from-accent-50 to-primary-50 hover:from-accent-100 hover:to-primary-100 rounded-lg text-sm text-secondary-700 border border-accent-100 hover:border-accent-200 transition-all duration-200"
                         >
                           {suggestion}
                         </button>
@@ -271,7 +271,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
               </div>
 
               {/* Enhanced Input Area */}
-              <div className="p-4 border-t border-gray-200 bg-white rounded-b-2xl">
+              <div className="p-4 border-t border-secondary-200 bg-white rounded-b-2xl">
                 <div className="flex space-x-3">
                   <input
                     type="text"
@@ -279,20 +279,20 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Ask me anything about EIPs..."
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
+                    className="flex-1 px-4 py-3 border border-secondary-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-transparent text-sm"
                     disabled={isLoading}
                   />
                   <button
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim() || isLoading}
-                    className="bg-gradient-to-br from-indigo-500 to-purple-500 text-white p-3 rounded-xl hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[48px]"
+                    className="bg-gradient-to-br from-primary-500 to-accent-500 text-white p-3 rounded-xl hover:shadow-medium disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[48px]"
                   >
                     <Send className="h-4 w-4" />
                   </button>
                 </div>
                 
                 {/* Enhanced Footer */}
-                <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
+                <div className="mt-3 flex items-center justify-between text-xs text-secondary-500">
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-1">
                       <BookOpen className="h-3 w-3" />
@@ -306,15 +306,15 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                 </div>
                 
                 {/* Powered by Section */}
-                <div className="mt-3 pt-3 border-t border-gray-100">
-                  <div className="flex items-center justify-center space-x-2 text-xs text-gray-600">
+                <div className="mt-3 pt-3 border-t border-secondary-100">
+                  <div className="flex items-center justify-center space-x-2 text-xs text-secondary-600">
                     <img 
                       src="/ERP Pic .png" 
                       alt="ERP Logo" 
                       className="h-4 w-4 object-contain"
                     />
                     <span>Powered by</span>
-                    <span className="font-semibold text-gray-800">Ethereum Research Papers</span>
+                    <span className="font-semibold text-secondary-800">Ethereum Research Papers</span>
                   </div>
                 </div>
               </div>
