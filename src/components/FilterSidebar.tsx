@@ -23,18 +23,18 @@ export default function FilterSidebar({ isOpen, onClose, filters, onFilterChange
     filterType: string;
     selectedValues: string[];
   }) => (
-    <div className="mb-6">
-      <h3 className="font-semibold text-gray-900 mb-3">{title}</h3>
-      <div className="space-y-2">
+    <div className="mb-8">
+      <h3 className="font-semibold text-gray-900 mb-4 text-lg">{title}</h3>
+      <div className="space-y-3">
         {options.map((option) => (
-          <label key={option} className="flex items-center">
+          <label key={option} className="flex items-center cursor-pointer">
             <input
               type="checkbox"
               checked={selectedValues.includes(option)}
               onChange={() => onFilterChange(filterType, option)}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 w-5 h-5"
             />
-            <span className="ml-2 text-sm text-gray-700">{option}</span>
+            <span className="ml-3 text-gray-700">{option}</span>
           </label>
         ))}
       </div>
@@ -54,20 +54,20 @@ export default function FilterSidebar({ isOpen, onClose, filters, onFilterChange
       {/* Sidebar */}
       <div className={`
         fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-50 w-80 transform transition-transform duration-300 ease-in-out
-        lg:relative lg:transform-none lg:translate-x-0
+        lg:relative lg:transform-none lg:translate-x-0 lg:w-64
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center space-x-2">
-              <Filter className="h-5 w-5 text-gray-600" />
-              <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center space-x-3">
+              <Filter className="h-6 w-6 text-gray-600" />
+              <h2 className="text-xl font-semibold text-gray-900">Filters</h2>
             </div>
             <button
               onClick={onClose}
-              className="lg:hidden p-1 text-gray-400 hover:text-gray-600"
+              className="lg:hidden p-2 text-gray-400 hover:text-gray-600"
             >
-              <X className="h-5 w-5" />
+              <X className="h-6 w-6" />
             </button>
           </div>
 

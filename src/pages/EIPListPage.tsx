@@ -69,13 +69,13 @@ export default function EIPListPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-8">
-            <div className="h-8 bg-gray-200 rounded w-96 mb-2 animate-pulse"></div>
-            <div className="h-4 bg-gray-200 rounded w-64 animate-pulse"></div>
+      <div className="min-h-screen bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <div className="mb-12">
+            <div className="h-10 bg-gray-200 rounded w-96 mb-4 animate-pulse"></div>
+            <div className="h-6 bg-gray-200 rounded w-64 animate-pulse"></div>
           </div>
-          <LoadingSpinner size="lg" text="Loading EIPs from GitHub..." className="py-20" />
+          <LoadingSpinner size="lg" text="Loading EIPs..." className="py-20" />
         </div>
       </div>
     );
@@ -83,8 +83,8 @@ export default function EIPListPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="min-h-screen bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-12">
           <ErrorMessage 
             message={error} 
             onRetry={refetch}
@@ -96,12 +96,12 @@ export default function EIPListPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Ethereum Improvement Proposals</h1>
-          <p className="text-gray-600">
+        <div className="mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Ethereum Improvement Proposals</h1>
+          <p className="text-xl text-gray-600">
             Showing {filteredAndSortedEIPs.length} of {eips.length} EIPs
             {eips.length > 0 && (
               <span className="ml-2 text-sm text-green-600">
@@ -111,7 +111,7 @@ export default function EIPListPage() {
           </p>
         </div>
 
-        <div className="flex">
+        <div className="flex gap-8">
           {/* Filter Sidebar */}
           <FilterSidebar
             isOpen={isFilterOpen}
@@ -121,27 +121,27 @@ export default function EIPListPage() {
           />
 
           {/* Main Content */}
-          <div className="flex-1 lg:ml-8">
+          <div className="flex-1">
             {/* Controls */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-8">
               <button
                 onClick={() => setIsFilterOpen(true)}
-                className="lg:hidden flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                className="lg:hidden flex items-center gap-3 px-6 py-3 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
               >
-                <Filter className="h-4 w-4" />
+                <Filter className="h-5 w-5" />
                 <span>Filters</span>
                 {activeFiltersCount > 0 && (
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
                     {activeFiltersCount}
                   </span>
                 )}
               </button>
 
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center gap-4">
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
                 >
                   <option value="number">EIP Number</option>
                   <option value="title">Title</option>
@@ -150,26 +150,26 @@ export default function EIPListPage() {
                 </select>
                 <button
                   onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                  className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="p-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
                 >
-                  <SortDesc className={`h-4 w-4 transition-transform ${sortOrder === 'asc' ? 'rotate-180' : ''}`} />
+                  <SortDesc className={`h-5 w-5 transition-transform ${sortOrder === 'asc' ? 'rotate-180' : ''}`} />
                 </button>
               </div>
             </div>
 
             {/* Active Filters */}
             {activeFiltersCount > 0 && (
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-8">
                 {Object.entries(filters).map(([filterType, values]) =>
                   values.map(value => (
                     <span
                       key={`${filterType}-${value}`}
-                      className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
+                      className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full"
                     >
                       {value}
                       <button
                         onClick={() => handleFilterChange(filterType, value)}
-                        className="ml-1 text-blue-600 hover:text-blue-800"
+                        className="ml-2 text-blue-600 hover:text-blue-800"
                       >
                         ×
                       </button>
@@ -178,7 +178,7 @@ export default function EIPListPage() {
                 )}
                 <button
                   onClick={() => setFilters({ status: [], category: [], type: [] })}
-                  className="text-sm text-gray-500 hover:text-gray-700 underline"
+                  className="text-gray-500 hover:text-gray-700 underline"
                 >
                   Clear all
                 </button>
@@ -186,17 +186,17 @@ export default function EIPListPage() {
             )}
 
             {/* EIP Grid */}
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-8">
               {filteredAndSortedEIPs.map((eip) => (
                 <EIPCard key={eip.number} eip={eip} />
               ))}
             </div>
 
             {filteredAndSortedEIPs.length === 0 && (
-              <div className="text-center py-12">
-                <div className="text-gray-400 text-6xl mb-4">📋</div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No EIPs found</h3>
-                <p className="text-gray-500">Try adjusting your filters or search terms.</p>
+              <div className="text-center py-20">
+                <div className="text-gray-400 text-6xl mb-6">📋</div>
+                <h3 className="text-2xl font-medium text-gray-900 mb-4">No EIPs found</h3>
+                <p className="text-gray-500 text-lg">Try adjusting your filters or search terms.</p>
               </div>
             )}
           </div>

@@ -35,86 +35,86 @@ export default function Header({ onSearch }: HeaderProps) {
 
   return (
     <>
-      <header className="bg-white border-b border-secondary-200 sticky top-0 z-50 shadow-soft">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="bg-gradient-to-r from-primary-500 to-accent-500 p-2 rounded-lg">
-                <Book className="h-6 w-6 text-white" />
+            <Link to="/" className="flex items-center gap-4">
+              <div className="bg-blue-600 p-3 rounded-xl">
+                <Book className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-secondary-900">EIP Explorer</h1>
-                <p className="text-xs text-secondary-500 hidden sm:block">Ethereum Standards Hub</p>
+                <h1 className="text-2xl font-bold text-gray-900">EIP Explorer</h1>
+                <p className="text-sm text-gray-500">Ethereum Standards Hub</p>
               </div>
             </Link>
 
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md mx-8">
+            <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-lg mx-12">
               <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary-400" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search EIPs, authors, or content..."
-                  className="w-full pl-10 pr-4 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
                 />
               </div>
             </form>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link to="/eips" className="flex items-center space-x-1 text-secondary-700 hover:text-primary-600 transition-colors">
-                <Book className="h-4 w-4" />
+            <nav className="hidden md:flex items-center gap-8">
+              <Link to="/eips" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors font-medium text-lg">
+                <Book className="h-5 w-5" />
                 <span>Browse EIPs</span>
               </Link>
-              <Link to="/analytics" className="flex items-center space-x-1 text-secondary-700 hover:text-primary-600 transition-colors">
-                <TrendingUp className="h-4 w-4" />
+              <Link to="/analytics" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors font-medium text-lg">
+                <TrendingUp className="h-5 w-5" />
                 <span>Analytics</span>
               </Link>
-              <Link to="/projects" className="flex items-center space-x-1 text-secondary-700 hover:text-primary-600 transition-colors">
-                <Users className="h-4 w-4" />
+              <Link to="/projects" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors font-medium text-lg">
+                <Users className="h-5 w-5" />
                 <span>Projects</span>
               </Link>
-              <Link to="/discussions" className="flex items-center space-x-1 text-secondary-700 hover:text-primary-600 transition-colors">
-                <MessageSquare className="h-4 w-4" />
+              <Link to="/discussions" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors font-medium text-lg">
+                <MessageSquare className="h-5 w-5" />
                 <span>Discussions</span>
               </Link>
               
               {/* Auth Section */}
               {isAuthenticated ? (
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     {user?.avatar && (
                       <img
                         src={user.avatar}
                         alt={user.name}
-                        className="w-8 h-8 rounded-full object-cover"
+                        className="w-10 h-10 rounded-full object-cover"
                       />
                     )}
-                    <span className="text-sm font-medium text-secondary-700">{user?.name}</span>
+                    <span className="font-medium text-gray-700">{user?.name}</span>
                   </div>
                   <button
                     onClick={handleSignOut}
-                    className="flex items-center space-x-1 text-secondary-700 hover:text-error-600 transition-colors"
+                    className="flex items-center gap-2 text-gray-700 hover:text-red-600 transition-colors"
                   >
-                    <LogOut className="h-4 w-4" />
+                    <LogOut className="h-5 w-5" />
                     <span>Sign Out</span>
                   </button>
                 </div>
               ) : (
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center gap-4">
                   <button
                     onClick={() => handleAuthClick('signin')}
-                    className="flex items-center space-x-1 text-secondary-700 hover:text-primary-600 transition-colors"
+                    className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
                   >
-                    <LogIn className="h-4 w-4" />
+                    <LogIn className="h-5 w-5" />
                     <span>Sign In</span>
                   </button>
                   <button
                     onClick={() => handleAuthClick('signup')}
-                    className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-4 py-2 rounded-lg hover:from-primary-600 hover:to-accent-600 transition-all duration-200"
+                    className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium"
                   >
                     Sign Up
                   </button>
@@ -125,96 +125,96 @@ export default function Header({ onSearch }: HeaderProps) {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 text-secondary-600 hover:text-secondary-900"
+              className="md:hidden p-2 text-gray-600 hover:text-gray-900"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
             </button>
           </div>
 
           {/* Mobile Search */}
-          <form onSubmit={handleSearch} className="md:hidden pb-4">
+          <form onSubmit={handleSearch} className="md:hidden pb-6">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary-400" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search EIPs..."
-                className="w-full pl-10 pr-4 py-2 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
           </form>
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden pb-4 border-t border-secondary-200 pt-4">
-              <nav className="flex flex-col space-y-3">
+            <div className="md:hidden pb-6 border-t border-gray-200 pt-6">
+              <nav className="flex flex-col gap-4">
                 <Link
                   to="/eips"
-                  className="flex items-center space-x-2 text-secondary-700 hover:text-primary-600 transition-colors"
+                  className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors text-lg py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Book className="h-4 w-4" />
+                  <Book className="h-6 w-6" />
                   <span>Browse EIPs</span>
                 </Link>
                 <Link
                   to="/analytics"
-                  className="flex items-center space-x-2 text-secondary-700 hover:text-primary-600 transition-colors"
+                  className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors text-lg py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <TrendingUp className="h-4 w-4" />
+                  <TrendingUp className="h-6 w-6" />
                   <span>Analytics</span>
                 </Link>
                 <Link
                   to="/projects"
-                  className="flex items-center space-x-2 text-secondary-700 hover:text-primary-600 transition-colors"
+                  className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors text-lg py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Users className="h-4 w-4" />
+                  <Users className="h-6 w-6" />
                   <span>Projects</span>
                 </Link>
                 <Link
                   to="/discussions"
-                  className="flex items-center space-x-2 text-secondary-700 hover:text-primary-600 transition-colors"
+                  className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors text-lg py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <MessageSquare className="h-4 w-4" />
+                  <MessageSquare className="h-6 w-6" />
                   <span>Discussions</span>
                 </Link>
                 
                 {/* Mobile Auth */}
                 {isAuthenticated ? (
-                  <div className="pt-3 border-t border-secondary-200">
-                    <div className="flex items-center space-x-2 mb-3">
+                  <div className="pt-4 border-t border-gray-200">
+                    <div className="flex items-center gap-3 mb-4">
                       {user?.avatar && (
                         <img
                           src={user.avatar}
                           alt={user.name}
-                          className="w-8 h-8 rounded-full object-cover"
+                          className="w-10 h-10 rounded-full object-cover"
                         />
                       )}
-                      <span className="text-sm font-medium text-secondary-700">{user?.name}</span>
+                      <span className="font-medium text-gray-700">{user?.name}</span>
                     </div>
                     <button
                       onClick={handleSignOut}
-                      className="flex items-center space-x-2 text-secondary-700 hover:text-error-600 transition-colors"
+                      className="flex items-center gap-3 text-gray-700 hover:text-red-600 transition-colors text-lg py-2"
                     >
-                      <LogOut className="h-4 w-4" />
+                      <LogOut className="h-6 w-6" />
                       <span>Sign Out</span>
                     </button>
                   </div>
                 ) : (
-                  <div className="pt-3 border-t border-secondary-200 space-y-2">
+                  <div className="pt-4 border-t border-gray-200 space-y-3">
                     <button
                       onClick={() => handleAuthClick('signin')}
-                      className="flex items-center space-x-2 text-secondary-700 hover:text-primary-600 transition-colors w-full"
+                      className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors w-full text-lg py-2"
                     >
-                      <LogIn className="h-4 w-4" />
+                      <LogIn className="h-6 w-6" />
                       <span>Sign In</span>
                     </button>
                     <button
                       onClick={() => handleAuthClick('signup')}
-                      className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-4 py-2 rounded-lg hover:from-primary-600 hover:to-accent-600 transition-all duration-200 w-full"
+                      className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-all duration-200 w-full font-medium"
                     >
                       Sign Up
                     </button>
