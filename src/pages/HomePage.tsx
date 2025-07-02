@@ -133,7 +133,6 @@ export default function HomePage() {
                 <Book className="h-7 w-7 group-hover:animate-bounce" />
                 <span className="relative z-10">Explore EIPs</span>
                 <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </Link>
               
               <Link
@@ -143,11 +142,10 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <TrendingUp className="h-7 w-7 group-hover:animate-pulse relative z-10" />
                 <span className="relative z-10">Live Analytics</span>
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </Link>
             </div>
 
-            {/* Live Stats Preview */}
+            {/* Live Stats Preview - REMOVED SHIMMER ANIMATION */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '2s' }}>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
                 <div className="text-3xl font-bold text-white mb-2 animate-pulse">

@@ -158,6 +158,148 @@ interface IERC2981 {
 }
 \`\`\``,
     discussions: "https://github.com/ethereum/eips/issues/2981"
+  },
+  {
+    number: 7702,
+    title: "Set EOA account code for one transaction",
+    author: ["Vitalik Buterin", "Sam Wilson", "Ansgar Dietrichs", "Matt Garnett"],
+    status: "Draft",
+    type: "Standards Track",
+    category: "Core",
+    created: "2024-05-07",
+    updated: "2024-12-15",
+    description: "Allow EOAs to temporarily set code for one transaction, enabling account abstraction features while maintaining backward compatibility.",
+    content: `## Abstract
+
+This EIP introduces a new transaction type that allows externally owned accounts (EOAs) to temporarily set code for the duration of one transaction. This enables account abstraction features like sponsored transactions, batched operations, and custom validation logic while maintaining full backward compatibility.
+
+## Motivation
+
+Account abstraction has been a long-sought goal for Ethereum, but previous approaches required significant protocol changes or new account types. EIP-7702 provides a minimal, backward-compatible path to account abstraction by allowing EOAs to temporarily "become" smart contracts for single transactions.
+
+## Specification
+
+### New Transaction Type
+
+A new transaction type \`0x04\` is introduced with the following fields:
+- \`chain_id\`: Chain identifier
+- \`nonce\`: Account nonce
+- \`max_priority_fee_per_gas\`: Maximum priority fee
+- \`max_fee_per_gas\`: Maximum total fee
+- \`gas_limit\`: Gas limit
+- \`to\`: Destination address
+- \`value\`: ETH value
+- \`data\`: Transaction data
+- \`authorization_list\`: List of authorization tuples
+
+### Authorization Tuple
+
+Each authorization tuple contains:
+- \`chain_id\`: Target chain ID
+- \`address\`: Address to authorize
+- \`nonce\`: Authorization nonce
+- \`y_parity\`, \`r\`, \`s\`: ECDSA signature components
+
+## Rationale
+
+This approach provides immediate account abstraction benefits while maintaining the existing EOA infrastructure. It enables:
+- Sponsored transactions (gasless transactions)
+- Batched operations
+- Custom validation logic
+- Gradual migration to full account abstraction`,
+    discussions: "https://ethereum-magicians.org/t/eip-7702-set-eoa-account-code-for-one-transaction/19033"
+  },
+  {
+    number: 7251,
+    title: "Execution Layer Exit",
+    author: ["Danny Ryan", "Hsiao-Wei Wang"],
+    status: "Draft", 
+    type: "Standards Track",
+    category: "Core",
+    created: "2023-06-28",
+    updated: "2024-11-20",
+    description: "Enable voluntary exits of validators to be triggered from the execution layer, providing more flexible validator management.",
+    content: `## Abstract
+
+This EIP introduces a mechanism for validators to trigger voluntary exits from the execution layer rather than requiring consensus layer operations. This provides more flexibility for staking protocols and validator management systems.
+
+## Motivation
+
+Currently, validator exits must be initiated from the consensus layer using signed voluntary exit messages. This creates operational complexity for staking protocols and limits the ability to automate validator lifecycle management from smart contracts.
+
+## Specification
+
+### New Precompile
+
+A new precompile at address \`0x0C\` is introduced to handle execution layer exits:
+
+\`\`\`
+function requestExit(
+    bytes calldata pubkey,
+    uint64 validatorIndex,
+    bytes calldata signature
+) external
+\`\`\`
+
+### Exit Request Processing
+
+Exit requests are processed during block execution and included in the beacon chain state transition. The execution layer maintains a queue of pending exit requests that are processed by the consensus layer.
+
+## Rationale
+
+This design enables:
+- Smart contract-based validator management
+- Automated exit strategies for staking protocols  
+- Simplified operational procedures for large validator sets
+- Better integration between execution and consensus layers`,
+    discussions: "https://ethereum-magicians.org/t/eip-7251-execution-layer-exit/14894"
+  },
+  {
+    number: 2537,
+    title: "Precompile for BLS12-381 curve operations",
+    author: ["Alex Vlasov", "Antonio Salazar Cardozo"],
+    status: "Final",
+    type: "Standards Track", 
+    category: "Core",
+    created: "2020-02-21",
+    updated: "2023-03-15",
+    description: "Add precompiled contracts for BLS12-381 curve operations to enable efficient BLS signature verification and other cryptographic operations.",
+    content: `## Abstract
+
+This EIP adds precompiled contracts for BLS12-381 curve operations, enabling efficient BLS signature verification, aggregation, and other advanced cryptographic operations on Ethereum.
+
+## Motivation
+
+BLS12-381 is a pairing-friendly elliptic curve that enables:
+- BLS signature aggregation (used in Ethereum 2.0)
+- Zero-knowledge proof systems
+- Advanced cryptographic protocols
+- Efficient multi-signature schemes
+
+## Specification
+
+### Precompiled Contracts
+
+Four new precompiled contracts are added:
+
+1. **BLS12_G1ADD** (0x0b): G1 point addition
+2. **BLS12_G1MUL** (0x0c): G1 scalar multiplication  
+3. **BLS12_G2ADD** (0x0d): G2 point addition
+4. **BLS12_G2MUL** (0x0e): G2 scalar multiplication
+5. **BLS12_PAIRING** (0x0f): Pairing operation
+
+### Gas Costs
+
+- G1 addition: 500 gas
+- G1 multiplication: 12,000 gas
+- G2 addition: 800 gas
+- G2 multiplication: 45,000 gas
+- Pairing: 43,000 + 65,000 * k gas (k = number of pairs)
+
+## Rationale
+
+These precompiles enable efficient implementation of BLS signatures and other advanced cryptographic protocols that are essential for Ethereum's roadmap and Layer 2 scaling solutions.`,
+    discussions: "https://ethereum-magicians.org/t/eip-2537-bls12-381-curve-operations/4187"
   }
 ];
 
@@ -178,8 +320,8 @@ export const mockProjects: Project[] = [
     description: "Popular Web3 wallet implementing EIP-1559 fee mechanisms and Account Abstraction features.",
     website: "https://metamask.io",
     github: "https://github.com/MetaMask",
-    eipNumbers: [1559, 4337],
-    implementationDetails: "Advanced fee estimation and smart contract wallet integration.",
+    eipNumbers: [1559, 4337, 7702],
+    implementationDetails: "Advanced fee estimation, smart contract wallet integration, and EOA account abstraction support.",
     status: "Active"
   },
   {
@@ -198,9 +340,19 @@ export const mockProjects: Project[] = [
     description: "Smart contract wallet implementing Account Abstraction for enhanced user experience.",
     website: "https://argent.xyz",
     github: "https://github.com/argentlabs",
-    eipNumbers: [4337],
-    implementationDetails: "Native Account Abstraction support with social recovery and gasless transactions.",
+    eipNumbers: [4337, 7702],
+    implementationDetails: "Native Account Abstraction support with social recovery, gasless transactions, and EOA compatibility.",
     status: "Beta"
+  },
+  {
+    id: "5",
+    name: "Ethereum Foundation",
+    description: "Core development team implementing Pectra upgrade features including EIP-7702 and validator exit improvements.",
+    website: "https://ethereum.org",
+    github: "https://github.com/ethereum",
+    eipNumbers: [7702, 7251, 2537],
+    implementationDetails: "Protocol-level implementation of Pectra upgrade features in all major Ethereum clients.",
+    status: "Active"
   }
 ];
 
@@ -229,6 +381,23 @@ export const mockDiscussions: Discussion[] = [
     content: "Account Abstraction is revolutionary for UX. When can we expect broader wallet adoption?",
     timestamp: "2024-01-14T14:20:00Z",
     replies: []
+  },
+  {
+    id: "4",
+    eipNumber: 7702,
+    author: "PectraResearcher",
+    content: "EIP-7702 provides an elegant solution for EOA account abstraction. The backward compatibility is impressive!",
+    timestamp: "2024-12-10T09:15:00Z",
+    replies: [
+      {
+        id: "5",
+        eipNumber: 7702,
+        author: "DevExpert",
+        content: "Agreed! This will make account abstraction much more accessible. Looking forward to the Pectra upgrade.",
+        timestamp: "2024-12-10T10:30:00Z",
+        replies: []
+      }
+    ]
   }
 ];
 
@@ -259,6 +428,15 @@ export const mockNews: NewsItem[] = [
     publishedAt: "2024-01-13T00:00:00Z",
     eipNumbers: [2981],
     summary: "EIP-2981 royalty standards are now supported by 95% of major NFT marketplaces, ensuring creator compensation across platforms."
+  },
+  {
+    id: "4",
+    title: "Pectra Upgrade: EIP-7702 Brings Account Abstraction to EOAs",
+    source: "Ethereum Blog",
+    url: "#",
+    publishedAt: "2024-12-15T00:00:00Z",
+    eipNumbers: [7702, 7251],
+    summary: "The upcoming Pectra upgrade introduces EIP-7702, enabling EOAs to temporarily set code and access account abstraction features."
   }
 ];
 
@@ -306,6 +484,27 @@ export const mockLiveData: LiveData[] = [
         { date: "2024-01-01", value: 6000000 },
         { date: "2024-01-07", value: 7500000 },
         { date: "2024-01-14", value: 8000000 }
+      ]
+    }
+  },
+  {
+    eipNumber: 7702,
+    metrics: {
+      adoptionRate: 15,
+      transactionVolume: "2K/day",
+      gasUsage: "500K gas/day",
+      activeProjects: 25
+    },
+    charts: {
+      adoptionOverTime: [
+        { date: "2024-10", value: 0 },
+        { date: "2024-11", value: 5 },
+        { date: "2024-12", value: 15 }
+      ],
+      gasUsageOverTime: [
+        { date: "2024-12-01", value: 100000 },
+        { date: "2024-12-07", value: 300000 },
+        { date: "2024-12-14", value: 500000 }
       ]
     }
   }
