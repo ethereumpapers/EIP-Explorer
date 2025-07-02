@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, TrendingUp, Book, Users, ArrowRight, Star, Activity, Sparkles, Zap } from 'lucide-react';
+import { Search, TrendingUp, Book, Users, ArrowRight, Star, Activity, Sparkles, Zap, Rocket, Code, Globe } from 'lucide-react';
 import EIPCard from '../components/EIPCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
@@ -12,144 +12,193 @@ export default function HomePage() {
   const { eips, loading: eipsLoading, error: eipsError, stats } = useEIPs();
   const { metrics, loading: metricsLoading, error: metricsError } = useLiveData();
   const { stats: projectStats } = useProjects();
+  const [typedText, setTypedText] = useState('');
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
+  const words = ['EIP Explorer', 'Standards Hub', 'Research Center', 'Innovation Lab'];
   const featuredEIPs = eips.filter(eip => [1559, 721, 4337].includes(eip.number)).slice(0, 3);
-  const recentEIPs = eips
-    .filter(eip => !featuredEIPs.some(f => f.number === eip.number))
-    .sort((a, b) => new Date(b.updated || b.created).getTime() - new Date(a.updated || a.created).getTime())
-    .slice(0, 3);
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+    let charIndex = 0;
+    
+    const typeInterval = setInterval(() => {
+      if (charIndex <= currentWord.length) {
+        setTypedText(currentWord.slice(0, charIndex));
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        setTimeout(() => {
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }, 2000);
+      }
+    }, 150);
+
+    return () => clearInterval(typeInterval);
+  }, [currentWordIndex]);
 
   return (
     <div className="min-h-screen bg-white overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-100 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-purple-100 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-40 left-20 w-20 h-20 bg-cyan-100 rounded-full opacity-25 animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-20 right-40 w-28 h-28 bg-indigo-100 rounded-full opacity-20 animate-bounce" style={{ animationDelay: '3s' }}></div>
-        
-        {/* Floating Icons */}
-        <div className="absolute top-32 left-1/4 animate-float">
-          <Sparkles className="h-8 w-8 text-blue-300 opacity-40" />
+      {/* Advanced Hero Section */}
+      <div className="relative min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600 text-white overflow-hidden">
+        {/* Animated Background Blobs */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20 animate-morph-blob"></div>
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full opacity-25 animate-morph-blob" style={{ animationDelay: '5s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-15 animate-morph-blob" style={{ animationDelay: '10s' }}></div>
         </div>
-        <div className="absolute top-60 right-1/3 animate-float" style={{ animationDelay: '2s' }}>
-          <Zap className="h-6 w-6 text-purple-300 opacity-50" />
-        </div>
-        <div className="absolute bottom-60 left-1/3 animate-float" style={{ animationDelay: '4s' }}>
-          <Activity className="h-7 w-7 text-cyan-300 opacity-45" />
-        </div>
-      </div>
 
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-600 text-white">
-        <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="relative max-w-6xl mx-auto px-6 py-20">
-          <div className="text-center">
-            <div className="mb-8 flex justify-center">
-              <div className="bg-white/20 backdrop-blur-sm p-4 rounded-2xl animate-pulse-slow">
-                <Book className="h-16 w-16 text-white animate-bounce-slow" />
+        {/* Floating Particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className={`particle particle-${(i % 5) + 1}`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 15}s`,
+                animationDuration: `${12 + Math.random() * 8}s`
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Floating Icons */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-32 left-1/4 animate-sparkle-trail">
+            <Sparkles className="h-8 w-8 text-yellow-300 opacity-60" />
+          </div>
+          <div className="absolute top-60 right-1/3 animate-sparkle-trail" style={{ animationDelay: '2s' }}>
+            <Zap className="h-6 w-6 text-purple-300 opacity-70" />
+          </div>
+          <div className="absolute bottom-60 left-1/3 animate-sparkle-trail" style={{ animationDelay: '4s' }}>
+            <Activity className="h-7 w-7 text-cyan-300 opacity-65" />
+          </div>
+          <div className="absolute top-40 right-1/4 animate-sparkle-trail" style={{ animationDelay: '6s' }}>
+            <Rocket className="h-8 w-8 text-pink-300 opacity-60" />
+          </div>
+          <div className="absolute bottom-40 right-1/2 animate-sparkle-trail" style={{ animationDelay: '8s' }}>
+            <Code className="h-6 w-6 text-green-300 opacity-70" />
+          </div>
+          <div className="absolute top-1/2 left-20 animate-sparkle-trail" style={{ animationDelay: '10s' }}>
+            <Globe className="h-7 w-7 text-blue-300 opacity-65" />
+          </div>
+        </div>
+
+        {/* Main Hero Content */}
+        <div className="relative z-10 flex items-center justify-center min-h-screen">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            {/* Animated Logo */}
+            <div className="mb-12 flex justify-center">
+              <div className="relative">
+                <div className="bg-white/20 backdrop-blur-sm p-6 rounded-3xl animate-hero-float">
+                  <Book className="h-20 w-20 text-white" />
+                </div>
+                {/* Pulse rings */}
+                <div className="absolute inset-0 rounded-3xl border-2 border-white/30 animate-pulse-ring"></div>
+                <div className="absolute inset-0 rounded-3xl border-2 border-white/20 animate-pulse-ring" style={{ animationDelay: '1s' }}></div>
               </div>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in-up">
-              <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">
-                EIP Explorer
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-10 text-blue-100 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              Discover Ethereum Improvement Proposals with live data, project tracking, and AI assistance
+
+            {/* Animated Title */}
+            <div className="mb-8">
+              <h1 className="text-6xl md:text-8xl font-bold mb-4">
+                <span className="gradient-text-animated animate-text-glow">
+                  {typedText}
+                  <span className="animate-pulse">|</span>
+                </span>
+              </h1>
+              <div className="h-2 w-32 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 mx-auto rounded-full animate-gradient-shift"></div>
+            </div>
+
+            {/* Subtitle with typewriter effect */}
+            <p className="text-2xl md:text-3xl mb-12 text-blue-100 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '1s' }}>
+              Discover Ethereum Improvement Proposals with 
+              <span className="gradient-text-animated font-semibold"> live data</span>, 
+              <span className="gradient-text-animated font-semibold"> project tracking</span>, and 
+              <span className="gradient-text-animated font-semibold"> AI assistance</span>
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+
+            {/* Animated Buttons */}
+            <div className="flex flex-col sm:flex-row justify-center gap-8 mb-16 animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
               <Link
                 to="/eips"
-                className="group bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-3 text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="group relative bg-white text-blue-600 px-10 py-5 rounded-2xl font-bold hover:bg-blue-50 transition-all duration-500 flex items-center justify-center gap-4 text-xl shadow-2xl hover:shadow-3xl transform hover:scale-110 overflow-hidden"
               >
-                <Book className="h-6 w-6 group-hover:animate-bounce" />
-                <span>Browse All EIPs</span>
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                <Book className="h-7 w-7 group-hover:animate-bounce" />
+                <span className="relative z-10">Explore EIPs</span>
+                <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </Link>
+              
               <Link
                 to="/analytics"
-                className="group border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center justify-center gap-3 text-lg hover:shadow-xl transform hover:scale-105"
+                className="group relative border-3 border-white text-white px-10 py-5 rounded-2xl font-bold hover:bg-white hover:text-blue-600 transition-all duration-500 flex items-center justify-center gap-4 text-xl hover:shadow-2xl transform hover:scale-110 overflow-hidden"
               >
-                <TrendingUp className="h-6 w-6 group-hover:animate-pulse" />
-                <span>View Analytics</span>
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <TrendingUp className="h-7 w-7 group-hover:animate-pulse relative z-10" />
+                <span className="relative z-10">Live Analytics</span>
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </Link>
+            </div>
+
+            {/* Live Stats Preview */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '2s' }}>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <div className="text-3xl font-bold text-white mb-2 animate-pulse">
+                  {stats.total || '---'}
+                </div>
+                <div className="text-blue-100 text-sm">Total EIPs</div>
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping mt-2"></div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <div className="text-3xl font-bold text-white mb-2 animate-pulse" style={{ animationDelay: '0.5s' }}>
+                  {stats.byStatus?.['Final'] || '---'}
+                </div>
+                <div className="text-green-100 text-sm">Final Standards</div>
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-ping mt-2" style={{ animationDelay: '0.5s' }}></div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <div className="text-3xl font-bold text-white mb-2 animate-pulse" style={{ animationDelay: '1s' }}>
+                  {projectStats.total || '---'}
+                </div>
+                <div className="text-purple-100 text-sm">Active Projects</div>
+                <div className="w-2 h-2 bg-purple-400 rounded-full animate-ping mt-2" style={{ animationDelay: '1s' }}></div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <div className="text-3xl font-bold text-white mb-2 animate-pulse" style={{ animationDelay: '1.5s' }}>
+                  {stats.recentlyUpdated || '---'}
+                </div>
+                <div className="text-orange-100 text-sm">Recent Updates</div>
+                <div className="w-2 h-2 bg-orange-400 rounded-full animate-ping mt-2" style={{ animationDelay: '1.5s' }}></div>
+              </div>
             </div>
           </div>
         </div>
-        
-        {/* Animated Wave */}
+
+        {/* Advanced Animated Wave */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-          <svg className="relative block w-full h-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <svg className="relative block w-full h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+                <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
+                <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
+              </linearGradient>
+            </defs>
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
-                  className="fill-blue-50 animate-wave"></path>
+                  fill="url(#waveGradient)" className="animate-wave-flow"></path>
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+                  fill="rgba(249, 250, 251, 1)" className="animate-wave" style={{ animationDelay: '2s' }}></path>
           </svg>
         </div>
       </div>
 
-      {/* Live Stats Section */}
-      <div className="bg-gradient-to-r from-blue-50 via-white to-purple-50 border-b border-blue-100">
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          {eipsLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {[1, 2, 3, 4].map(i => (
-                <div key={i} className="text-center bg-white rounded-xl p-8 shadow-sm animate-pulse">
-                  <div className="h-12 bg-gray-200 rounded mb-4"></div>
-                  <div className="h-6 bg-gray-200 rounded"></div>
-                </div>
-              ))}
-            </div>
-          ) : eipsError ? (
-            <div className="text-center">
-              <p className="text-red-600 text-lg">Unable to load statistics</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="group text-center bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up">
-                <div className="text-4xl font-bold text-blue-600 mb-3 group-hover:animate-pulse">
-                  {stats.total.toLocaleString()}
-                </div>
-                <div className="text-gray-600 text-lg">Total EIPs</div>
-                <div className="mt-2 flex items-center justify-center">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-ping"></div>
-                  <span className="ml-2 text-xs text-blue-600">Live</span>
-                </div>
-              </div>
-              <div className="group text-center bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                <div className="text-4xl font-bold text-green-600 mb-3 group-hover:animate-pulse">
-                  {stats.byStatus['Final'] || 0}
-                </div>
-                <div className="text-gray-600 text-lg">Final Standards</div>
-                <div className="mt-2 flex items-center justify-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
-                  <span className="ml-2 text-xs text-green-600">Active</span>
-                </div>
-              </div>
-              <div className="group text-center bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                <div className="text-4xl font-bold text-purple-600 mb-3 group-hover:animate-pulse">
-                  {projectStats.total.toLocaleString()}
-                </div>
-                <div className="text-gray-600 text-lg">Active Projects</div>
-                <div className="mt-2 flex items-center justify-center">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
-                  <span className="ml-2 text-xs text-purple-600">Growing</span>
-                </div>
-              </div>
-              <div className="group text-center bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                <div className="text-4xl font-bold text-orange-600 mb-3 group-hover:animate-pulse">
-                  {stats.recentlyUpdated}
-                </div>
-                <div className="text-gray-600 text-lg">Recently Updated</div>
-                <div className="mt-2 flex items-center justify-center">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full animate-ping" style={{ animationDelay: '1.5s' }}></div>
-                  <span className="ml-2 text-xs text-orange-600">Fresh</span>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
+      {/* Rest of the content remains the same but with enhanced animations */}
       <div className="max-w-6xl mx-auto px-6 py-16">
         {/* Featured EIPs */}
         <div className="mb-20">
