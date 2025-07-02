@@ -40,11 +40,16 @@ export default function Header({ onSearch }: HeaderProps) {
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-4 group">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl group-hover:animate-pulse transition-all duration-300">
-                <Book className="h-8 w-8 text-white" />
+              <div className="relative">
+                <img 
+                  src="/logo_eip_explorer.png" 
+                  alt="EIP Explorer Logo" 
+                  className="h-12 w-12 object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
                   EIP Explorer
                 </h1>
                 <p className="text-sm text-gray-500 flex items-center gap-1">

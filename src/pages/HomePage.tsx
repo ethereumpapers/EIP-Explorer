@@ -92,7 +92,11 @@ export default function HomePage() {
             <div className="mb-12 flex justify-center">
               <div className="relative">
                 <div className="bg-white/20 backdrop-blur-sm p-6 rounded-3xl animate-hero-float">
-                  <Book className="h-20 w-20 text-white" />
+                  <img 
+                    src="/logo_eip_explorer.png" 
+                    alt="EIP Explorer Logo" 
+                    className="h-20 w-20 object-contain"
+                  />
                 </div>
                 {/* Pulse rings */}
                 <div className="absolute inset-0 rounded-3xl border-2 border-white/30 animate-pulse-ring"></div>
@@ -103,7 +107,7 @@ export default function HomePage() {
             {/* Animated Title */}
             <div className="mb-8">
               <h1 className="text-6xl md:text-8xl font-bold mb-4">
-                <span className="gradient-text-animated animate-text-glow">
+                <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent animate-text-glow">
                   {typedText}
                   <span className="animate-pulse">|</span>
                 </span>
@@ -114,9 +118,9 @@ export default function HomePage() {
             {/* Subtitle with typewriter effect */}
             <p className="text-2xl md:text-3xl mb-12 text-blue-100 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '1s' }}>
               Discover Ethereum Improvement Proposals with 
-              <span className="gradient-text-animated font-semibold"> live data</span>, 
-              <span className="gradient-text-animated font-semibold"> project tracking</span>, and 
-              <span className="gradient-text-animated font-semibold"> AI assistance</span>
+              <span className="text-yellow-300 font-semibold"> live data</span>, 
+              <span className="text-pink-300 font-semibold"> project tracking</span>, and 
+              <span className="text-cyan-300 font-semibold"> AI assistance</span>
             </p>
 
             {/* Animated Buttons */}
