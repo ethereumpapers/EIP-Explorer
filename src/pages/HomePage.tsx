@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, TrendingUp, Book, Users, ArrowRight, Star, Activity, Sparkles, Zap, Rocket, Code, Globe } from 'lucide-react';
+import { Search, TrendingUp, Book, Users, ArrowRight, Activity, Sparkles, Zap, Rocket, Code, Globe } from 'lucide-react';
 import EIPCard from '../components/EIPCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
@@ -181,23 +181,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Advanced Animated Wave */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-          <svg className="relative block w-full h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
-                <stop offset="50%" stopColor="rgba(255,255,255,0.3)" />
-                <stop offset="100%" stopColor="rgba(255,255,255,0.1)" />
-              </linearGradient>
-            </defs>
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
-                  fill="url(#waveGradient)" className="animate-wave-flow"></path>
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
-                  fill="rgba(249, 250, 251, 1)" className="animate-wave" style={{ animationDelay: '2s' }}></path>
-          </svg>
-        </div>
       </div>
 
       {/* Rest of the content remains the same but with enhanced animations */}
@@ -227,11 +210,6 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {featuredEIPs.map((eip, index) => (
                 <div key={eip.number} className="relative animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <div className="absolute -top-3 -right-3 z-10 animate-bounce">
-                    <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-white p-2 rounded-full shadow-lg">
-                      <Star className="h-5 w-5" />
-                    </div>
-                  </div>
                   <div className="transform hover:scale-105 transition-all duration-300">
                     <EIPCard eip={eip} />
                   </div>

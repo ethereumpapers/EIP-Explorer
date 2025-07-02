@@ -79,22 +79,18 @@ export default function Header({ onSearch }: HeaderProps) {
               <Link to="/eips" className="group flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium text-lg relative">
                 <Book className="h-5 w-5 group-hover:animate-bounce" />
                 <span>Browse EIPs</span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></div>
               </Link>
               <Link to="/analytics" className="group flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium text-lg relative">
                 <TrendingUp className="h-5 w-5 group-hover:animate-pulse" />
                 <span>Analytics</span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></div>
               </Link>
               <Link to="/projects" className="group flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium text-lg relative">
                 <Users className="h-5 w-5 group-hover:animate-bounce" />
                 <span>Projects</span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></div>
               </Link>
               <Link to="/discussions" className="group flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium text-lg relative">
                 <MessageSquare className="h-5 w-5 group-hover:animate-pulse" />
                 <span>Discussions</span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></div>
               </Link>
               
               {/* Auth Section */}
@@ -163,6 +159,10 @@ export default function Header({ onSearch }: HeaderProps) {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden pb-6 border-t border-gray-200 pt-6 animate-fade-in-up">
+              <div className="flex items-center gap-3 mb-4">
+                <img src="/logo_eip_explorer.png" alt="EIP Explorer Logo" className="h-10 w-10 object-contain" />
+                <span className="text-xl font-bold text-gray-900">EIP Explorer</span>
+              </div>
               <nav className="flex flex-col gap-4">
                 <Link
                   to="/eips"
