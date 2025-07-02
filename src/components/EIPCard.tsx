@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User, ExternalLink, Sparkles, TrendingUp } from 'lucide-react';
+import { Calendar, User, ExternalLink } from 'lucide-react';
 import { EIP } from '../types/eip';
 import { formatDistanceToNow } from 'date-fns';
 
@@ -27,20 +27,10 @@ const categoryColors = {
 };
 
 export default function EIPCard({ eip, showDescription = true }: EIPCardProps) {
-  const isPopular = [1559, 721, 4337, 20].includes(eip.number);
-  
   return (
     <div className="group bg-white rounded-xl border border-gray-200 p-8 hover:shadow-xl transition-all duration-300 hover:border-blue-300 transform hover:scale-105 relative overflow-hidden">
       {/* Background gradient on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      
-      {/* Popular indicator */}
-      {isPopular && (
-        <div className="absolute top-4 right-4 flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-2 py-1 rounded-full text-xs font-medium animate-pulse">
-          <Sparkles className="h-3 w-3" />
-          <span>Popular</span>
-        </div>
-      )}
       
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-6">
@@ -98,12 +88,6 @@ export default function EIPCard({ eip, showDescription = true }: EIPCardProps) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {isPopular && (
-              <div className="flex items-center gap-1 text-green-600">
-                <TrendingUp className="h-4 w-4 animate-pulse" />
-                <span className="text-xs">Trending</span>
-              </div>
-            )}
             <span className="text-sm bg-gradient-to-r from-gray-100 to-gray-200 px-3 py-1 rounded-full group-hover:from-blue-100 group-hover:to-purple-100 transition-all duration-300">
               {eip.type}
             </span>

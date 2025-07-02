@@ -88,19 +88,34 @@ export default function HomePage() {
         {/* Main Hero Content */}
         <div className="relative z-10 flex items-center justify-center min-h-screen">
           <div className="max-w-6xl mx-auto px-6 text-center">
-            {/* Animated Logo */}
+            {/* Big Logo in the Middle */}
             <div className="mb-12 flex justify-center">
               <div className="relative">
-                <div className="bg-white/20 backdrop-blur-sm p-6 rounded-3xl animate-hero-float">
+                {/* Logo glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse"></div>
+                
+                {/* Big Logo */}
+                <div className="relative z-10 transform hover:scale-105 transition-transform duration-300">
                   <img 
                     src="/logo_eip_explorer.png" 
                     alt="EIP Explorer Logo" 
-                    className="h-20 w-20 object-contain"
+                    className="h-48 w-48 object-contain drop-shadow-2xl filter brightness-150"
                   />
                 </div>
-                {/* Pulse rings */}
-                <div className="absolute inset-0 rounded-3xl border-2 border-white/30 animate-pulse-ring"></div>
-                <div className="absolute inset-0 rounded-3xl border-2 border-white/20 animate-pulse-ring" style={{ animationDelay: '1s' }}></div>
+                
+                {/* EIP Explorer Text */}
+                <div className="mt-6 text-center">
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent animate-text-glow drop-shadow-lg">
+                    EIP Explorer
+                  </h2>
+                  <div className="h-1 w-20 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 mx-auto rounded-full mt-3 animate-gradient-shift shadow-md"></div>
+                </div>
+                
+                {/* Floating sparkles around logo */}
+                <div className="absolute top-8 left-8 w-2 h-2 bg-yellow-300 rounded-full animate-bounce opacity-80"></div>
+                <div className="absolute top-12 right-12 w-1.5 h-1.5 bg-purple-300 rounded-full animate-bounce opacity-70" style={{ animationDelay: '0.5s' }}></div>
+                <div className="absolute bottom-12 left-12 w-1 h-1 bg-cyan-300 rounded-full animate-bounce opacity-90" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute bottom-8 right-8 w-1.5 h-1.5 bg-pink-300 rounded-full animate-bounce opacity-80" style={{ animationDelay: '1.5s' }}></div>
               </div>
             </div>
 

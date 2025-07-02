@@ -198,6 +198,18 @@
   }
 }
 
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  50% {
+    transform: translateX(100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
 /* Animation Classes */
 .animate-hero-float {
   animation: heroFloat 8s ease-in-out infinite;
@@ -261,6 +273,10 @@
 
 .animate-glow {
   animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shine {
+  animation: shine 3s ease-in-out infinite;
 }
 
 /* Gradient text utilities */
