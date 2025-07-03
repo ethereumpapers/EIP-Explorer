@@ -16,7 +16,7 @@ export default function HomePage() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   const words = ['EIP Explorer', 'Standards Hub', 'Research Center', 'Innovation Lab'];
-  const featuredEIPs = eips.filter(eip => [1559, 721, 4337].includes(eip.number)).slice(0, 3);
+  const featuredEIPs = eips.filter(eip => [1559, 721, 4337, 7702, 4844].includes(eip.number)).slice(0, 5);
 
   useEffect(() => {
     const currentWord = words[currentWordIndex];
@@ -97,7 +97,7 @@ export default function HomePage() {
                 {/* Big Logo */}
                 <div className="relative z-10 transform hover:scale-105 transition-transform duration-300">
                   <img 
-                    src="/logo_eip_explorer.png" 
+                    src="/logo_eip_explorer2.png" 
                     alt="EIP Explorer Logo" 
                     className="h-48 w-48 object-contain drop-shadow-2xl filter brightness-150"
                   />
@@ -160,7 +160,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Live Stats Preview - REMOVED SHIMMER ANIMATION */}
+            {/* Live Stats Preview */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '2s' }}>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
                 <div className="text-3xl font-bold text-white mb-2 animate-pulse">
@@ -198,7 +198,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Rest of the content remains the same but with enhanced animations */}
+      {/* Rest of the content with enhanced animations */}
       <div className="max-w-6xl mx-auto px-6 py-16">
         {/* Featured EIPs */}
         <div className="mb-20">
@@ -206,7 +206,7 @@ export default function HomePage() {
             <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
               Featured EIPs
             </h2>
-            <p className="text-xl text-gray-600">Most impactful and widely adopted standards</p>
+            <p className="text-xl text-gray-600">Most impactful and widely adopted standards including Pectra upgrade features</p>
           </div>
           
           {eipsLoading ? (
@@ -240,7 +240,7 @@ export default function HomePage() {
             <h2 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
               Live Adoption Metrics
             </h2>
-            <p className="text-xl text-gray-600">Real-time data showing EIP implementation and usage</p>
+            <p className="text-xl text-gray-600">Real-time data showing EIP implementation and usage across the ecosystem</p>
           </div>
           
           {metricsLoading ? (
@@ -255,7 +255,7 @@ export default function HomePage() {
             <ErrorMessage message="Failed to load live metrics" />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {metrics.slice(0, 2).map((data, index) => {
+              {metrics.slice(0, 4).map((data, index) => {
                 const eip = eips.find(e => e.number === data.eipNumber);
                 return (
                   <div key={data.eipNumber} className="group bg-white rounded-xl border border-gray-200 p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-fade-in-up" style={{ animationDelay: `${index * 0.3}s` }}>
@@ -306,7 +306,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">Draft EIPs</h3>
             </div>
-            <p className="text-gray-600 mb-6 text-lg">Explore proposed standards currently under development</p>
+            <p className="text-gray-600 mb-6 text-lg">Explore proposed standards currently under development including Pectra upgrade features</p>
             <div className="flex items-center text-blue-600 group-hover:text-purple-600 font-medium transition-colors">
               <span>View Drafts</span>
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-2 transition-transform" />
@@ -323,7 +323,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 group-hover:text-green-600 transition-colors">Implementation Projects</h3>
             </div>
-            <p className="text-gray-600 mb-6 text-lg">Discover projects actively implementing EIP standards</p>
+            <p className="text-gray-600 mb-6 text-lg">Discover projects actively implementing EIP standards across DeFi, NFTs, and infrastructure</p>
             <div className="flex items-center text-blue-600 group-hover:text-green-600 font-medium transition-colors">
               <span>Browse Projects</span>
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-2 transition-transform" />
@@ -340,7 +340,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">Analytics Dashboard</h3>
             </div>
-            <p className="text-gray-600 mb-6 text-lg">View comprehensive metrics and adoption trends</p>
+            <p className="text-gray-600 mb-6 text-lg">View comprehensive metrics, adoption trends, and ecosystem impact analysis</p>
             <div className="flex items-center text-blue-600 group-hover:text-purple-600 font-medium transition-colors">
               <span>View Analytics</span>
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-2 transition-transform" />
