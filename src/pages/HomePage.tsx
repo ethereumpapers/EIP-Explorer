@@ -97,9 +97,9 @@ export default function HomePage() {
                 {/* Big Logo */}
                 <div className="relative z-10 transform hover:scale-105 transition-transform duration-300">
                   <img 
-                    src="/logo_eip_explorer2.png" 
+                    src="/logo_eip_explorer.png" 
                     alt="EIP Explorer Logo" 
-                    className="h-48 w-48 object-contain drop-shadow-2xl filter brightness-150"
+                    className="mx-auto h-32 w-32 md:h-48 md:w-48 object-contain drop-shadow-xl relative z-10"
                   />
                 </div>
                 

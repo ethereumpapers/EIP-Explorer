@@ -42,7 +42,7 @@ export default function Header({ onSearch }: HeaderProps) {
             <Link to="/" className="flex items-center gap-4 group">
               <div className="relative">
                 <img 
-                  src="/logo_eip_explorer2.png" 
+                  src="/logo_eip_explorer.png" 
                   alt="EIP Explorer Logo" 
                   className="h-28 w-28 object-contain group-hover:scale-110 transition-transform duration-300"
                 />
@@ -157,7 +157,7 @@ export default function Header({ onSearch }: HeaderProps) {
           {isMenuOpen && (
             <div className="md:hidden pb-6 border-t border-gray-200 pt-6 animate-fade-in-up">
               <div className="flex items-center gap-3 mb-4">
-                <img src="/logo_eip_explorer2.png" alt="EIP Explorer Logo" className="h-24 w-24 object-contain" />
+                <img src="/logo_eip_explorer.png" alt="EIP Explorer Logo" className="h-24 w-24 object-contain" />
                 <span className="text-xl font-bold text-gray-900">EIP Explorer</span>
               </div>
               <nav className="flex flex-col gap-4">
