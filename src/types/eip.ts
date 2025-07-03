@@ -4,7 +4,7 @@ export interface EIP {
   author: string[];
   status: 'Draft' | 'Review' | 'Last Call' | 'Final' | 'Stagnant' | 'Withdrawn' | 'Living';
   type: 'Standards Track' | 'Meta' | 'Informational';
-  category?: 'Core' | 'Networking' | 'Interface' | 'ERC';
+  category?: 'Core' | 'Networking' | 'Interface' | 'ERC' | 'Meta' | 'Informational';
   created: string;
   updated?: string;
   description: string;

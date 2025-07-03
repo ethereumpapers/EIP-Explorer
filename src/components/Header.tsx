@@ -98,11 +98,14 @@ export default function Header({ onSearch }: HeaderProps) {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-3 group">
                     {user?.avatar && (
-                      <img
-                        src={user.avatar}
-                        alt={user.name}
-                        className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-200 group-hover:ring-blue-400 transition-all duration-300"
-                      />
+                      <Link to="/profile">
+                        <img
+                          src={user.avatar}
+                          alt={user.name}
+                          className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-200 group-hover:ring-blue-400 transition-all duration-300 cursor-pointer hover:scale-105"
+                          title="View Profile"
+                        />
+                      </Link>
                     )}
                     <span className="font-medium text-gray-700 group-hover:text-blue-600 transition-colors">{user?.name}</span>
                   </div>
@@ -196,11 +199,13 @@ export default function Header({ onSearch }: HeaderProps) {
                   <div className="pt-4 border-t border-gray-200">
                     <div className="flex items-center gap-3 mb-4">
                       {user?.avatar && (
-                        <img
-                          src={user.avatar}
-                          alt={user.name}
-                          className="w-10 h-10 rounded-full object-cover"
-                        />
+                        <Link to="/profile">
+                          <img
+                            src={user.avatar}
+                            alt={user.name}
+                            className="w-10 h-10 rounded-full object-cover"
+                          />
+                        </Link>
                       )}
                       <span className="font-medium text-gray-700">{user?.name}</span>
                     </div>
@@ -233,7 +238,7 @@ export default function Header({ onSearch }: HeaderProps) {
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
-        initialMode={authMode}
+        initialMode="signin"
       />
     </>
   );

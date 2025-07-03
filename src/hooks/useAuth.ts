@@ -13,6 +13,7 @@ export function useAuth() {
     ...authState,
     signUp: authService.signUp.bind(authService),
     signIn: authService.signIn.bind(authService),
-    signOut: authService.signOut.bind(authService)
+    signOut: authService.signOut.bind(authService),
+    updateProfile: authService.updateProfile.bind(authService)
   };
 }

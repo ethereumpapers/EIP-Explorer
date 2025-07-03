@@ -9,6 +9,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import DiscussionsPage from './pages/DiscussionsPage';
 import AIAssistant from './components/AIAssistant';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="/discussions" element={<DiscussionsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
         <AIAssistant />
       </div>

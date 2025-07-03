@@ -3,6 +3,7 @@ interface User {
   email: string;
   name: string;
   avatar?: string;
+  bio?: string;
   createdAt: string;
 }
 
@@ -151,6 +152,29 @@ class AuthService {
       isLoading: false
     };
     this.notifyListeners();
+  }
+
+  async updateProfile(updates: { name?: string; bio?: string; avatar?: string }): Promise<{ success: boolean; error?: string }> {
+    if (!this.currentState.user) {
+      return { success: false, error: 'Not authenticated' };
+    }
+    try {
+      const user = { ...this.currentState.user, ...updates };
+      // Update user in users list
+      const users = JSON.parse(localStorage.getItem('eip_explorer_users') || '[]');
+      const idx = users.findIndex((u: any) => u.email === user.email);
+      if (idx !== -1) {
+        users[idx] = { ...users[idx], ...updates };
+        localStorage.setItem('eip_explorer_users', JSON.stringify(users));
+      }
+      // Update current user
+      localStorage.setItem('eip_explorer_user', JSON.stringify(user));
+      this.currentState.user = user;
+      this.notifyListeners();
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: 'Failed to update profile' };
+    }
   }
 }
 
