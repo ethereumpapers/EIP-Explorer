@@ -302,15 +302,21 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                 
                 {/* Powered by Section */}
                 <div className="mt-3 pt-3 border-t border-gray-100">
-                  <div className="flex items-center justify-center space-x-2 text-xs text-gray-600">
+                  <a
+                    href="https://www.ethereumpapers.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center space-x-2 text-xs text-gray-600 hover:text-blue-600 transition-colors group"
+                    title="Check out ERP articles"
+                  >
                     <img 
                       src="/ERP Pic .png" 
                       alt="ERP Logo" 
-                      className="h-4 w-4 object-contain"
+                      className="h-4 w-4 object-contain group-hover:scale-110 transition-transform"
                     />
                     <span>Powered by</span>
-                    <span className="font-semibold text-gray-800">Ethereum Research Papers</span>
-                  </div>
+                    <span className="font-semibold text-gray-800 group-hover:underline">Ethereum Research Papers</span>
+                  </a>
                 </div>
               </div>
             </>

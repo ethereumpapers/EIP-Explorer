@@ -78,7 +78,7 @@ export default function Header({ onSearch }: HeaderProps) {
             <nav className="hidden md:flex items-center gap-8">
               <Link to="/eips" className="group flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium text-lg relative">
                 <Book className="h-5 w-5 group-hover:animate-bounce" />
-                <span>Browse EIPs</span>
+                <span>Explore EIPs</span>
               </Link>
               <Link to="/analytics" className="group flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-all duration-300 font-medium text-lg relative">
                 <TrendingUp className="h-5 w-5 group-hover:animate-pulse" />
@@ -123,12 +123,6 @@ export default function Header({ onSearch }: HeaderProps) {
                     <LogIn className="h-5 w-5 group-hover:animate-bounce" />
                     <span>Sign In</span>
                   </button>
-                  <button
-                    onClick={() => handleAuthClick('signup')}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium transform hover:scale-105 hover:shadow-lg"
-                  >
-                    Sign Up
-                  </button>
                 </div>
               )}
             </nav>
@@ -170,7 +164,7 @@ export default function Header({ onSearch }: HeaderProps) {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Book className="h-6 w-6" />
-                  <span>Browse EIPs</span>
+                  <span>Explore EIPs</span>
                 </Link>
                 <Link
                   to="/analytics"
@@ -226,12 +220,6 @@ export default function Header({ onSearch }: HeaderProps) {
                     >
                       <LogIn className="h-6 w-6" />
                       <span>Sign In</span>
-                    </button>
-                    <button
-                      onClick={() => handleAuthClick('signup')}
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 w-full font-medium"
-                    >
-                      Sign Up
                     </button>
                   </div>
                 )}

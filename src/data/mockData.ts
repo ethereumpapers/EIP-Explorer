@@ -312,7 +312,8 @@ export const mockProjects: Project[] = [
     github: "https://github.com/ProjectOpenSea",
     eipNumbers: [721, 1155, 2981],
     implementationDetails: "Full implementation of NFT standards with advanced trading features and royalty support.",
-    status: "Active"
+    status: "Active",
+    logo: "https://opensea.io/static/images/logos/opensea.svg"
   },
   {
     id: "2",
@@ -322,7 +323,8 @@ export const mockProjects: Project[] = [
     github: "https://github.com/MetaMask",
     eipNumbers: [1559, 4337, 7702],
     implementationDetails: "Advanced fee estimation, smart contract wallet integration, and EOA account abstraction support.",
-    status: "Active"
+    status: "Active",
+    logo: "https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg"
   },
   {
     id: "3",
@@ -332,7 +334,8 @@ export const mockProjects: Project[] = [
     github: "https://github.com/Uniswap",
     eipNumbers: [20],
     implementationDetails: "Concentrated liquidity pools with ERC-20 token support and advanced AMM mechanics.",
-    status: "Active"
+    status: "Active",
+    logo: "https://uniswap.org/static/media/logo.2c489f8b.png"
   },
   {
     id: "4",
@@ -342,7 +345,8 @@ export const mockProjects: Project[] = [
     github: "https://github.com/argentlabs",
     eipNumbers: [4337, 7702],
     implementationDetails: "Native Account Abstraction support with social recovery, gasless transactions, and EOA compatibility.",
-    status: "Beta"
+    status: "Beta",
+    logo: "https://argent.xyz/wp-content/themes/argent-v2/assets/images/argent-logo.svg"
   },
   {
     id: "5",
@@ -352,7 +356,8 @@ export const mockProjects: Project[] = [
     github: "https://github.com/ethereum",
     eipNumbers: [7702, 7251, 2537],
     implementationDetails: "Protocol-level implementation of Pectra upgrade features in all major Ethereum clients.",
-    status: "Active"
+    status: "Active",
+    logo: "https://ethereum.org/static/655f1c2b1b7b1b1b1b1b1b1b1b1b1b1b/31987/eth-diamond-purple.png"
   }
 ];
 
