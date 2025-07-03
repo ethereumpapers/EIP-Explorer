@@ -913,6 +913,123 @@ This EIP was withdrawn due to lack of consensus and concerns about:
 
 The proposal highlighted important debates about blockchain governance and immutability.`,
     discussions: "https://github.com/ethereum/eips/issues/999"
+  },
+  {
+    number: 7212,
+    title: "ERC-7212: Offchain Signature Validation",
+    author: ["Yoav Weiss", "Dror Tirosh"],
+    status: "Draft",
+    type: "Standards Track",
+    category: "ERC",
+    created: "2023-10-01",
+    updated: "2024-03-01",
+    description: "Standardizes offchain signature validation for smart contracts, enabling more efficient and flexible authentication.",
+    content: `# EIP-7212: Offchain Signature Validation\n\n## Abstract\n\nThis EIP proposes a standard for offchain signature validation, allowing smart contracts to verify signatures generated offchain, reducing gas costs and enabling new UX patterns.\n\n## Motivation\n\nOffchain signatures are increasingly used for meta-transactions, account abstraction, and wallet interoperability. Standardizing their validation improves security and composability.`,
+    discussions: "https://ethereum-magicians.org/t/eip-7212-offchain-signature-validation/"
+  },
+  {
+    number: 3074,
+    title: "AUTH and AUTHCALL Opcodes",
+    author: ["Sam Wilson", "Ansgar Dietrichs"],
+    status: "Review",
+    type: "Standards Track",
+    category: "Core",
+    created: "2021-03-01",
+    updated: "2024-02-01",
+    description: "Introduces AUTH and AUTHCALL opcodes to enable native account abstraction and sponsored transactions.",
+    content: `# EIP-3074: AUTH and AUTHCALL Opcodes\n\n## Abstract\n\nThis EIP introduces two new EVM opcodes, AUTH and AUTHCALL, to enable native account abstraction and sponsored transactions.\n\n## Motivation\n\nAccount abstraction is a key goal for Ethereum, and these opcodes provide a minimal, backward-compatible path to enable it.`,
+    discussions: "https://ethereum-magicians.org/t/eip-3074-auth-and-authcall-opcodes/"
+  },
+  {
+    number: 2535,
+    title: "Diamonds, Multi-Facet Proxy Standard",
+    author: ["Nick Mudge"],
+    status: "Final",
+    type: "Standards Track",
+    category: "ERC",
+    created: "2020-02-01",
+    updated: "2022-01-01",
+    description: "A standard for upgradeable and modular smart contracts using the diamond pattern.",
+    content: `# EIP-2535: Diamonds, Multi-Facet Proxy Standard\n\n## Abstract\n\nThis EIP standardizes the diamond proxy pattern, enabling modular, upgradeable smart contracts with multiple facets.\n\n## Motivation\n\nLarge and complex contracts benefit from modularity and upgradability. The diamond pattern is widely used in DeFi and NFT projects.`,
+    discussions: "https://eips.ethereum.org/EIPS/eip-2535"
+  },
+  {
+    number: 1967,
+    title: "Standard Proxy Storage Slots",
+    author: ["Alex Beregszaszi", "Nick Johnson"],
+    status: "Final",
+    type: "Standards Track",
+    category: "ERC",
+    created: "2019-04-01",
+    updated: "2020-01-01",
+    description: "Defines standard storage slots for proxy contracts to improve compatibility and tooling.",
+    content: `# EIP-1967: Standard Proxy Storage Slots\n\n## Abstract\n\nThis EIP defines standard storage slots for proxy contracts, improving compatibility and tooling for upgradeable contracts.\n\n## Motivation\n\nStandardized storage slots reduce the risk of collisions and make it easier for tools to interact with proxies.`,
+    discussions: "https://eips.ethereum.org/EIPS/eip-1967"
+  },
+  {
+    number: 6900,
+    title: "Modular Smart Contract Accounts (Smart Wallets)",
+    author: ["Adam Egyed", "Fangting Liu", "Yoav Weiss"],
+    status: "Draft",
+    type: "Standards Track",
+    category: "ERC",
+    created: "2023-01-01",
+    updated: "2024-06-01",
+    description: "A draft for modular smart contract accounts (smart wallets), enabling plugin-based extensibility.",
+    content: `# EIP-6900: Modular Smart Contract Accounts\n\n## Abstract\n\nThis EIP proposes a standard for modular smart contract accounts, allowing users to add or remove plugins for new features.\n\n## Motivation\n\nSmart wallets are becoming the norm. Standardizing modularity enables innovation and interoperability.`,
+    discussions: "https://ethereum-magicians.org/t/eip-6900-modular-smart-contract-accounts/"
+  },
+  {
+    number: 1820,
+    title: "ERC-1820: Pseudo-introspection Registry Contract",
+    author: ["RicMoo", "Alex Beregszaszi"],
+    status: "Final",
+    type: "Standards Track",
+    category: "ERC",
+    created: "2018-03-01",
+    updated: "2019-02-01",
+    description: "A registry contract for interface detection, enabling contracts to discover what interfaces others implement.",
+    content: `# EIP-1820: Pseudo-introspection Registry Contract\n\n## Abstract\n\nThis EIP defines a registry contract for interface detection, allowing contracts to discover what interfaces others implement.\n\n## Motivation\n\nInterface detection is critical for composability and interoperability in the Ethereum ecosystem.`,
+    discussions: "https://eips.ethereum.org/EIPS/eip-1820"
+  },
+  {
+    number: 1271,
+    title: "Standard Signature Validation Method for Contracts",
+    author: ["Nick Johnson", "Alex Beregszaszi"],
+    status: "Final",
+    type: "Standards Track",
+    category: "ERC",
+    created: "2018-08-01",
+    updated: "2019-01-01",
+    description: "A standard method for validating signatures in smart contracts, enabling contract-based accounts.",
+    content: `# EIP-1271: Standard Signature Validation Method for Contracts\n\n## Abstract\n\nThis EIP defines a standard method for validating signatures in smart contracts, enabling contract-based accounts and smart wallets.\n\n## Motivation\n\nSmart contract wallets need a standard way to validate signatures for interoperability.`,
+    discussions: "https://eips.ethereum.org/EIPS/eip-1271"
+  },
+  {
+    number: 1202,
+    title: "Voting Standard",
+    author: ["Nick Johnson"],
+    status: "Final",
+    type: "Standards Track",
+    category: "ERC",
+    created: "2018-07-01",
+    updated: "2019-01-01",
+    description: "A standard interface for voting contracts, enabling on-chain governance and DAOs.",
+    content: `# EIP-1202: Voting Standard\n\n## Abstract\n\nThis EIP defines a standard interface for voting contracts, enabling on-chain governance and DAOs.\n\n## Motivation\n\nDAOs and governance protocols need a standard way to implement voting.`,
+    discussions: "https://eips.ethereum.org/EIPS/eip-1202"
+  },
+  {
+    number: 998,
+    title: "Composable Non-Fungible Token Standard",
+    author: ["Matt Lockyer", "Nick Mudge"],
+    status: "Final",
+    type: "Standards Track",
+    category: "ERC",
+    created: "2018-06-01",
+    updated: "2019-01-01",
+    description: "A standard for composable NFTs, allowing NFTs to own other NFTs and ERC-20 tokens.",
+    content: `# EIP-998: Composable Non-Fungible Token Standard\n\n## Abstract\n\nThis EIP defines a standard for composable NFTs, allowing NFTs to own other NFTs and ERC-20 tokens.\n\n## Motivation\n\nGaming and metaverse projects benefit from composable assets.`,
+    discussions: "https://eips.ethereum.org/EIPS/eip-998"
   }
 ];
 
@@ -1118,6 +1235,66 @@ export const mockProjects: Project[] = [
     eipNumbers: [7702, 7251],
     implementationDetails: "Early implementation and testing of Pectra upgrade features including EOA account abstraction and execution layer validator exits.",
     status: "Beta"
+  },
+  {
+    id: "20",
+    name: "Uniswap V4",
+    description: "Next-gen DEX with hooks, supporting EIP-3074, EIP-1967, and modular plugin architecture.",
+    website: "https://uniswap.org",
+    github: "https://github.com/Uniswap/v4-core",
+    eipNumbers: [20, 3074, 1967, 2535],
+    implementationDetails: "Implements ERC-20, supports modular upgrades via EIP-2535 (Diamonds), proxy storage via EIP-1967, and new account abstraction via EIP-3074.",
+    status: "Beta"
+  },
+  {
+    id: "21",
+    name: "Zora Protocol",
+    description: "NFT protocol and marketplace supporting ERC-721, ERC-1155, EIP-2981, and composable NFTs (EIP-998).",
+    website: "https://zora.co",
+    github: "https://github.com/ourzora",
+    eipNumbers: [721, 1155, 2981, 998],
+    implementationDetails: "NFT minting, trading, and royalty enforcement with composable NFT support and multi-token standards.",
+    status: "Active"
+  },
+  {
+    id: "22",
+    name: "OpenZeppelin Defender",
+    description: "Security automation and smart contract ops platform supporting EIP-1967, EIP-2535, and EIP-1820.",
+    website: "https://openzeppelin.com/defender",
+    github: "https://github.com/OpenZeppelin/defender-contracts",
+    eipNumbers: [1967, 2535, 1820],
+    implementationDetails: "Automated contract upgrades, interface detection, and modular proxy management for secure deployments.",
+    status: "Active"
+  },
+  {
+    id: "23",
+    name: "ENS (Ethereum Name Service)",
+    description: "Decentralized naming system using EIP-137, EIP-165, and EIP-1820 for interface detection and registry.",
+    website: "https://ens.domains",
+    github: "https://github.com/ensdomains",
+    eipNumbers: [137, 165, 1820],
+    implementationDetails: "Human-readable names for Ethereum addresses, with interface detection and registry standards.",
+    status: "Active"
+  },
+  {
+    id: "24",
+    name: "Snapshot",
+    description: "Offchain voting platform for DAOs, supporting EIP-1271 and EIP-1202 for signature validation and voting.",
+    website: "https://snapshot.org",
+    github: "https://github.com/snapshot-labs",
+    eipNumbers: [1271, 1202],
+    implementationDetails: "Enables DAOs to vote offchain with onchain signature validation and standard voting interfaces.",
+    status: "Active"
+  },
+  {
+    id: "25",
+    name: "Safe (formerly Gnosis Safe)",
+    description: "Multi-signature wallet supporting EIP-1271, EIP-6900, and EIP-4337 for modular smart accounts.",
+    website: "https://safe.global",
+    github: "https://github.com/safe-global",
+    eipNumbers: [1271, 6900, 4337],
+    implementationDetails: "Smart contract wallet with modular plugin system, account abstraction, and signature validation.",
+    status: "Active"
   }
 ];
 
