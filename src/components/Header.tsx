@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, Menu, X, Book, TrendingUp, Users, MessageSquare, LogIn, LogOut, User, Sparkles } from 'lucide-react';
-import { useAuth } from '../hooks/useAuth';
-import AuthModal from './AuthModal';
+import { Search, Menu, X, Book, TrendingUp, Users, Sparkles } from 'lucide-react';
 
 interface HeaderProps {
   onSearch?: (query: string) => void;
@@ -11,10 +9,7 @@ interface HeaderProps {
 export default function Header({ onSearch }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
   const navigate = useNavigate();
-  const { user, isAuthenticated, signOut } = useAuth();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,35 +19,26 @@ export default function Header({ onSearch }: HeaderProps) {
     }
   };
 
-  const handleAuthClick = (mode: 'signin' | 'signup') => {
-    setAuthMode(mode);
-    setIsAuthModalOpen(true);
-  };
-
-  const handleSignOut = async () => {
-    await signOut();
-  };
 
   return (
-    <>
       <header className="bg-slate-900/95 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50 shadow-lg">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-4 group">
+            <Link to="/" className="flex items-center gap-3 group">
               <div className="relative">
                 <img 
                   src="/logo_eip_explorer.png" 
                   alt="EIP Explorer Logo" 
-                  className="h-28 w-28 object-contain group-hover:scale-110 transition-transform duration-300"
+                  className="h-16 w-16 object-contain group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+                <h1 className="text-3xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
                   EIP Explorer
                 </h1>
-                <p className="text-sm text-slate-400 flex items-center gap-1">
+                <p className="text-sm text-slate-400 flex items-center gap-1 -mt-1">
                   <Sparkles className="h-3 w-3 animate-pulse" />
                   Ethereum Standards Hub
                 </p>
@@ -88,53 +74,6 @@ export default function Header({ onSearch }: HeaderProps) {
                 <Users className="h-5 w-5 group-hover:animate-bounce" />
                 <span>Projects</span>
               </Link>
-              <Link to="/discussions" className="group flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-all duration-300 font-medium text-lg relative">
-                <MessageSquare className="h-5 w-5 group-hover:animate-pulse" />
-                <span>Discussions</span>
-              </Link>
-              
-              {/* Auth Section */}
-              {isAuthenticated ? (
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-3 group">
-                    {user?.avatar && (
-                      <Link to="/profile">
-                        <img
-                          src={user.avatar}
-                          alt={user.name}
-                          className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-400 group-hover:ring-blue-300 transition-all duration-300 cursor-pointer hover:scale-105"
-                          title="View Profile"
-                        />
-                      </Link>
-                    )}
-                    <span className="font-medium text-slate-300 group-hover:text-blue-400 transition-colors">{user?.name}</span>
-                  </div>
-                  <button
-                    onClick={handleSignOut}
-                    className="flex items-center gap-2 text-slate-300 hover:text-red-400 transition-colors group font-medium"
-                  >
-                    <LogOut className="h-5 w-5 group-hover:animate-bounce" />
-                    <span>Sign Out</span>
-                  </button>
-                </div>
-              ) : (
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => handleAuthClick('signin')}
-                    className="group flex items-center gap-2 text-slate-200 hover:text-blue-400 transition-colors font-medium text-lg"
-                  >
-                    <LogIn className="h-5 w-5 group-hover:animate-bounce" />
-                    <span>Sign In</span>
-                  </button>
-                  <button
-                    onClick={() => handleAuthClick('signup')}
-                    className="group flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium"
-                  >
-                    <User className="h-5 w-5 group-hover:animate-bounce" />
-                    <span>Sign Up</span>
-                  </button>
-                </div>
-              )}
             </nav>
 
             {/* Mobile menu button */}
@@ -163,10 +102,6 @@ export default function Header({ onSearch }: HeaderProps) {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className="md:hidden pb-6 border-t border-slate-700 pt-6 animate-fade-in-up">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="/logo_eip_explorer.png" alt="EIP Explorer Logo" className="h-24 w-24 object-contain" />
-                <span className="text-xl font-bold text-white">EIP Explorer</span>
-              </div>
               <nav className="flex flex-col gap-4">
                 <Link
                   to="/eips"
@@ -192,61 +127,10 @@ export default function Header({ onSearch }: HeaderProps) {
                   <Users className="h-6 w-6" />
                   <span>Projects</span>
                 </Link>
-                <Link
-                  to="/discussions"
-                  className="flex items-center gap-3 text-slate-300 hover:text-blue-400 transition-colors text-lg py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <MessageSquare className="h-6 w-6" />
-                  <span>Discussions</span>
-                </Link>
-                
-                {/* Mobile Auth */}
-                {isAuthenticated ? (
-                  <div className="pt-4 border-t border-slate-700">
-                    <div className="flex items-center gap-3 mb-4">
-                      {user?.avatar && (
-                        <Link to="/profile">
-                          <img
-                            src={user.avatar}
-                            alt={user.name}
-                            className="w-10 h-10 rounded-full object-cover"
-                          />
-                        </Link>
-                      )}
-                      <span className="font-medium text-slate-300">{user?.name}</span>
-                    </div>
-                    <button
-                      onClick={handleSignOut}
-                      className="flex items-center gap-3 text-slate-300 hover:text-red-400 transition-colors text-lg py-2"
-                    >
-                      <LogOut className="h-6 w-6" />
-                      <span>Sign Out</span>
-                    </button>
-                  </div>
-                ) : (
-                  <div className="pt-4 border-t border-slate-700 space-y-3">
-                    <button
-                      onClick={() => handleAuthClick('signin')}
-                      className="flex items-center gap-3 text-slate-300 hover:text-blue-400 transition-colors w-full text-lg py-2"
-                    >
-                      <LogIn className="h-6 w-6" />
-                      <span>Sign In</span>
-                    </button>
-                  </div>
-                )}
               </nav>
             </div>
           )}
         </div>
       </header>
-
-      {/* Auth Modal */}
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        initialMode="signin"
-      />
-    </>
   );
 }

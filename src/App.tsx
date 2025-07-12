@@ -9,9 +9,7 @@ import EIPDetailPage from './pages/EIPDetailPage';
 import SearchPage from './pages/SearchPage';
 import ProjectsPage from './pages/ProjectsPage';
 import AnalyticsPage from './pages/AnalyticsPage';
-import DiscussionsPage from './pages/DiscussionsPage';
 import AIAssistant from './components/AIAssistant';
-import ProfilePage from './pages/ProfilePage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,8 +33,6 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/analytics" element={<AnalyticsPage />} />
-          <Route path="/discussions" element={<DiscussionsPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
         <AIAssistant />
       </div>
