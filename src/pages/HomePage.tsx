@@ -181,7 +181,7 @@ export default function HomePage() {
             {/* Live Stats Preview */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '2s' }}>
               <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/30 hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105">
-                <div className="text-3xl font-bold text-white mb-2 animate-pulse">
+                <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent mb-2 animate-pulse">
                   {stats.total || '---'}
                 </div>
                 <div className="text-slate-300 text-sm">Total EIPs</div>
@@ -189,7 +189,7 @@ export default function HomePage() {
               </div>
               
               <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-green-500/30 hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105">
-                <div className="text-3xl font-bold text-white mb-2 animate-pulse" style={{ animationDelay: '0.5s' }}>
+                <div className="text-3xl font-bold bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent mb-2 animate-pulse" style={{ animationDelay: '0.5s' }}>
                   {stats.byStatus?.['Final'] || '---'}
                 </div>
                 <div className="text-slate-300 text-sm">Final Standards</div>
@@ -197,7 +197,7 @@ export default function HomePage() {
               </div>
               
               <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-purple-500/30 hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105">
-                <div className="text-3xl font-bold text-white mb-2 animate-pulse" style={{ animationDelay: '1s' }}>
+                <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent mb-2 animate-pulse" style={{ animationDelay: '1s' }}>
                   {projectStats.total || '---'}
                 </div>
                 <div className="text-slate-300 text-sm">Active Projects</div>
@@ -205,7 +205,7 @@ export default function HomePage() {
               </div>
               
               <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-orange-500/30 hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105">
-                <div className="text-3xl font-bold text-white mb-2 animate-pulse" style={{ animationDelay: '1.5s' }}>
+                <div className="text-3xl font-bold bg-gradient-to-r from-orange-400 to-orange-300 bg-clip-text text-transparent mb-2 animate-pulse" style={{ animationDelay: '1.5s' }}>
                   {stats.recentlyUpdated || '---'}
                 </div>
                 <div className="text-slate-300 text-sm">Recent Updates</div>
@@ -290,7 +290,7 @@ export default function HomePage() {
                         <span className="text-sm font-medium">Live</span>
                       </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-6 group-hover:text-blue-400 transition-colors">{eip?.title}</h3>
+                    <h3 className="text-xl font-semibold bg-gradient-to-r from-slate-200 to-slate-300 bg-clip-text text-transparent mb-6 group-hover:from-blue-400 group-hover:to-blue-300 transition-all duration-300">{eip?.title}</h3>
                     <div className="grid grid-cols-2 gap-6">
                       <div className="text-center p-4 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg transform hover:scale-105 transition-all duration-300 border border-blue-500/20">
                         <div className="text-3xl font-bold gradient-text animate-pulse">
@@ -322,7 +322,7 @@ export default function HomePage() {
               <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-4 rounded-lg group-hover:animate-pulse shadow-lg">
                 <Book className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">Draft EIPs</h3>
+              <h3 className="text-xl font-semibold bg-gradient-to-r from-slate-200 to-slate-300 bg-clip-text text-transparent group-hover:from-blue-400 group-hover:to-blue-300 transition-all duration-300">Draft EIPs</h3>
             </div>
             <p className="text-slate-400 mb-6 text-lg">Explore proposed standards currently under development including Pectra upgrade features</p>
             <div className="flex items-center text-blue-400 group-hover:text-purple-400 font-medium transition-colors">
@@ -339,7 +339,7 @@ export default function HomePage() {
               <div className="bg-gradient-to-r from-green-500 to-cyan-500 p-4 rounded-lg group-hover:animate-pulse shadow-lg">
                 <Users className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-white group-hover:text-green-400 transition-colors">Implementation Projects</h3>
+              <h3 className="text-xl font-semibold bg-gradient-to-r from-slate-200 to-slate-300 bg-clip-text text-transparent group-hover:from-green-400 group-hover:to-green-300 transition-all duration-300">Implementation Projects</h3>
             </div>
             <p className="text-slate-400 mb-6 text-lg">Discover projects actively implementing EIP standards across DeFi, NFTs, and infrastructure</p>
             <div className="flex items-center text-blue-400 group-hover:text-green-400 font-medium transition-colors">
@@ -356,7 +356,7 @@ export default function HomePage() {
               <div className="bg-gradient-to-r from-purple-500 to-cyan-500 p-4 rounded-lg group-hover:animate-pulse shadow-lg">
                 <TrendingUp className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">Analytics Dashboard</h3>
+              <h3 className="text-xl font-semibold bg-gradient-to-r from-slate-200 to-slate-300 bg-clip-text text-transparent group-hover:from-purple-400 group-hover:to-purple-300 transition-all duration-300">Analytics Dashboard</h3>
             </div>
             <p className="text-slate-400 mb-6 text-lg">View comprehensive metrics, adoption trends, and ecosystem impact analysis</p>
             <div className="flex items-center text-blue-400 group-hover:text-purple-400 font-medium transition-colors">
