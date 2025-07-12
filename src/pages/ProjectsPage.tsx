@@ -15,7 +15,7 @@ export default function ProjectsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <LoadingSpinner size="lg" text="Loading projects..." className="py-20" />
         </div>
@@ -25,7 +25,7 @@ export default function ProjectsPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <ErrorMessage 
             message={error} 
@@ -38,13 +38,13 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Implementation Projects</h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold text-white mb-2">Implementation Projects</h1>
+            <p className="text-slate-300">
               Discover verified projects actively implementing EIP standards
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 filter === key
                   ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                  : 'bg-slate-800 text-slate-300 border border-slate-600 hover:bg-slate-700'
               }`}
             >
               {label}
@@ -78,33 +78,33 @@ export default function ProjectsPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-            <Users className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
-            <div className="text-sm text-gray-600">Total Projects</div>
+          <div className="bg-slate-800 rounded-lg border border-blue-900/40 p-6 text-center">
+            <Users className="h-8 w-8 text-blue-400 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-blue-300">{stats.total}</div>
+            <div className="text-sm text-slate-400">Total Projects</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
-              <div className="w-3 h-3 bg-green-600 rounded-full"></div>
+          <div className="bg-slate-800 rounded-lg border border-green-900/40 p-6 text-center">
+            <div className="w-8 h-8 bg-green-900/40 rounded-full flex items-center justify-center mx-auto mb-2">
+              <div className="w-3 h-3 bg-green-400 rounded-full"></div>
             </div>
-            <div className="text-2xl font-bold text-green-600">{stats.active}</div>
-            <div className="text-sm text-gray-600">Active</div>
+            <div className="text-2xl font-bold text-green-400">{stats.active}</div>
+            <div className="text-sm text-slate-400">Active</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
-              <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
+          <div className="bg-slate-800 rounded-lg border border-blue-900/40 p-6 text-center">
+            <div className="w-8 h-8 bg-blue-900/40 rounded-full flex items-center justify-center mx-auto mb-2">
+              <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
             </div>
-            <div className="text-2xl font-bold text-blue-600">{stats.beta}</div>
-            <div className="text-sm text-gray-600">Beta</div>
+            <div className="text-2xl font-bold text-blue-400">{stats.beta}</div>
+            <div className="text-sm text-slate-400">Beta</div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 p-6 text-center">
-            <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
-              <div className="w-3 h-3 bg-purple-600 rounded-full"></div>
+          <div className="bg-slate-800 rounded-lg border border-purple-900/40 p-6 text-center">
+            <div className="w-8 h-8 bg-purple-900/40 rounded-full flex items-center justify-center mx-auto mb-2">
+              <div className="w-3 h-3 bg-purple-300 rounded-full"></div>
             </div>
-            <div className="text-2xl font-bold text-purple-600">
+            <div className="text-2xl font-bold text-purple-300">
               {Object.keys(stats.topEIPs).length}
             </div>
-            <div className="text-sm text-gray-600">EIPs Implemented</div>
+            <div className="text-sm text-slate-400">EIPs Implemented</div>
           </div>
         </div>
 
@@ -117,18 +117,18 @@ export default function ProjectsPage() {
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-gray-400 text-6xl mb-4">🚀</div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No projects found</h3>
-            <p className="text-gray-500">
+            <div className="text-slate-600 text-6xl mb-4">🚀</div>
+            <h3 className="text-lg font-medium text-white mb-2">No projects found</h3>
+            <p className="text-slate-400">
               No projects match the selected filter.
             </p>
           </div>
         )}
 
         {/* Data Attribution */}
-        <div className="mt-12 bg-blue-50 rounded-lg border border-blue-200 p-6">
-          <h3 className="text-sm font-medium text-blue-900 mb-2">Data Sources & Verification</h3>
-          <p className="text-sm text-blue-800">
+        <div className="mt-12 bg-slate-800 rounded-lg border border-blue-900/40 p-6">
+          <h3 className="text-sm font-medium text-blue-300 mb-2">Data Sources & Verification</h3>
+          <p className="text-sm text-blue-200">
             Projects are verified through multiple sources including GitHub repositories, 
             official websites, and community validation. All implementation details are 
             reviewed for accuracy and current status.
