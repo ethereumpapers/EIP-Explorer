@@ -2,7 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Advanced Hero Animations */
+/* Dark Theme Loading Animation */
+@keyframes logoGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(147, 51, 234, 0.8)) drop-shadow(0 0 60px rgba(59, 130, 246, 0.6));
+    transform: scale(1.05);
+  }
+}
+
+@keyframes loadingPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.5), 0 0 15px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(147, 51, 234, 0.8), 0 0 20px rgba(147, 51, 234, 0.8), 0 0 30px rgba(147, 51, 234, 0.8);
+  }
+}
+
+@keyframes circuitLine {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Enhanced Hero Animations */
 @keyframes heroFloat {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
@@ -211,6 +302,38 @@
 }
 
 /* Animation Classes */
+.animate-logo-glow {
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+.animate-loading-pulse {
+  animation: loadingPulse 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 1s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 1s ease-out forwards;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 1.5s ease-out forwards;
+}
+
+.animate-matrix-rain {
+  animation: matrixRain 4s linear infinite;
+}
+
+.animate-neon-glow {
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.animate-circuit-line {
+  animation: circuitLine 3s ease-in-out forwards;
+}
+
 .animate-hero-float {
   animation: heroFloat 8s ease-in-out infinite;
 }
@@ -279,16 +402,16 @@
   animation: shine 3s ease-in-out infinite;
 }
 
-/* Gradient text utilities */
+/* Dark Theme Gradient text utilities */
 .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-animated {
-  background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981, #f59e0b, #ef4444);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -296,11 +419,11 @@
   animation: gradientShift 6s ease infinite;
 }
 
-/* Glassmorphism effect */
+/* Dark Glassmorphism effect */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.8);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 /* Hover effects */
@@ -310,7 +433,7 @@
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
 }
 
 /* Loading animations */
@@ -339,25 +462,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Dark Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #1e293b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
 }
 
-/* Particle system */
+/* Dark Particle system */
 .particle {
   position: absolute;
   pointer-events: none;
@@ -375,7 +498,7 @@ html {
 .particle-2 {
   width: 6px;
   height: 6px;
-  background: rgba(147, 51, 234, 0.5);
+  background: rgba(139, 92, 246, 0.5);
   animation: particleFloat 15s linear infinite;
   animation-delay: 2s;
 }
@@ -391,7 +514,7 @@ html {
 .particle-4 {
   width: 5px;
   height: 5px;
-  background: rgba(168, 85, 247, 0.6);
+  background: rgba(16, 185, 129, 0.6);
   animation: particleFloat 14s linear infinite;
   animation-delay: 6s;
 }
@@ -399,7 +522,63 @@ html {
 .particle-5 {
   width: 4px;
   height: 4px;
-  background: rgba(34, 197, 94, 0.5);
+  background: rgba(245, 158, 11, 0.5);
   animation: particleFloat 16s linear infinite;
   animation-delay: 8s;
+}
+
+/* Loading Screen Styles */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.matrix-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+}
+
+.matrix-char {
+  position: absolute;
+  color: #3b82f6;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  animation: matrixRain 4s linear infinite;
+}
+
+.circuit-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+}
+
+.circuit-path {
+  stroke: #3b82f6;
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 10;
+  animation: circuitLine 3s ease-in-out infinite;
+}
+
+/* Dark theme body */
+body {
+  background-color: #0f172a;
+  color: #e2e8f0;
 }

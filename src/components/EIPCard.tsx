@@ -30,16 +30,16 @@ const categoryColors = {
 
 export default function EIPCard({ eip, showDescription = true }: EIPCardProps) {
   return (
-    <div className="group bg-white rounded-xl border border-gray-200 p-8 hover:shadow-xl transition-all duration-300 hover:border-blue-300 transform hover:scale-105 relative overflow-hidden">
+    <div className="group bg-slate-800 rounded-xl border border-slate-700 p-8 hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 hover:border-blue-500/50 transform hover:scale-105 relative overflow-hidden">
       {/* Background gradient on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
             <Link
               to={`/eip/${eip.number}`}
-              className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-300 group-hover:animate-pulse"
+              className="text-3xl font-bold gradient-text hover:animate-pulse transition-all duration-300"
             >
               EIP-{eip.number}
             </Link>
@@ -59,7 +59,7 @@ export default function EIPCard({ eip, showDescription = true }: EIPCardProps) {
               href={eip.discussions}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-blue-600 transition-colors group-hover:animate-bounce"
+              className="text-slate-400 hover:text-blue-400 transition-colors group-hover:animate-bounce"
             >
               <ExternalLink className="h-5 w-5" />
             </a>
@@ -67,30 +67,30 @@ export default function EIPCard({ eip, showDescription = true }: EIPCardProps) {
         </div>
 
         <Link to={`/eip/${eip.number}`}>
-          <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight">
+          <h3 className="text-2xl font-semibold text-white mb-4 group-hover:text-blue-400 transition-colors leading-tight">
             {eip.title}
           </h3>
         </Link>
 
         {showDescription && (
-          <p className="text-gray-600 mb-6 line-clamp-3 text-lg leading-relaxed group-hover:text-gray-700 transition-colors">
+          <p className="text-slate-400 mb-6 line-clamp-3 text-lg leading-relaxed group-hover:text-slate-300 transition-colors">
             {eip.description}
           </p>
         )}
 
-        <div className="flex items-center justify-between text-gray-500">
+        <div className="flex items-center justify-between text-slate-400">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 group-hover:text-blue-600 transition-colors">
+            <div className="flex items-center gap-2 group-hover:text-blue-400 transition-colors">
               <User className="h-5 w-5" />
               <span className="text-sm">{eip.author[0]}{eip.author.length > 1 ? ` +${eip.author.length - 1}` : ''}</span>
             </div>
-            <div className="flex items-center gap-2 group-hover:text-purple-600 transition-colors">
+            <div className="flex items-center gap-2 group-hover:text-purple-400 transition-colors">
               <Calendar className="h-5 w-5" />
               <span className="text-sm">{formatDistanceToNow(new Date(eip.created), { addSuffix: true })}</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm bg-gradient-to-r from-gray-100 to-gray-200 px-3 py-1 rounded-full group-hover:from-blue-100 group-hover:to-purple-100 transition-all duration-300">
+            <span className="text-sm bg-gradient-to-r from-slate-700 to-slate-600 px-3 py-1 rounded-full group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all duration-300 text-slate-300">
               {eip.type}
             </span>
           </div>
