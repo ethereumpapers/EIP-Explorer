@@ -24,7 +24,7 @@ export default function FilterSidebar({ isOpen, onClose, filters, onFilterChange
     selectedValues: string[];
   }) => (
     <div className="mb-8">
-      <h3 className="font-semibold text-gray-900 mb-4 text-lg">{title}</h3>
+      <h3 className="font-semibold text-slate-100 mb-4 text-lg">{title}</h3>
       <div className="space-y-3">
         {options.map((option) => (
           <label key={option} className="flex items-center cursor-pointer">
@@ -32,9 +32,9 @@ export default function FilterSidebar({ isOpen, onClose, filters, onFilterChange
               type="checkbox"
               checked={selectedValues.includes(option)}
               onChange={() => onFilterChange(filterType, option)}
-              className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 w-5 h-5"
+              className="rounded border-slate-600 bg-slate-900 text-blue-400 focus:ring-blue-500 w-5 h-5"
             />
-            <span className="ml-3 text-gray-700">{option}</span>
+            <span className="ml-3 text-slate-300">{option}</span>
           </label>
         ))}
       </div>
@@ -53,19 +53,20 @@ export default function FilterSidebar({ isOpen, onClose, filters, onFilterChange
 
       {/* Sidebar */}
       <div className={`
-        fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-50 w-80 transform transition-transform duration-300 ease-in-out
+        fixed top-0 left-0 h-full z-50 w-80 transform transition-transform duration-300 ease-in-out
         lg:relative lg:transform-none lg:translate-x-0 lg:w-64
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-      `}>
+        filter-sidebar-dark
+      `} style={{ backgroundColor: '#1e293b', borderRight: '1px solid #334155' }}>
         <div className="p-6">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-3">
-              <Filter className="h-6 w-6 text-gray-600" />
-              <h2 className="text-xl font-semibold text-gray-900">Filters</h2>
+              <Filter className="h-6 w-6 text-slate-400" />
+              <h2 className="text-xl font-semibold text-slate-100">Filters</h2>
             </div>
             <button
               onClick={onClose}
-              className="lg:hidden p-2 text-gray-400 hover:text-gray-600"
+              className="lg:hidden p-2 text-slate-400 hover:text-slate-200"
             >
               <X className="h-6 w-6" />
             </button>
