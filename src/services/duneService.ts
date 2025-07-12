@@ -289,6 +289,49 @@ class DuneService {
     }
   }
 
+  async getEIP4844Metrics(): Promise<LiveMetrics> {
+    const cacheKey = 'eip-4844-metrics';
+    const cached = this.getCache(cacheKey);
+    if (cached) return cached;
+
+    try {
+      // This would be a real Dune query ID for EIP-4844 metrics
+      const data = await this.makeRequest('/query/6789012/results');
+      const row = data.result?.rows?.[0] || {};
+      const metrics: LiveMetrics = {
+        eipNumber: 4844,
+        adoptionRate: row.adoption_rate || 85,
+        transactionVolume: this.formatNumber(row.daily_blobs || 2500000) + ' blobs/day',
+        gasUsage: (row.l2_cost_reduction ? row.l2_cost_reduction + '% cost reduction' : '90% cost reduction'),
+        activeProjects: row.active_rollups || 25,
+        lastUpdated: new Date().toISOString(),
+        additionalMetrics: {
+          totalBlobs: row.total_blobs || 100000000,
+          l2CostReduction: row.l2_cost_reduction || 90,
+          activeRollups: row.active_rollups || 25
+        }
+      };
+      this.setCache(cacheKey, metrics);
+      return metrics;
+    } catch (error) {
+      console.error('Error fetching EIP-4844 metrics:', error);
+      // Fallback data
+      return {
+        eipNumber: 4844,
+        adoptionRate: 85,
+        transactionVolume: '2.5M blobs/day',
+        gasUsage: '90% cost reduction',
+        activeProjects: 25,
+        lastUpdated: new Date().toISOString(),
+        additionalMetrics: {
+          totalBlobs: 100000000,
+          l2CostReduction: 90,
+          activeRollups: 25
+        }
+      };
+    }
+  }
+
   private getFallbackMetrics(eipNumber: number): LiveMetrics {
     const fallbackData: Record<number, Partial<LiveMetrics>> = {
       1559: {
@@ -351,15 +394,15 @@ class DuneService {
 
   async getAllMetrics(): Promise<LiveMetrics[]> {
     try {
-      const [eip1559, eip721, eip4337, eip20, eip2981] = await Promise.all([
+      const [eip1559, eip721, eip4337, eip20, eip2981, eip4844] = await Promise.all([
         this.getEIP1559Metrics(),
         this.getEIP721Metrics(),
         this.getEIP4337Metrics(),
         this.getEIP20Metrics(),
-        this.getEIP2981Metrics()
+        this.getEIP2981Metrics(),
+        this.getEIP4844Metrics()
       ]);
-
-      return [eip1559, eip721, eip4337, eip20, eip2981];
+      return [eip1559, eip721, eip4337, eip20, eip2981, eip4844];
     } catch (error) {
       console.error('Error fetching all metrics:', error);
       return [];

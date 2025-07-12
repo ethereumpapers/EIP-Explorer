@@ -183,7 +183,14 @@ export default function AnalyticsPage() {
 
         {/* Live Data Cards */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Live EIP Metrics</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Live EIP Metrics</h2>
+          <p className="text-gray-600 mb-6 max-w-2xl">
+            <strong>What do these metrics mean?</strong><br />
+            <span className="block mt-1"><b>Adoption Rate:</b> Percentage of projects or users actively using or supporting the EIP.</span>
+            <span className="block mt-1"><b>Daily Volume:</b> The number of transactions, blobs, or operations related to the EIP per day.</span>
+            <span className="block mt-1"><b>Gas Usage:</b> The total gas consumed, ETH burned, or cost reduction achieved by the EIP.</span>
+            <span className="block mt-1"><b>Active Projects:</b> Number of live projects, wallets, or protocols that have implemented or integrated the EIP.</span>
+          </p>
           {metricsLoading ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {[1, 2].map(i => (
@@ -194,7 +201,7 @@ export default function AnalyticsPage() {
             <ErrorMessage message={metricsError} />
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {metrics.slice(0, 4).map((data) => (
+              {metrics.map((data) => (
                 <LiveDataCard key={data.eipNumber} data={data} />
               ))}
             </div>
