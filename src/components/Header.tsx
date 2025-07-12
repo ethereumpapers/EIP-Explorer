@@ -102,17 +102,16 @@ export default function Header({ onSearch }: HeaderProps) {
                         <img
                           src={user.avatar}
                           alt={user.name}
-                          className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-200 group-hover:ring-blue-400 transition-all duration-300 cursor-pointer hover:scale-105"
+                          className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-400 group-hover:ring-blue-300 transition-all duration-300 cursor-pointer hover:scale-105"
                           title="View Profile"
                         />
                       </Link>
                     )}
-                    <span className="font-medium text-gray-700 group-hover:text-blue-600 transition-colors">{user?.name}</span>
                     <span className="font-medium text-slate-300 group-hover:text-blue-400 transition-colors">{user?.name}</span>
                   </div>
                   <button
                     onClick={handleSignOut}
-                    className="flex items-center gap-2 text-slate-300 hover:text-red-400 transition-colors group"
+                    className="flex items-center gap-2 text-slate-300 hover:text-red-400 transition-colors group font-medium"
                   >
                     <LogOut className="h-5 w-5 group-hover:animate-bounce" />
                     <span>Sign Out</span>
@@ -122,10 +121,17 @@ export default function Header({ onSearch }: HeaderProps) {
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => handleAuthClick('signin')}
-                    className="group flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors font-medium"
+                    className="group flex items-center gap-2 text-slate-200 hover:text-blue-400 transition-colors font-medium text-lg"
                   >
                     <LogIn className="h-5 w-5 group-hover:animate-bounce" />
                     <span>Sign In</span>
+                  </button>
+                  <button
+                    onClick={() => handleAuthClick('signup')}
+                    className="group flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium"
+                  >
+                    <User className="h-5 w-5 group-hover:animate-bounce" />
+                    <span>Sign Up</span>
                   </button>
                 </div>
               )}

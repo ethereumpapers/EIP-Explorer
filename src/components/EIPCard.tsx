@@ -10,22 +10,22 @@ interface EIPCardProps {
 }
 
 const statusColors = {
-  'Draft': 'bg-yellow-100 text-yellow-800 border-yellow-200',
-  'Review': 'bg-blue-100 text-blue-800 border-blue-200',
-  'Last Call': 'bg-orange-100 text-orange-800 border-orange-200',
-  'Final': 'bg-green-100 text-green-800 border-green-200',
-  'Stagnant': 'bg-gray-100 text-gray-800 border-gray-200',
-  'Withdrawn': 'bg-red-100 text-red-800 border-red-200',
-  'Living': 'bg-purple-100 text-purple-800 border-purple-200'
+  'Draft': 'bg-yellow-900/30 text-yellow-300 border-yellow-500/50',
+  'Review': 'bg-blue-900/30 text-blue-300 border-blue-500/50',
+  'Last Call': 'bg-orange-900/30 text-orange-300 border-orange-500/50',
+  'Final': 'bg-green-900/30 text-green-300 border-green-500/50',
+  'Stagnant': 'bg-gray-900/30 text-gray-300 border-gray-500/50',
+  'Withdrawn': 'bg-red-900/30 text-red-300 border-red-500/50',
+  'Living': 'bg-purple-900/30 text-purple-300 border-purple-500/50'
 };
 
 const categoryColors = {
-  'Core': 'bg-red-50 text-red-700 border-red-200',
-  'Networking': 'bg-blue-50 text-blue-700 border-blue-200',
-  'Interface': 'bg-green-50 text-green-700 border-green-200',
-  'ERC': 'bg-purple-50 text-purple-700 border-purple-200',
-  'Meta': 'bg-yellow-50 text-yellow-700 border-yellow-200',
-  'Informational': 'bg-gray-50 text-gray-700 border-gray-200'
+  'Core': 'bg-red-900/30 text-red-300 border-red-500/50',
+  'Networking': 'bg-blue-900/30 text-blue-300 border-blue-500/50',
+  'Interface': 'bg-green-900/30 text-green-300 border-green-500/50',
+  'ERC': 'bg-purple-900/30 text-purple-300 border-purple-500/50',
+  'Meta': 'bg-yellow-900/30 text-yellow-300 border-yellow-500/50',
+  'Informational': 'bg-gray-900/30 text-gray-300 border-gray-500/50'
 };
 
 export default function EIPCard({ eip, showDescription = true }: EIPCardProps) {

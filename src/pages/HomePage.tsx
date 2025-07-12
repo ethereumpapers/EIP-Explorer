@@ -16,7 +16,7 @@ export default function HomePage() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   const words = ['EIP Explorer', 'Standards Hub', 'Research Center', 'Innovation Lab'];
-  const featuredEIPs = eips.filter(eip => [1559, 721, 4337, 7702, 4844].includes(eip.number)).slice(0, 5);
+  const featuredEIPs = eips.filter(eip => [7702, 4844, 7212, 7579, 1559, 721].includes(eip.number)).slice(0, 6);
 
   useEffect(() => {
     const currentWord = words[currentWordIndex];
