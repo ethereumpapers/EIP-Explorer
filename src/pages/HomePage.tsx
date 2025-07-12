@@ -130,13 +130,31 @@ export default function HomePage() {
               <div className="h-2 w-32 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 mx-auto rounded-full animate-gradient-shift"></div>
             </div>
 
-            {/* Subtitle with typewriter effect */}
-            <p className="text-2xl md:text-3xl mb-12 text-blue-100 max-w-4xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '1s' }}>
-              Discover Ethereum Improvement Proposals with 
-              <span className="text-blue-300 font-semibold"> live data</span>, 
-              <span className="text-purple-300 font-semibold"> project tracking</span>, and 
-              <span className="text-cyan-300 font-semibold"> AI assistance</span>
-            </p>
+            {/* Subtitle with enhanced design */}
+            <div className="mb-12 animate-fade-in-up" style={{ animationDelay: '1s' }}>
+              <div className="bg-gradient-to-r from-slate-800/80 via-slate-700/80 to-slate-800/80 backdrop-blur-sm border border-slate-600/50 rounded-2xl p-8 max-w-5xl mx-auto shadow-2xl">
+                <p className="text-2xl md:text-3xl text-white font-medium leading-relaxed text-center">
+                  Discover Ethereum Improvement Proposals with{' '}
+                  <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent font-bold drop-shadow-lg">live data</span>,{' '}
+                  <span className="bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent font-bold drop-shadow-lg">project tracking</span>, and{' '}
+                  <span className="bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent font-bold drop-shadow-lg">AI assistance</span>
+                </p>
+                <div className="flex justify-center mt-6 space-x-4">
+                  <div className="flex items-center gap-2 text-blue-400">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium">Real-time Analytics</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-purple-400">
+                    <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                    <span className="text-sm font-medium">Project Integration</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-cyan-400">
+                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                    <span className="text-sm font-medium">AI-Powered Insights</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Animated Buttons */}
             <div className="flex flex-col sm:flex-row justify-center gap-8 mb-16 animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
