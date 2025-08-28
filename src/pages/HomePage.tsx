@@ -80,32 +80,32 @@ export default function HomePage() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
-                <div className="text-3xl font-bold text-blue-400 mb-1">
+              <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-accent-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-accent-500/10">
+                <div className="text-4xl font-bold bg-gradient-to-r from-accent-400 to-accent-600 bg-clip-text text-transparent mb-2 tracking-tight">
                   {stats.total || '---'}
                 </div>
-                <div className="text-slate-400 text-sm">Total EIPs</div>
+                <div className="text-slate-300 text-sm font-medium">Total EIPs</div>
               </div>
               
-              <div className="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
-                <div className="text-3xl font-bold text-green-400 mb-1">
+              <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/10">
+                <div className="text-4xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent mb-2 tracking-tight">
                   {stats.byStatus?.['Final'] || '---'}
                 </div>
-                <div className="text-slate-400 text-sm">Final Standards</div>
+                <div className="text-slate-300 text-sm font-medium">Final Standards</div>
               </div>
               
-              <div className="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
-                <div className="text-3xl font-bold text-purple-400 mb-1">
+              <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10">
+                <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent mb-2 tracking-tight">
                   {projectStats.total || '---'}
                 </div>
-                <div className="text-slate-400 text-sm">Active Projects</div>
+                <div className="text-slate-300 text-sm font-medium">Active Projects</div>
               </div>
               
-              <div className="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
-                <div className="text-3xl font-bold text-orange-400 mb-1">
+              <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-orange-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/10">
+                <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2 tracking-tight">
                   {stats.recentlyUpdated || '---'}
                 </div>
-                <div className="text-slate-400 text-sm">Recent Updates</div>
+                <div className="text-slate-300 text-sm font-medium">Recent Updates</div>
               </div>
             </div>
           </div>

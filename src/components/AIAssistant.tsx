@@ -148,10 +148,11 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-8 right-8 z-50 bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group border border-slate-700"
+          className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-slate-800 to-slate-700 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 group border-2 border-accent-500/30 hover:border-accent-500 animate-pulse"
         >
           <div className="relative">
-            <Bot className="h-8 w-8" />
+            <Bot className="h-8 w-8 text-white" />
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent-500 rounded-full animate-ping"></div>
             <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent-500 rounded-full"></div>
           </div>
           <div className="absolute -top-16 right-0 bg-gray-900 text-white px-4 py-2 rounded-xl text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-lg">
@@ -170,11 +171,11 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
           isMinimized ? 'w-80 h-16' : 'w-[420px] h-[650px]'
         }`}>
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-slate-800 text-white rounded-t-2xl">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-slate-800 to-slate-700 text-white rounded-t-2xl">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <Bot className="h-6 w-6" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent-500 rounded-full"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent-500 rounded-full animate-pulse"></div>
               </div>
               <div>
                 <span className="font-semibold text-lg">EIP Research AI</span>

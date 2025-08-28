@@ -103,6 +103,13 @@ export default {
         'slide-in-left': 'slideInFromLeft 0.6s ease-out',
         'slide-in-right': 'slideInFromRight 0.6s ease-out',
         'scale-in': 'scaleIn 0.5s ease-out',
+      },
+      boxShadow: {
+        '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
+        'accent-500/10': '0 10px 25px -5px rgba(14, 165, 233, 0.1)',
+        'green-500/10': '0 10px 25px -5px rgba(34, 197, 94, 0.1)',
+        'purple-500/10': '0 10px 25px -5px rgba(168, 85, 247, 0.1)',
+        'orange-500/10': '0 10px 25px -5px rgba(249, 115, 22, 0.1)',
       }
     },
   },
