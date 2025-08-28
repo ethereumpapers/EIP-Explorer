@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, TrendingUp, BookOpen, Users, Zap } from 'lucide-react';
 import { useEIPs } from '../hooks/useEIPs';
-import { huggingFaceService } from '../services/huggingFaceService';
+import { claudeService } from '../services/claudeService';
 
 interface Recommendation {
   id: string;
@@ -25,7 +25,15 @@ export default function AIRecommendations() {
   const generateRecommendations = async () => {
     setIsLoading(true);
     
-    // Generate AI-powered recommendations based on current trends and user interests
+    try {
+      // Try to get AI-generated recommendations from Claude
+      const aiResponse = await claudeService.generateRecommendations();
+      console.log('Claude recommendations:', aiResponse);
+    } catch (error) {
+      console.log('Using fallback recommendations');
+    }
+    
+    // Fallback recommendations based on current trends and user interests
     const aiRecommendations: Recommendation[] = [
       {
         id: 'nft-trending',

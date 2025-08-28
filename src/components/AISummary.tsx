@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, Copy, Check, RefreshCw } from 'lucide-react';
-import { huggingFaceService } from '../services/huggingFaceService';
+import { claudeService } from '../services/claudeService';
 
 interface EIP {
   number: number;
@@ -25,10 +25,7 @@ export default function AISummary({ eip }: AISummaryProps) {
   const generateSummary = async () => {
     setIsGenerating(true);
     try {
-      const response = await huggingFaceService.generateResponse([
-        { role: 'user', content: `Generate a comprehensive, engaging summary for EIP-${eip.number}: ${eip.title}. Make it accessible to both technical and non-technical audiences.` }
-      ], eip);
-      
+      const response = await claudeService.generateEIPSummary(eip);
       setSummary(response);
     } catch (error) {
       setSummary('Unable to generate summary at this time. Please try again later.');

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Bot, Send, X, Minimize2, Maximize2, Sparkles, BookOpen, Search, TrendingUp, Users } from 'lucide-react';
 import { useEIPs } from '../hooks/useEIPs';
-import { huggingFaceService } from '../services/huggingFaceService';
+import { claudeService } from '../services/claudeService';
 
 interface Message {
   id: string;
@@ -87,7 +87,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
         content: userMessage.content
       });
 
-      const response = await huggingFaceService.generateResponse(conversationHistory, eipContext);
+      const response = await claudeService.generateResponse(conversationHistory, eipContext);
       
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -186,7 +186,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                 <span className="font-semibold text-lg">EIP Research AI</span>
                 <div className="flex items-center space-x-1 text-xs text-slate-300">
                   <Sparkles className="h-3 w-3" />
-                  <span>AI Assistant</span>
+                  <span>Powered by Claude</span>
                 </div>
               </div>
             </div>
@@ -302,6 +302,10 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     <div className="flex items-center space-x-1">
                       <TrendingUp className="h-3 w-3" />
                       <span>Live Data</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Sparkles className="h-3 w-3" />
+                      <span>Claude AI</span>
                     </div>
                   </div>
                 </div>
