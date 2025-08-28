@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Sparkles, Zap, Activity, Code } from 'lucide-react';
+import React from 'react';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;

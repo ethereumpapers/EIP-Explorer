@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, User, ExternalLink, Tag, Users, Clock } from 'lucide-react';
+import { Calendar, User, ExternalLink, Tag, Users, Clock } from 'lucide-react';
 import ProjectCard from '../components/ProjectCard';
 import LiveDataCard from '../components/LiveDataCard';
 import LoadingSpinner from '../components/LoadingSpinner';

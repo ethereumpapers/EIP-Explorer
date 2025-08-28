@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, Menu, X, Book, TrendingUp, Users, Sparkles } from 'lucide-react';
+import { Search, Menu, X, Book, TrendingUp, Users } from 'lucide-react';
 
 interface HeaderProps {
   onSearch?: (query: string) => void;

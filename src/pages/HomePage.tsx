@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, TrendingUp, Book, Users, ArrowRight, Activity, Sparkles, Zap, Rocket, Code, Globe } from 'lucide-react';
+import { TrendingUp, Book, Users, ArrowRight, Activity } from 'lucide-react';
 import EIPCard from '../components/EIPCard';
-import LoadingSpinner from '../components/LoadingSpinner';
+
 import ErrorMessage from '../components/ErrorMessage';
 import { useEIPs } from '../hooks/useEIPs';
 import { useLiveData } from '../hooks/useLiveData';
