@@ -125,17 +125,22 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
   const formatMessage = (content: string) => {
     return content
       .replace(/^# (.*$)/gm, '<h1 class="text-xl font-bold text-gray-900 mb-3 border-b border-gray-200 pb-2">$1</h1>')
-      .replace(/^## (.*$)/gm, '<h2 class="text-lg font-semibold text-gray-800 mb-2 mt-4">$1</h2>')
+      .replace(/^## (.*$)/gm, '<h2 class="text-lg font-semibold text-gray-800 mb-3 mt-4">$1</h2>')
       .replace(/^### (.*$)/gm, '<h3 class="text-md font-medium text-gray-700 mb-2 mt-3">$1</h3>')
       .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em class="italic text-gray-700">$1</em>')
-      .replace(/`([^`]+)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono text-gray-800">$1</code>')
-      .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto my-3 text-sm"><code>$2</code></pre>')
-      .replace(/^- (.*$)/gm, '<li class="ml-4 mb-1">• $1</li>')
-      .replace(/^✅ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-green-600 mt-0.5">✅</span><span>$1</span></div>')
-      .replace(/^❌ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-red-600 mt-0.5">❌</span><span>$1</span></div>')
-      .replace(/^⚠️ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-yellow-600 mt-0.5">⚠️</span><span>$1</span></div>')
-      .replace(/^🔍 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-blue-600 mt-0.5">🔍</span><span>$1</span></div>')
+      .replace(/`([^`]+)`/g, '<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800 border">$1</code>')
+      .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto my-3 text-sm border"><code>$2</code></pre>')
+      .replace(/^- (.*$)/gm, '<li class="ml-4 mb-2 text-gray-700">• $1</li>')
+      .replace(/^✅ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-green-600 mt-0.5">✅</span><span class="text-gray-700">$1</span></div>')
+      .replace(/^❌ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-red-600 mt-0.5">❌</span><span class="text-gray-700">$1</span></div>')
+      .replace(/^⚠️ (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-yellow-600 mt-0.5">⚠️</span><span class="text-gray-700">$1</span></div>')
+      .replace(/^🔍 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-blue-600 mt-0.5">🔍</span><span class="text-gray-700">$1</span></div>')
+      .replace(/^🤖 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-blue-600 mt-0.5">🤖</span><span class="text-gray-700">$1</span></div>')
+      .replace(/^🚀 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-green-600 mt-0.5">🚀</span><span class="text-gray-700">$1</span></div>')
+      .replace(/^💡 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-yellow-600 mt-0.5">💡</span><span class="text-gray-700">$1</span></div>')
+      .replace(/^👋 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-blue-600 mt-0.5">👋</span><span class="text-gray-700">$1</span></div>')
+      .replace(/^😊 (.*$)/gm, '<div class="flex items-start space-x-2 mb-2"><span class="text-yellow-600 mt-0.5">😊</span><span class="text-gray-700">$1</span></div>')
       .split('\n')
       .map((line, index) => (
         <div key={index} dangerouslySetInnerHTML={{ __html: line || '<br>' }} />
@@ -217,7 +222,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                           : 'bg-white text-gray-900 border border-gray-200 shadow-sm'
                       }`}
                     >
-                      <div className="text-sm leading-relaxed">
+                      <div className="text-sm leading-relaxed text-gray-900">
                         {message.type === 'assistant' ? formatMessage(message.content) : message.content}
                       </div>
                       <div className={`text-xs mt-2 ${
@@ -239,7 +244,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                           <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
                           <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                         </div>
-                        <span className="text-sm text-gray-600">AI is thinking...</span>
+                        <span className="text-sm text-gray-700 font-medium">AI is thinking...</span>
                       </div>
                     </div>
                   </div>
@@ -275,7 +280,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Ask me anything about EIPs..."
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-transparent text-sm"
+                    className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-accent-500 focus:border-accent-500 text-sm text-gray-900 placeholder-gray-500"
                     disabled={isLoading}
                   />
                   <button

@@ -160,6 +160,62 @@ What specific aspect of EIP-${eipNumber} interests you most?`;
   }
 
   private generateGeneralResponse(query: string): string {
+    // Simple greetings and casual conversation
+    if (query.includes('hi') || query.includes('hello') || query.includes('hey')) {
+      return `## 👋 Hello! Welcome to EIP Explorer
+
+I'm your AI assistant here to help you explore Ethereum Improvement Proposals!
+
+### **🚀 What I can help you with:**
+- **Find EIPs** by topic or category
+- **Explain technical concepts** in simple terms
+- **Compare different standards** and their use cases
+- **Provide implementation guidance** and examples
+- **Share insights** about adoption and trends
+
+### **💡 Try asking me:**
+- "What are the most important EIPs?"
+- "Explain account abstraction"
+- "Find NFT-related standards"
+- "What's new in Ethereum scaling?"
+
+**What would you like to explore today?**`;
+    }
+
+    if (query.includes('how are you') || query.includes('how do you do')) {
+      return `## 😊 I'm doing great, thank you for asking!
+
+I'm here and ready to help you navigate the world of Ethereum Improvement Proposals. I have access to comprehensive information about EIPs, their implementations, and the latest trends in the Ethereum ecosystem.
+
+**What can I help you discover today?**`;
+    }
+
+    if (query.includes('what can you do') || query.includes('help')) {
+      return `## 🤖 Here's what I can do for you:
+
+### **🔍 EIP Discovery & Research**
+- Find EIPs by topic, category, or status
+- Explain complex technical concepts
+- Compare different standards and their trade-offs
+
+### **📚 Technical Analysis**
+- Provide detailed explanations of EIP specifications
+- Share implementation examples and best practices
+- Explain security considerations and potential risks
+
+### **📊 Market Insights**
+- Track adoption trends and usage statistics
+- Identify the most impactful standards
+- Share insights about ecosystem developments
+
+### **💻 Implementation Support**
+- Code examples and integration guidance
+- Best practices for developers
+- Troubleshooting common issues
+
+**Just ask me anything about EIPs, and I'll do my best to help!**`;
+    }
+
     // NFT-related queries
     if (query.includes('nft') || query.includes('721') || query.includes('1155')) {
       return `## 🎨 **NFT Standards Overview**
