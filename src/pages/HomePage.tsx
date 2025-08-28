@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingUp, Book, Users, ArrowRight, Activity } from 'lucide-react';
 import EIPCard from '../components/EIPCard';
-import AIRecommendations from '../components/AIRecommendations';
+
 import ErrorMessage from '../components/ErrorMessage';
 import { useEIPs } from '../hooks/useEIPs';
 import { useLiveData } from '../hooks/useLiveData';
@@ -262,10 +262,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* AI Recommendations */}
-        <div className="mb-20">
-          <AIRecommendations />
-        </div>
+
 
         {/* Powered by Section */}
         <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-8 text-center">
