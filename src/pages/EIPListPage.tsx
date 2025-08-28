@@ -4,6 +4,7 @@ import EIPCard from '../components/EIPCard';
 import FilterSidebar from '../components/FilterSidebar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
+import BreadcrumbNav from '../components/BreadcrumbNav';
 import { useEIPs } from '../hooks/useEIPs';
 
 export default function EIPListPage() {
@@ -98,6 +99,9 @@ export default function EIPListPage() {
   return (
     <div className="min-h-screen bg-slate-900">
       <div className="max-w-6xl mx-auto px-6 py-12">
+        {/* Breadcrumb Navigation */}
+        <BreadcrumbNav />
+        
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-slate-100 mb-4">Ethereum Improvement Proposals</h1>

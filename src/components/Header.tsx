@@ -21,57 +21,52 @@ export default function Header({ onSearch }: HeaderProps) {
 
 
   return (
-      <header className="bg-slate-900/95 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50 shadow-lg">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
+      <header className="bg-white/5 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="relative">
-                <img 
-                  src="/logo_eip_explorer.png" 
-                  alt="EIP Explorer Logo" 
-                  className="h-16 w-16 object-contain group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
-              </div>
+              <img 
+                src="/logo_eip_explorer.png" 
+                alt="EIP Explorer Logo" 
+                className="h-10 w-10 object-contain"
+              />
               <div>
-                <h1 className="text-3xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+                <h1 className="text-xl font-semibold text-white">
                   EIP Explorer
                 </h1>
-                <p className="text-sm text-slate-400 flex items-center gap-1 -mt-1">
-                  <Sparkles className="h-3 w-3 animate-pulse" />
+                <p className="text-xs text-slate-400">
                   Ethereum Standards Hub
                 </p>
               </div>
             </Link>
 
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-lg mx-12">
-              <div className="relative w-full group">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400 group-focus-within:text-blue-400 transition-colors" />
+            <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md mx-8">
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search EIPs, authors, or content..."
-                  className="w-full pl-12 pr-4 py-3 bg-slate-800 border border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg transition-all duration-300 hover:shadow-md"
+                  placeholder="Search EIPs..."
+                  className="w-full pl-10 pr-4 py-2 bg-slate-800/50 border border-slate-700 text-white placeholder-slate-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm transition-all duration-200"
                 />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-focus-within:opacity-10 transition-opacity pointer-events-none"></div>
               </div>
             </form>
 
             {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              <Link to="/eips" className="group flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-all duration-300 font-medium text-lg relative">
-                <Book className="h-5 w-5 group-hover:animate-bounce" />
-                <span>Explore EIPs</span>
+            <nav className="hidden md:flex items-center gap-6">
+              <Link to="/eips" className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">
+                <Book className="h-4 w-4" />
+                <span>EIPs</span>
               </Link>
-              <Link to="/analytics" className="group flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-all duration-300 font-medium text-lg relative">
-                <TrendingUp className="h-5 w-5 group-hover:animate-pulse" />
+              <Link to="/analytics" className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">
+                <TrendingUp className="h-4 w-4" />
                 <span>Analytics</span>
               </Link>
-              <Link to="/projects" className="group flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-all duration-300 font-medium text-lg relative">
-                <Users className="h-5 w-5 group-hover:animate-bounce" />
+              <Link to="/projects" className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors duration-200 text-sm font-medium">
+                <Users className="h-4 w-4" />
                 <span>Projects</span>
               </Link>
             </nav>
@@ -81,50 +76,50 @@ export default function Header({ onSearch }: HeaderProps) {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-slate-400 hover:text-white transition-colors"
             >
-              {isMenuOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
 
           {/* Mobile Search */}
-          <form onSubmit={handleSearch} className="md:hidden pb-6">
+          <form onSubmit={handleSearch} className="md:hidden pb-4">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search EIPs..."
-                className="w-full pl-12 pr-4 py-3 bg-slate-800 border border-slate-600 text-white placeholder-slate-400 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full pl-10 pr-4 py-2 bg-slate-800/50 border border-slate-700 text-white placeholder-slate-400 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
               />
             </div>
           </form>
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden pb-6 border-t border-slate-700 pt-6 animate-fade-in-up">
-              <nav className="flex flex-col gap-4">
+            <div className="md:hidden pb-4 border-t border-slate-800 pt-4">
+              <nav className="flex flex-col gap-3">
                 <Link
                   to="/eips"
-                  className="flex items-center gap-3 text-slate-300 hover:text-blue-400 transition-colors text-lg py-2"
+                  className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors text-sm py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Book className="h-6 w-6" />
-                  <span>Explore EIPs</span>
+                  <Book className="h-4 w-4" />
+                  <span>EIPs</span>
                 </Link>
                 <Link
                   to="/analytics"
-                  className="flex items-center gap-3 text-slate-300 hover:text-blue-400 transition-colors text-lg py-2"
+                  className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors text-sm py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <TrendingUp className="h-6 w-6" />
+                  <TrendingUp className="h-4 w-4" />
                   <span>Analytics</span>
                 </Link>
                 <Link
                   to="/projects"
-                  className="flex items-center gap-3 text-slate-300 hover:text-blue-400 transition-colors text-lg py-2"
+                  className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors text-sm py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Users className="h-6 w-6" />
+                  <Users className="h-4 w-4" />
                   <span>Projects</span>
                 </Link>
               </nav>

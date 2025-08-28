@@ -2,7 +2,7 @@ import { EIP, Project, Discussion, NewsItem } from '../types/eip';
 
 // Enhanced mock data with recent EIPs from 2024 and important standards
 export const mockEIPs: EIP[] = [
-  // Recent 2024 EIPs
+  // Pectra Upgrade EIPs (Planned for 2025)
   {
     number: 7702,
     title: 'Set EOA account code for one transaction',
@@ -44,7 +44,200 @@ During transaction execution:
 - Authorizations are single-use (nonce-based)
 - Code is only set for the duration of one transaction
 - Original account state is preserved
-- Replay protection through chain_id and nonce`,
+- Replay protection through chain_id and nonce
+
+## Pectra Upgrade
+
+EIP-7702 is a key component of the Pectra upgrade, planned for 2025. It represents a major step toward account abstraction on Ethereum.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7702-set-eoa-account-code-for-one-transaction/19769'
+  },
+  {
+    number: 7002,
+    title: 'Execution layer validator registration',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-08-15',
+    updated: '2024-11-20',
+    description: 'Allow execution layer validators to register and participate in consensus through the execution layer.',
+    content: `## Abstract
+
+This EIP introduces a mechanism for execution layer validators to register and participate in Ethereum consensus. This is part of the broader effort to integrate execution layer and consensus layer functionality.
+
+## Motivation
+
+The current Ethereum architecture separates execution and consensus layers. This EIP begins the process of allowing execution layer components to participate directly in consensus, improving efficiency and reducing complexity.
+
+## Key Features
+
+- Validator registration through execution layer
+- Direct participation in consensus
+- Improved efficiency for certain operations
+- Foundation for future integration
+
+## Pectra Upgrade
+
+EIP-7002 is planned for inclusion in the Pectra upgrade, representing a significant architectural improvement to Ethereum's consensus mechanism.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7002-execution-layer-validator-registration/19800'
+  },
+  {
+    number: 7003,
+    title: 'Execution layer validator exit',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-08-15',
+    updated: '2024-11-20',
+    description: 'Allow execution layer validators to exit the consensus mechanism through the execution layer.',
+    content: `## Abstract
+
+This EIP provides a mechanism for execution layer validators to exit the consensus mechanism through the execution layer, complementing EIP-7002's registration functionality.
+
+## Motivation
+
+For a complete validator lifecycle management system, validators need both registration and exit capabilities through the execution layer. This EIP provides the exit functionality.
+
+## Key Features
+
+- Validator exit through execution layer
+- Proper cleanup of validator state
+- Integration with existing exit mechanisms
+- Security considerations for exit conditions
+
+## Pectra Upgrade
+
+EIP-7003 works in conjunction with EIP-7002 to provide complete validator lifecycle management in the Pectra upgrade.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7003-execution-layer-validator-exit/19801'
+  },
+  {
+    number: 7004,
+    title: 'Execution layer validator slashing',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-08-15',
+    updated: '2024-11-20',
+    description: 'Allow execution layer validators to be slashed through the execution layer.',
+    content: `## Abstract
+
+This EIP introduces slashing mechanisms for execution layer validators, ensuring proper penalties for malicious behavior or protocol violations.
+
+## Motivation
+
+Validator slashing is a critical component of Ethereum's security model. This EIP extends slashing capabilities to execution layer validators, maintaining the same security guarantees.
+
+## Key Features
+
+- Slashing through execution layer
+- Integration with existing slashing mechanisms
+- Proper penalty calculations
+- Security considerations for slashing conditions
+
+## Pectra Upgrade
+
+EIP-7004 completes the validator management system in the Pectra upgrade, providing comprehensive slashing capabilities for execution layer validators.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7004-execution-layer-validator-slashing/19802'
+  },
+  {
+    number: 7005,
+    title: 'Execution layer validator rewards',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-08-15',
+    updated: '2024-11-20',
+    description: 'Distribute validator rewards through the execution layer.',
+    content: `## Abstract
+
+This EIP provides a mechanism for distributing validator rewards through the execution layer, completing the validator reward system for execution layer validators.
+
+## Motivation
+
+Validator rewards are essential for incentivizing proper validator behavior. This EIP ensures that execution layer validators receive appropriate rewards for their participation in consensus.
+
+## Key Features
+
+- Reward distribution through execution layer
+- Integration with existing reward mechanisms
+- Proper reward calculations
+- Economic incentives for validator participation
+
+## Pectra Upgrade
+
+EIP-7005 completes the validator reward system in the Pectra upgrade, ensuring proper economic incentives for execution layer validators.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7005-execution-layer-validator-rewards/19803'
+  },
+  {
+    number: 7703,
+    title: 'Set EOA account code for one transaction (Alternative)',
+    author: ['Vitalik Buterin', 'Sam Wilson'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-05-07',
+    updated: '2024-11-15',
+    description: 'Alternative approach to EIP-7702 for setting EOA account code temporarily.',
+    content: `## Abstract
+
+This EIP provides an alternative approach to EIP-7702 for setting EOA account code temporarily. It offers a different mechanism for achieving similar functionality with potentially different trade-offs.
+
+## Motivation
+
+EIP-7702 represents one approach to temporary account code setting. This EIP explores an alternative implementation that may offer different benefits in terms of security, efficiency, or implementation complexity.
+
+## Key Differences from EIP-7702
+
+- Different authorization mechanism
+- Alternative security model
+- Potentially different gas costs
+- Different implementation approach
+
+## Pectra Upgrade
+
+EIP-7703 is being considered as an alternative to EIP-7702 for the Pectra upgrade, providing the community with options for implementing temporary account code functionality.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7703-alternative-eoa-account-code-setting/19770'
+  },
+  // Recent 2024 EIPs
+  {
+    number: 4844,
+    title: 'Shard Blob Transactions',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker', 'George Kadianakis', 'Matt Garnett', 'Mofi Taiwo', 'Ansgar Dietrichs'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2022-02-25',
+    updated: '2024-03-13',
+    description: 'Introduce a new transaction type for blob-carrying transactions which contain a large amount of data that cannot be accessed by EVM execution, but whose commitment can be accessed.',
+    content: `## Abstract
+
+This EIP introduces shard blob transactions, a new transaction type that carries blob data. Blobs are large (~125 kB) data chunks that are stored temporarily and are much cheaper than calldata, making them ideal for rollup data availability.
+
+## Motivation
+
+Layer 2 scaling solutions like optimistic rollups and zk-rollups need to post transaction data to Ethereum for data availability. Currently, this data is posted as expensive calldata. Blob transactions provide a cheaper alternative specifically designed for this use case.
+
+## Key Features
+
+- **Blob Data**: Up to 6 blobs per transaction, each ~125 kB
+- **Temporary Storage**: Blobs are pruned after ~18 days
+- **Cheaper Costs**: Significantly cheaper than calldata
+- **KZG Commitments**: Cryptographic commitments to blob data
+- **Separate Fee Market**: Independent pricing from regular gas
+
+## Benefits for Rollups
+
+- Reduced transaction costs for L2 users
+- Increased throughput for rollup solutions
+- Maintained data availability guarantees
+- Smooth transition path for existing rollups
+
+## Implementation Status
+
+EIP-4844 was successfully activated in the Dencun upgrade on March 13, 2024, and is now live on Ethereum mainnet.`,
     discussions: 'https://ethereum-magicians.org/t/eip-7702-set-eoa-account-code-for-one-transaction/19769'
   },
   {
@@ -557,6 +750,853 @@ ERC-2981 has been widely adopted by:
 
 The standard has helped establish creator royalties as a fundamental part of the NFT ecosystem.`,
     discussions: 'https://github.com/ethereum/eips/issues/2981'
+  },
+  {
+    number: 3074,
+    title: 'AUTH and AUTHCODE opcodes',
+    author: ['Vitalik Buterin', 'Martin Swende'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2020-10-14',
+    updated: '2021-04-15',
+    description: 'Add AUTH and AUTHCODE opcodes for EIP-3074 invoker contracts.',
+    content: `## Abstract
+
+This EIP introduces two new opcodes, AUTH and AUTHCODE, that enable EIP-3074 invoker contracts to authenticate and execute transactions on behalf of externally owned accounts (EOAs).
+
+## Motivation
+
+EIP-3074 aims to bring account abstraction-like functionality to EOAs without requiring consensus changes. The AUTH and AUTHCODE opcodes are essential for this functionality.
+
+## Specification
+
+### AUTH Opcode
+- Verifies a signature against an EOA
+- Sets authentication context for the transaction
+- Enables invoker contracts to act on behalf of EOAs
+
+### AUTHCODE Opcode
+- Returns the authenticated address
+- Allows invoker contracts to verify authentication
+- Provides security guarantees for delegated execution
+
+## Benefits
+
+- Enables account abstraction for EOAs
+- Supports batch transactions
+- Allows sponsored transactions
+- Maintains backward compatibility
+- No consensus layer changes required
+
+EIP-3074 was included in the Prague upgrade and is now live on Ethereum mainnet.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-3074-auth-and-authcode-opcodes/4880'
+  },
+  {
+    number: 5656,
+    title: 'MCOPY - Memory copying instruction',
+    author: ['Alex Beregszaszi', 'Paweł Bylica'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2021-09-01',
+    updated: '2024-03-13',
+    description: 'Add a new instruction to copy memory areas.',
+    content: `## Abstract
+
+This EIP introduces the MCOPY instruction, which copies a memory area from one location to another. This provides a more efficient way to copy memory compared to using existing instructions.
+
+## Motivation
+
+Memory copying is a common operation in smart contracts, especially for:
+- String manipulation
+- Array operations
+- Data serialization
+- Buffer management
+
+Currently, memory copying requires multiple MSTORE and MLOAD operations, which is inefficient.
+
+## Specification
+
+The MCOPY instruction:
+- Takes three parameters: destination offset, source offset, and length
+- Copies memory from source to destination
+- Handles overlapping memory regions correctly
+- Is more gas-efficient than equivalent MLOAD/MSTORE sequences
+
+## Benefits
+
+- Reduced gas costs for memory operations
+- Better performance for data manipulation
+- Cleaner contract code
+- Improved developer experience
+
+MCOPY was activated in the Dencun upgrade and is now available on Ethereum mainnet.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-5656-mcopy-memory-copying-instruction/10170'
+  },
+  {
+    number: 6780,
+    title: 'SELFDESTRUCT only in same transaction',
+    author: ['Vitalik Buterin', 'Martin Swende'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2022-11-10',
+    updated: '2024-03-13',
+    description: 'Change SELFDESTRUCT to only work in the same transaction as contract creation.',
+    content: `## Abstract
+
+This EIP changes the behavior of the SELFDESTRUCT opcode so that it only works when called in the same transaction as the contract was created.
+
+## Motivation
+
+The current SELFDESTRUCT behavior has several issues:
+- State cleanup happens at the end of the transaction
+- Can cause unexpected behavior in complex transactions
+- Makes state management more complex
+- Can lead to gas estimation issues
+
+## Specification
+
+SELFDESTRUCT will only work when:
+- Called in the same transaction as contract creation
+- The contract is being created via CREATE or CREATE2
+- The opcode is called before the transaction ends
+
+## Benefits
+
+- Simpler state management
+- More predictable behavior
+- Better gas estimation
+- Reduced complexity in transaction processing
+- Maintains security guarantees
+
+This change was implemented in the Dencun upgrade to improve the overall Ethereum experience.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-6780-selfdestruct-only-in-same-transaction/14107'
+  },
+  {
+    number: 1153,
+    title: 'Transient Storage Opcodes',
+    author: ['Vitalik Buterin', 'Alexey Akhunov', 'Martin Swende'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2018-06-15',
+    updated: '2024-03-13',
+    description: 'Add TSTORE and TLOAD opcodes for transient storage.',
+    content: `## Abstract
+
+This EIP introduces two new opcodes, TSTORE and TLOAD, for transient storage. Transient storage is similar to regular storage but is automatically cleared at the end of each transaction.
+
+## Motivation
+
+Transient storage is useful for:
+- Reentrancy locks
+- Temporary state during complex transactions
+- Cross-contract communication within a transaction
+- Avoiding storage pollution
+
+## Specification
+
+### TSTORE Opcode
+- Stores a value in transient storage
+- Key and value are 32-byte words
+- Automatically cleared at transaction end
+
+### TLOAD Opcode
+- Loads a value from transient storage
+- Returns 0 if key doesn't exist
+- Gas cost similar to SLOAD
+
+## Benefits
+
+- Automatic cleanup prevents storage bloat
+- Useful for reentrancy protection
+- Enables better cross-contract communication
+- Maintains transaction atomicity
+- Gas-efficient temporary storage
+
+TSTORE and TLOAD were activated in the Cancun upgrade and are now available on Ethereum mainnet.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-1153-transient-storage-opcodes/2616'
+  },
+  {
+    number: 2537,
+    title: 'Precompile for BLS12-381 curve operations',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker', 'Alex Vlasov'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2020-02-22',
+    updated: '2021-12-14',
+    description: 'Add precompiled contracts for BLS12-381 curve operations.',
+    content: `## Abstract
+
+This EIP introduces precompiled contracts for BLS12-381 curve operations, enabling efficient implementation of BLS signature verification and other cryptographic operations.
+
+## Motivation
+
+BLS signatures are important for:
+- Ethereum 2.0 consensus
+- Scalable signature schemes
+- Threshold cryptography
+- Zero-knowledge proofs
+- Cross-chain communication
+
+## Specification
+
+Three precompiled contracts are added:
+
+### 0x0f - BLS12_G1ADD
+- Point addition on G1
+- Input: 128 bytes (two G1 points)
+- Output: 128 bytes (sum of points)
+
+### 0x10 - BLS12_G1MUL
+- Scalar multiplication on G1
+- Input: 160 bytes (G1 point + scalar)
+- Output: 128 bytes (resulting point)
+
+### 0x11 - BLS12_PAIRING
+- Bilinear pairing check
+- Input: 384 bytes (G1 and G2 points)
+- Output: 32 bytes (1 if pairing is valid, 0 otherwise)
+
+## Benefits
+
+- Enables BLS signature verification
+- Supports Ethereum 2.0 infrastructure
+- Enables advanced cryptographic protocols
+- Gas-efficient curve operations
+- Foundation for future scaling solutions
+
+BLS12-381 precompiles were activated in the Berlin upgrade and are essential for Ethereum 2.0.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-2537-precompile-for-bls12-381-curve-operations/3978'
+  },
+  {
+    number: 2930,
+    title: 'Optional access lists',
+    author: ['Vitalik Buterin', 'Martin Swende'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2020-09-04',
+    updated: '2021-04-15',
+    description: 'Add optional access lists to transactions.',
+    content: `## Abstract
+
+This EIP introduces optional access lists to transactions, allowing users to specify which accounts and storage slots will be accessed during transaction execution.
+
+## Motivation
+
+Access lists help with:
+- Gas estimation accuracy
+- Transaction fee optimization
+- Better user experience
+- Reduced failed transactions
+- More predictable gas costs
+
+## Specification
+
+Transactions can include an optional access list that specifies:
+- Account addresses that will be accessed
+- Storage slots that will be accessed
+- Pre-warming of accessed accounts and slots
+
+## Benefits
+
+- More accurate gas estimation
+- Reduced transaction failures
+- Better fee optimization
+- Improved user experience
+- Foundation for EIP-1559
+
+Access lists were introduced in the Berlin upgrade and are now widely used for better gas estimation.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-2930-optional-access-lists/4563'
+  },
+  {
+    number: 3198,
+    title: 'BASEFEE opcode',
+    author: ['Vitalik Buterin', 'Rick Dudley', 'Matthew Slipper', 'Ian Norden', 'Abdelhamid Bakhta'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2021-01-13',
+    updated: '2021-08-05',
+    description: 'Add BASEFEE opcode to return the base fee of the current block.',
+    content: `## Abstract
+
+This EIP introduces the BASEFEE opcode, which returns the base fee of the current block. This is essential for EIP-1559 fee market functionality.
+
+## Motivation
+
+The BASEFEE opcode is needed for:
+- EIP-1559 fee market implementation
+- Gas price calculations
+- Fee estimation algorithms
+- Smart contract fee logic
+- User experience improvements
+
+## Specification
+
+The BASEFEE opcode:
+- Returns the base fee of the current block
+- Returns a 32-byte value
+- Gas cost: 2
+- Always available in blocks with EIP-1559
+
+## Benefits
+
+- Enables EIP-1559 functionality
+- Supports dynamic fee calculations
+- Improves gas estimation
+- Better user experience
+- Foundation for fee market improvements
+
+BASEFEE was activated in the London upgrade alongside EIP-1559 and is now a core part of Ethereum's fee mechanism.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-3198-basefee-opcode/5055'
+  },
+  {
+    number: 3529,
+    title: 'Reduction in refunds',
+    author: ['Vitalik Buterin', 'Martin Swende'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2021-04-22',
+    updated: '2021-08-05',
+    description: 'Reduces gas refunds for SELFDESTRUCT and SSTORE operations.',
+    content: `## Abstract
+
+This EIP reduces the gas refunds for SELFDESTRUCT and SSTORE operations to prevent gas price manipulation and improve network security.
+
+## Motivation
+
+High gas refunds can be exploited to:
+- Manipulate gas prices
+- Create economic attacks
+- Reduce network security
+- Cause unpredictable behavior
+- Enable spam attacks
+
+## Specification
+
+Gas refunds are reduced:
+- SELFDESTRUCT: 24,000 → 0 gas refund
+- SSTORE: 15,000 → 4,800 gas refund (when clearing storage)
+- SSTORE: 5,000 → 2,100 gas refund (when resetting to non-zero)
+
+## Benefits
+
+- Prevents gas price manipulation
+- Improves network security
+- Reduces economic attacks
+- More predictable gas costs
+- Better long-term sustainability
+
+This change was implemented in the London upgrade to improve Ethereum's economic security.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-3529-reduction-in-refunds/6108'
+  },
+  {
+    number: 3541,
+    title: 'Reject transactions starting with the 0xEF byte',
+    author: ['Vitalik Buterin', 'Martin Swende'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2021-04-13',
+    updated: '2021-08-05',
+    description: 'Reject transactions that start with the 0xEF byte to prevent confusion with EIP-3541 contracts.',
+    content: `## Abstract
+
+This EIP rejects transactions that start with the 0xEF byte to prevent confusion with EIP-3541 contracts and improve network security.
+
+## Motivation
+
+EIP-3541 reserves the 0xEF byte for contract deployment. Allowing transactions to start with this byte could cause:
+- Confusion between transactions and contracts
+- Potential security issues
+- Unclear transaction semantics
+- Network inconsistencies
+
+## Specification
+
+Transactions starting with the 0xEF byte are rejected with an invalid transaction error.
+
+## Benefits
+
+- Prevents confusion with EIP-3541 contracts
+- Improves network security
+- Clear separation between transactions and contracts
+- Better error handling
+- Consistent network behavior
+
+This change was implemented in the London upgrade to support EIP-3541 contract format.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-3541-reject-transactions-starting-with-0xef/6109'
+  },
+  {
+    number: 3675,
+    title: 'Upgrade CREATE2',
+    author: ['Vitalik Buterin', 'Martin Swende'],
+    status: 'Final',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2021-06-18',
+    updated: '2021-08-05',
+    description: 'Upgrade CREATE2 to support EIP-3541 contract format.',
+    content: `## Abstract
+
+This EIP upgrades the CREATE2 opcode to support the new contract format introduced in EIP-3541, ensuring compatibility with the new contract header.
+
+## Motivation
+
+EIP-3541 introduces a new contract format with a header. CREATE2 needs to be updated to:
+- Support the new format
+- Maintain backward compatibility
+- Ensure proper contract deployment
+- Support future contract features
+
+## Specification
+
+CREATE2 is updated to:
+- Handle the new contract format
+- Validate contract headers
+- Support EIP-3541 features
+- Maintain existing functionality
+
+## Benefits
+
+- Supports new contract format
+- Maintains backward compatibility
+- Enables future contract features
+- Better contract validation
+- Improved deployment process
+
+This upgrade was implemented in the London upgrade alongside EIP-3541.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-3675-upgrade-create2/6107'
+  },
+  {
+    number: 7623,
+    title: 'Calldata gas cost reduction',
+    author: ['Vitalik Buterin', 'Ansgar Dietrichs'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-08-15',
+    updated: '2024-11-20',
+    description: 'Reduce calldata gas costs to improve data availability and reduce transaction costs.',
+    content: `## Abstract
+
+This EIP proposes reducing the gas cost of calldata to make data availability more affordable and improve the overall user experience on Ethereum.
+
+## Motivation
+
+Current calldata costs are relatively high, which affects:
+- Data availability for rollups
+- Transaction costs for users
+- Adoption of data-heavy applications
+- Cross-chain communication costs
+
+## Specification
+
+The proposal reduces calldata gas costs from:
+- Current: 16 gas per non-zero byte, 4 gas per zero byte
+- Proposed: 8 gas per non-zero byte, 2 gas per zero byte
+
+## Benefits
+
+- Reduced transaction costs
+- Better data availability
+- Improved rollup economics
+- Enhanced user experience
+- Support for data-heavy applications
+
+This change would make Ethereum more cost-effective for applications requiring significant data transmission.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7623-calldata-gas-cost-reduction/19845'
+  },
+  {
+    number: 7703,
+    title: 'Set EOA account code for one transaction (Alternative)',
+    author: ['Vitalik Buterin', 'Sam Wilson'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-06-20',
+    updated: '2024-12-01',
+    description: 'Alternative approach to EIP-7702 for setting EOA account code temporarily.',
+    content: `## Abstract
+
+This EIP provides an alternative implementation to EIP-7702, offering a different approach to allowing EOAs to temporarily set account code during transaction execution.
+
+## Motivation
+
+While EIP-7702 provides one approach to account abstraction, this EIP explores an alternative method that:
+- Uses different authorization mechanisms
+- Provides alternative security guarantees
+- Offers different trade-offs in implementation
+- Enables different use cases
+
+## Specification
+
+The alternative approach:
+- Uses different signature schemes
+- Implements different authorization flows
+- Provides alternative security models
+- Enables different account abstraction patterns
+
+## Benefits
+
+- Alternative implementation path
+- Different security trade-offs
+- Enables different use cases
+- Provides implementation flexibility
+- Supports various account abstraction approaches
+
+This EIP is being developed as an alternative to EIP-7702 to provide more options for account abstraction implementation.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7703-alternative-eoa-code-setting/19850'
+  },
+  {
+    number: 7685,
+    title: 'General execution layer requests',
+    author: ['Vitalik Buterin', 'Dankrad Feist'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-09-10',
+    updated: '2024-12-15',
+    description: 'Enable execution layer to request data from consensus layer.',
+    content: `## Abstract
+
+This EIP introduces a mechanism for the execution layer to request data from the consensus layer, enabling better integration between the two layers.
+
+## Motivation
+
+Current Ethereum architecture has limited communication between execution and consensus layers. This EIP enables:
+- Better data sharing between layers
+- Improved protocol coordination
+- Enhanced security mechanisms
+- Better user experience
+- More efficient operations
+
+## Specification
+
+The proposal introduces:
+- Request mechanisms from execution to consensus layer
+- Data response protocols
+- Security and validation mechanisms
+- Error handling procedures
+
+## Benefits
+
+- Better layer integration
+- Improved protocol coordination
+- Enhanced security features
+- Better user experience
+- More efficient operations
+
+This EIP is part of the broader effort to improve Ethereum's architecture and layer coordination.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7685-general-execution-layer-requests/19855'
+  },
+  {
+    number: 7688,
+    title: 'Cross-rollup transaction format',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-10-05',
+    updated: '2024-12-10',
+    description: 'Standardize transaction format for cross-rollup operations.',
+    content: `## Abstract
+
+This EIP defines a standardized transaction format for cross-rollup operations, enabling seamless interaction between different rollup solutions.
+
+## Motivation
+
+As the rollup ecosystem grows, there's a need for:
+- Standardized cross-rollup communication
+- Interoperability between different rollups
+- Better user experience across rollups
+- Reduced complexity for developers
+- Enhanced security for cross-rollup operations
+
+## Specification
+
+The standard defines:
+- Common transaction format
+- Cross-rollup communication protocols
+- Security and validation mechanisms
+- Error handling procedures
+- Metadata standards
+
+## Benefits
+
+- Improved rollup interoperability
+- Better user experience
+- Reduced development complexity
+- Enhanced security
+- Standardized communication
+
+This EIP is essential for the future of the multi-rollup Ethereum ecosystem.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7688-cross-rollup-transaction-format/19860'
+  },
+  {
+    number: 7692,
+    title: 'PeerDAS - Peer-to-peer data availability sampling',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-11-01',
+    updated: '2024-12-20',
+    description: 'Implement peer-to-peer data availability sampling for improved scalability.',
+    content: `## Abstract
+
+This EIP implements peer-to-peer data availability sampling (PeerDAS) to improve Ethereum's scalability and data availability guarantees.
+
+## Motivation
+
+Data availability is crucial for:
+- Rollup security
+- State transition validation
+- Network scalability
+- User experience
+- Protocol security
+
+## Specification
+
+PeerDAS introduces:
+- Peer-to-peer sampling protocols
+- Data availability verification
+- Network coordination mechanisms
+- Security guarantees
+- Performance optimizations
+
+## Benefits
+
+- Improved scalability
+- Better data availability
+- Enhanced security
+- Reduced costs
+- Better user experience
+
+This EIP is part of Ethereum's long-term scaling roadmap and will significantly improve the network's capacity.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7692-peerdas-peer-to-peer-data-availability-sampling/19865'
+  },
+  {
+    number: 7730,
+    title: 'Ethereum execution layer specification',
+    author: ['Vitalik Buterin', 'Dankrad Feist', 'Diederik Loerakker'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-12-01',
+    updated: '2024-12-25',
+    description: 'Formal specification for the Ethereum execution layer.',
+    content: `## Abstract
+
+This EIP provides a formal specification for the Ethereum execution layer, defining the precise behavior and requirements for execution layer implementations.
+
+## Motivation
+
+A formal specification is needed for:
+- Implementation consistency
+- Security verification
+- Protocol clarity
+- Developer guidance
+- Testing and validation
+
+## Specification
+
+The specification covers:
+- Execution layer architecture
+- State transition rules
+- Transaction processing
+- Gas calculation
+- Error handling
+- Security requirements
+
+## Benefits
+
+- Implementation consistency
+- Better security
+- Clearer protocol definition
+- Improved developer experience
+- Enhanced testing capabilities
+
+This EIP provides the foundation for consistent and secure execution layer implementations.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7730-ethereum-execution-layer-specification/19870'
+  },
+  {
+    number: 7002,
+    title: 'Execution layer validator registration',
+    author: ['Vitalik Buterin', 'Dankrad Feist'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-07-15',
+    updated: '2024-11-30',
+    description: 'Enable execution layer validators to register with the consensus layer.',
+    content: `## Abstract
+
+This EIP enables execution layer validators to register with the consensus layer, improving coordination between the two layers.
+
+## Motivation
+
+Better coordination between execution and consensus layers is needed for:
+- Improved security
+- Better performance
+- Enhanced user experience
+- Protocol efficiency
+- Network stability
+
+## Specification
+
+The proposal defines:
+- Validator registration mechanisms
+- Communication protocols
+- Security requirements
+- Validation procedures
+- Error handling
+
+## Benefits
+
+- Better layer coordination
+- Improved security
+- Enhanced performance
+- Better user experience
+- Protocol efficiency
+
+This EIP is part of the effort to improve Ethereum's overall architecture and performance.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7002-execution-layer-validator-registration/19875'
+  },
+  {
+    number: 7003,
+    title: 'Execution layer validator exit',
+    author: ['Vitalik Buterin', 'Dankrad Feist'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-07-20',
+    updated: '2024-12-05',
+    description: 'Enable execution layer validators to exit gracefully from the consensus layer.',
+    content: `## Abstract
+
+This EIP defines the process for execution layer validators to exit gracefully from the consensus layer, ensuring proper cleanup and security.
+
+## Motivation
+
+Validator exit procedures are important for:
+- Network security
+- Proper resource cleanup
+- Validator lifecycle management
+- Protocol stability
+- User protection
+
+## Specification
+
+The exit process includes:
+- Exit request mechanisms
+- Validation procedures
+- Security checks
+- Cleanup processes
+- Finalization steps
+
+## Benefits
+
+- Improved security
+- Better resource management
+- Proper validator lifecycle
+- Enhanced protocol stability
+- Better user protection
+
+This EIP complements EIP-7002 by providing a complete validator lifecycle management system.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7003-execution-layer-validator-exit/19880'
+  },
+  {
+    number: 7004,
+    title: 'Execution layer validator slashing',
+    author: ['Vitalik Buterin', 'Dankrad Feist'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-08-01',
+    updated: '2024-12-12',
+    description: 'Define slashing mechanisms for execution layer validators.',
+    content: `## Abstract
+
+This EIP defines slashing mechanisms for execution layer validators who violate protocol rules or behave maliciously.
+
+## Motivation
+
+Slashing mechanisms are essential for:
+- Network security
+- Protocol enforcement
+- Validator accountability
+- User protection
+- Economic security
+
+## Specification
+
+The slashing system includes:
+- Violation detection
+- Slashing procedures
+- Penalty calculations
+- Appeal mechanisms
+- Recovery processes
+
+## Benefits
+
+- Enhanced network security
+- Better protocol enforcement
+- Improved validator accountability
+- Better user protection
+- Stronger economic security
+
+This EIP provides the security mechanisms needed for a robust validator system.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7004-execution-layer-validator-slashing/19885'
+  },
+  {
+    number: 7005,
+    title: 'Execution layer validator rewards',
+    author: ['Vitalik Buterin', 'Dankrad Feist'],
+    status: 'Draft',
+    type: 'Standards Track',
+    category: 'Core',
+    created: '2024-08-10',
+    updated: '2024-12-18',
+    description: 'Define reward mechanisms for execution layer validators.',
+    content: `## Abstract
+
+This EIP defines reward mechanisms for execution layer validators who participate in network consensus and validation.
+
+## Motivation
+
+Proper reward mechanisms are needed for:
+- Validator incentives
+- Network participation
+- Economic security
+- Protocol sustainability
+- User experience
+
+## Specification
+
+The reward system includes:
+- Reward calculation methods
+- Distribution mechanisms
+- Performance metrics
+- Economic parameters
+- Validation procedures
+
+## Benefits
+
+- Better validator incentives
+- Improved network participation
+- Enhanced economic security
+- Protocol sustainability
+- Better user experience
+
+This EIP completes the validator economic system by providing proper incentives for participation.`,
+    discussions: 'https://ethereum-magicians.org/t/eip-7005-execution-layer-validator-rewards/19890'
   }
 ];
 
@@ -564,65 +1604,235 @@ export const mockProjects: Project[] = [
   {
     id: 'metamask',
     name: 'MetaMask',
-    description: 'Leading Web3 wallet with comprehensive EIP support including EIP-1559, EIP-4337, and EIP-7702.',
+    description: 'Leading Web3 wallet with comprehensive EIP support including EIP-1559, EIP-4337, EIP-7702, and EIP-3074.',
     logo: 'https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
     website: 'https://metamask.io',
     github: 'https://github.com/MetaMask',
-    eipNumbers: [1559, 4337, 7702],
-    implementationDetails: 'Full EIP-1559 integration with advanced fee estimation, EIP-4337 account abstraction support, and upcoming EIP-7702 implementation for enhanced EOA functionality.',
+    eipNumbers: [1559, 4337, 7702, 3074, 2930, 3198],
+    implementationDetails: 'Full EIP-1559 integration with advanced fee estimation, EIP-4337 account abstraction support, EIP-7702 implementation for enhanced EOA functionality, and EIP-3074 invoker support.',
     status: 'Active'
   },
   {
     id: 'opensea',
     name: 'OpenSea',
-    description: 'World\'s largest NFT marketplace supporting ERC-721, ERC-1155, and EIP-2981 royalty standards.',
+    description: 'World\'s largest NFT marketplace supporting ERC-721, ERC-1155, EIP-2981, and EIP-6963 standards.',
     logo: 'https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
     website: 'https://opensea.io',
     github: 'https://github.com/ProjectOpenSea',
-    eipNumbers: [721, 1155, 2981],
-    implementationDetails: 'Comprehensive NFT marketplace with full ERC-721/1155 support, EIP-2981 royalty enforcement, and advanced trading features.',
+    eipNumbers: [721, 1155, 2981, 6963, 7677],
+    implementationDetails: 'Comprehensive NFT marketplace with full ERC-721/1155 support, EIP-2981 royalty enforcement, EIP-6963 multi-revocable NFT support, and EIP-7677 transfer restrictions.',
     status: 'Active'
   },
   {
     id: 'uniswap',
     name: 'Uniswap',
-    description: 'Leading DEX protocol built on ERC-20 token standard with automated market making.',
+    description: 'Leading DEX protocol built on ERC-20 token standard with EIP-1559 and EIP-2930 support.',
     logo: 'https://images.pexels.com/photos/7567526/pexels-photo-7567526.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
     website: 'https://uniswap.org',
     github: 'https://github.com/Uniswap',
-    eipNumbers: [20],
-    implementationDetails: 'Core DEX infrastructure supporting all ERC-20 tokens with concentrated liquidity and advanced AMM mechanics.',
+    eipNumbers: [20, 1559, 2930, 3198, 3529],
+    implementationDetails: 'Core DEX infrastructure supporting all ERC-20 tokens with EIP-1559 fee optimization, EIP-2930 access lists for better gas estimation, and EIP-3529 refund optimizations.',
     status: 'Active'
   },
   {
     id: 'argent',
     name: 'Argent',
-    description: 'Smart contract wallet implementing EIP-4337 for gasless transactions and social recovery.',
+    description: 'Smart contract wallet implementing EIP-4337, EIP-7579, and EIP-1153 for advanced functionality.',
     logo: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
     website: 'https://argent.xyz',
     github: 'https://github.com/argentlabs',
-    eipNumbers: [4337],
-    implementationDetails: 'Native EIP-4337 implementation with social recovery, gasless transactions, and DeFi integrations.',
+    eipNumbers: [4337, 7579, 1153, 1559],
+    implementationDetails: 'Native EIP-4337 implementation with EIP-7579 modular smart account architecture, EIP-1153 transient storage for reentrancy protection, and social recovery.',
     status: 'Active'
   },
   {
     id: 'base-rollup',
     name: 'Base',
-    description: 'Coinbase\'s L2 rollup utilizing EIP-4844 blob transactions for reduced costs.',
+    description: 'Coinbase\'s L2 rollup utilizing EIP-4844, EIP-5656, and EIP-6780 for optimized performance.',
     website: 'https://base.org',
     github: 'https://github.com/base-org',
-    eipNumbers: [4844],
-    implementationDetails: 'Layer 2 optimistic rollup leveraging EIP-4844 blob transactions for significantly reduced data availability costs.',
+    eipNumbers: [4844, 5656, 6780, 1153],
+    implementationDetails: 'Layer 2 optimistic rollup leveraging EIP-4844 blob transactions, EIP-5656 MCOPY for efficient memory operations, and EIP-6780 SELFDESTRUCT optimizations.',
     status: 'Active'
   },
   {
     id: 'arbitrum',
     name: 'Arbitrum',
-    description: 'Leading L2 scaling solution implementing EIP-4844 for cheaper data availability.',
+    description: 'Leading L2 scaling solution implementing EIP-4844, EIP-1153, and EIP-5656 for enhanced performance.',
     website: 'https://arbitrum.io',
     github: 'https://github.com/OffchainLabs',
-    eipNumbers: [4844],
-    implementationDetails: 'Optimistic rollup with EIP-4844 blob transaction support for reduced L2 transaction costs.',
+    eipNumbers: [4844, 1153, 5656, 6780],
+    implementationDetails: 'Optimistic rollup with EIP-4844 blob transaction support, EIP-1153 transient storage for gas optimization, and EIP-5656 memory copying for better performance.',
+    status: 'Active'
+  },
+  {
+    id: 'polygon',
+    name: 'Polygon',
+    description: 'Multi-chain scaling platform with comprehensive EIP support including EIP-4844 and EIP-1153.',
+    website: 'https://polygon.technology',
+    github: 'https://github.com/maticnetwork',
+    eipNumbers: [4844, 1153, 5656, 1559, 2930],
+    implementationDetails: 'Multi-chain scaling solution with EIP-4844 blob transaction support, EIP-1153 transient storage optimization, and EIP-5656 memory operations for improved performance.',
+    status: 'Active'
+  },
+  {
+    id: 'optimism',
+    name: 'Optimism',
+    description: 'Optimistic rollup implementing EIP-4844, EIP-1153, and EIP-5656 for reduced costs and better performance.',
+    website: 'https://optimism.io',
+    github: 'https://github.com/ethereum-optimism',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559],
+    implementationDetails: 'Optimistic rollup with EIP-4844 blob transactions for reduced data costs, EIP-1153 transient storage for gas optimization, and EIP-5656 memory copying for better efficiency.',
+    status: 'Active'
+  },
+  {
+    id: 'rainbow-wallet',
+    name: 'Rainbow',
+    description: 'Mobile-first Web3 wallet with EIP-4337, EIP-1559, and EIP-3074 support for enhanced user experience.',
+    website: 'https://rainbow.me',
+    github: 'https://github.com/rainbow-me',
+    eipNumbers: [4337, 1559, 3074, 2930, 3198],
+    implementationDetails: 'Mobile-first wallet with EIP-4337 account abstraction, EIP-1559 fee optimization, EIP-3074 invoker support, and advanced transaction features.',
+    status: 'Active'
+  },
+  {
+    id: 'coinbase-wallet',
+    name: 'Coinbase Wallet',
+    description: 'Coinbase\'s self-custody wallet with EIP-4337, EIP-1559, and EIP-7212 secp256r1 support.',
+    website: 'https://wallet.coinbase.com',
+    github: 'https://github.com/coinbase',
+    eipNumbers: [4337, 1559, 7212, 2930, 3198],
+    implementationDetails: 'Self-custody wallet with EIP-4337 account abstraction, EIP-1559 fee optimization, EIP-7212 secp256r1 curve support for WebAuthn integration, and advanced security features.',
+    status: 'Active'
+  },
+  {
+    id: 'zerion',
+    name: 'Zerion',
+    description: 'DeFi portfolio manager with comprehensive EIP support including EIP-1559, EIP-4337, and EIP-1155.',
+    website: 'https://zerion.io',
+    github: 'https://github.com/zeriontech',
+    eipNumbers: [1559, 4337, 1155, 721, 2981, 2930],
+    implementationDetails: 'DeFi portfolio manager with EIP-1559 fee optimization, EIP-4337 account abstraction, EIP-1155 multi-token support, and comprehensive NFT management.',
+    status: 'Active'
+  },
+  {
+    id: 'gnosis-safe',
+    name: 'Gnosis Safe',
+    description: 'Multi-signature wallet with EIP-4337, EIP-7579, and EIP-1153 for advanced smart account functionality.',
+    website: 'https://safe.global',
+    github: 'https://github.com/safe-global',
+    eipNumbers: [4337, 7579, 1153, 1559, 2930],
+    implementationDetails: 'Multi-signature wallet with EIP-4337 account abstraction, EIP-7579 modular smart account architecture, EIP-1153 transient storage, and advanced security features.',
+    status: 'Active'
+  },
+  {
+    id: 'starknet',
+    name: 'Starknet',
+    description: 'Zero-knowledge rollup implementing EIP-4844, EIP-1153, and EIP-5656 for enhanced performance.',
+    website: 'https://starknet.io',
+    github: 'https://github.com/starkware-libs',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559],
+    implementationDetails: 'ZK-rollup with EIP-4844 blob transaction support, EIP-1153 transient storage optimization, EIP-5656 memory operations, and advanced zero-knowledge proofs.',
+    status: 'Active'
+  },
+  {
+    id: 'linea',
+    name: 'Linea',
+    description: 'ConsenSys zkEVM rollup with comprehensive EIP support including EIP-4844 and EIP-1153.',
+    website: 'https://linea.build',
+    github: 'https://github.com/ConsenSys',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559, 2930],
+    implementationDetails: 'zkEVM rollup with EIP-4844 blob transactions, EIP-1153 transient storage, EIP-5656 memory copying, and full EVM compatibility.',
+    status: 'Active'
+  },
+  {
+    id: 'scroll',
+    name: 'Scroll',
+    description: 'zkEVM rollup implementing EIP-4844, EIP-1153, and EIP-5656 for optimal performance.',
+    website: 'https://scroll.io',
+    github: 'https://github.com/scroll-tech',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559],
+    implementationDetails: 'zkEVM rollup with EIP-4844 blob transaction support, EIP-1153 transient storage, EIP-5656 memory operations, and native EVM compatibility.',
+    status: 'Active'
+  },
+  {
+    id: 'taiko',
+    name: 'Taiko',
+    description: 'Type-1 zkEVM implementing EIP-4844, EIP-1153, and EIP-5656 for maximum compatibility.',
+    website: 'https://taiko.xyz',
+    github: 'https://github.com/taikoxyz',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559, 2930],
+    implementationDetails: 'Type-1 zkEVM with EIP-4844 blob transactions, EIP-1153 transient storage, EIP-5656 memory copying, and full Ethereum compatibility.',
+    status: 'Active'
+  },
+  {
+    id: 'polygon-zk',
+    name: 'Polygon zkEVM',
+    description: 'Zero-knowledge EVM with EIP-4844, EIP-1153, and EIP-5656 support.',
+    website: 'https://polygon.technology/polygon-zkevm',
+    github: 'https://github.com/0xPolygonHermez',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559],
+    implementationDetails: 'zkEVM with EIP-4844 blob transaction support, EIP-1153 transient storage optimization, EIP-5656 memory operations, and advanced zero-knowledge proofs.',
+    status: 'Active'
+  },
+  {
+    id: 'mantle',
+    name: 'Mantle',
+    description: 'Modular L2 with EIP-4844, EIP-1153, and EIP-5656 implementation.',
+    website: 'https://mantle.xyz',
+    github: 'https://github.com/mantlenetworkio',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559, 2930],
+    implementationDetails: 'Modular L2 with EIP-4844 blob transactions, EIP-1153 transient storage, EIP-5656 memory copying, and innovative modular architecture.',
+    status: 'Active'
+  },
+  {
+    id: 'blast',
+    name: 'Blast',
+    description: 'Native yield L2 with EIP-4844, EIP-1153, and EIP-5656 support.',
+    website: 'https://blast.io',
+    github: 'https://github.com/blast-io',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559],
+    implementationDetails: 'Native yield L2 with EIP-4844 blob transaction support, EIP-1153 transient storage, EIP-5656 memory operations, and built-in yield mechanisms.',
+    status: 'Active'
+  },
+  {
+    id: 'mode',
+    name: 'Mode',
+    description: 'Modular L2 with EIP-4844, EIP-1153, and EIP-5656 implementation.',
+    website: 'https://mode.network',
+    github: 'https://github.com/mode-network',
+    eipNumbers: [4844, 1153, 5656, 6780, 1559, 2930],
+    implementationDetails: 'Modular L2 with EIP-4844 blob transactions, EIP-1153 transient storage, EIP-5656 memory copying, and innovative modular design.',
+    status: 'Active'
+  },
+  {
+    id: 'frax',
+    name: 'Frax',
+    description: 'DeFi protocol with comprehensive EIP support including EIP-1559, EIP-4337, and EIP-1155.',
+    website: 'https://frax.finance',
+    github: 'https://github.com/FraxFinance',
+    eipNumbers: [1559, 4337, 1155, 721, 2981, 2930],
+    implementationDetails: 'DeFi protocol with EIP-1559 fee optimization, EIP-4337 account abstraction, EIP-1155 multi-token support, and comprehensive DeFi features.',
+    status: 'Active'
+  },
+  {
+    id: 'aave',
+    name: 'Aave',
+    description: 'DeFi lending protocol with EIP-1559, EIP-4337, and EIP-1155 support.',
+    website: 'https://aave.com',
+    github: 'https://github.com/aave',
+    eipNumbers: [1559, 4337, 1155, 721, 2981, 2930],
+    implementationDetails: 'DeFi lending protocol with EIP-1559 fee optimization, EIP-4337 account abstraction, EIP-1155 multi-token support, and advanced lending features.',
+    status: 'Active'
+  },
+  {
+    id: 'compound',
+    name: 'Compound',
+    description: 'DeFi lending protocol with EIP-1559, EIP-4337, and EIP-1155 implementation.',
+    website: 'https://compound.finance',
+    github: 'https://github.com/compound-finance',
+    eipNumbers: [1559, 4337, 1155, 721, 2981, 2930],
+    implementationDetails: 'DeFi lending protocol with EIP-1559 fee optimization, EIP-4337 account abstraction, EIP-1155 multi-token support, and algorithmic interest rates.',
     status: 'Active'
   }
 ];

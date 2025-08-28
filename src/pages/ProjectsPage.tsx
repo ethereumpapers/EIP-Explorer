@@ -3,6 +3,7 @@ import { Users, Plus } from 'lucide-react';
 import ProjectCard from '../components/ProjectCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
+import BreadcrumbNav from '../components/BreadcrumbNav';
 import { useProjects } from '../hooks/useProjects';
 
 export default function ProjectsPage() {
@@ -40,6 +41,9 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Breadcrumb Navigation */}
+        <BreadcrumbNav />
+        
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
