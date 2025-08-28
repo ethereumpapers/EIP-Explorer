@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingUp, Book, Users, ArrowRight, Activity } from 'lucide-react';
 import EIPCard from '../components/EIPCard';
-
+import AIRecommendations from '../components/AIRecommendations';
 import ErrorMessage from '../components/ErrorMessage';
 import { useEIPs } from '../hooks/useEIPs';
 import { useLiveData } from '../hooks/useLiveData';
@@ -260,6 +260,11 @@ export default function HomePage() {
               <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </div>
           </Link>
+        </div>
+
+        {/* AI Recommendations */}
+        <div className="mb-20">
+          <AIRecommendations />
         </div>
 
         {/* Powered by Section */}

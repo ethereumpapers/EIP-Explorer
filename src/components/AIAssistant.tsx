@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Bot, Send, X, Minimize2, Maximize2, Sparkles, BookOpen, Search, TrendingUp, Users } from 'lucide-react';
 import { useEIPs } from '../hooks/useEIPs';
-import { openaiService } from '../services/openaiService';
+import { huggingFaceService } from '../services/huggingFaceService';
 
 interface Message {
   id: string;
@@ -87,7 +87,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
         content: userMessage.content
       });
 
-      const response = await openaiService.generateResponse(conversationHistory, eipContext);
+      const response = await huggingFaceService.generateResponse(conversationHistory, eipContext);
       
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),

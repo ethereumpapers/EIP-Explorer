@@ -7,6 +7,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import BreadcrumbNav from '../components/BreadcrumbNav';
 import AIAssistant from '../components/AIAssistant';
+import AISummary from '../components/AISummary';
 import { useEIP } from '../hooks/useEIPs';
 import { useEIPMetrics } from '../hooks/useLiveData';
 import { useProjectsByEIP } from '../hooks/useProjects';
@@ -127,6 +128,9 @@ export default function EIPDetailPage() {
                 </div>
               )}
             </div>
+
+            {/* AI Summary */}
+            <AISummary eip={eip} />
 
             {/* Content */}
             <div className="bg-white rounded-lg border border-gray-200 p-8">
