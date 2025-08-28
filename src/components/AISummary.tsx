@@ -51,7 +51,7 @@ export default function AISummary({ eip }: AISummaryProps) {
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center">
             <Sparkles className="h-4 w-4 text-white" />
           </div>
           <div>
@@ -73,7 +73,7 @@ export default function AISummary({ eip }: AISummaryProps) {
           <button
             onClick={generateSummary}
             disabled={isGenerating}
-            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center space-x-2 px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {isGenerating ? (
               <>
@@ -115,7 +115,7 @@ export default function AISummary({ eip }: AISummaryProps) {
         </div>
       ) : (
         <div className="text-center py-8">
-          <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
             <Sparkles className="h-8 w-8 text-white" />
           </div>
           <h4 className="text-lg font-semibold text-gray-900 mb-2">Get AI-Powered Insights</h4>
@@ -125,7 +125,7 @@ export default function AISummary({ eip }: AISummaryProps) {
           <button
             onClick={generateSummary}
             disabled={isGenerating}
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {isGenerating ? (
               <>
@@ -151,7 +151,7 @@ export default function AISummary({ eip }: AISummaryProps) {
             </div>
             <button
               onClick={generateSummary}
-              className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
+              className="text-slate-600 hover:text-slate-700 font-medium transition-colors"
             >
               Regenerate
             </button>

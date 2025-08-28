@@ -89,9 +89,9 @@ export default function AIRecommendations() {
     return (
       <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
         <div className="flex items-center space-x-3 mb-4">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-            <Sparkles className="h-4 w-4 text-white animate-pulse" />
-          </div>
+                  <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center">
+          <Sparkles className="h-4 w-4 text-white" />
+        </div>
           <h3 className="text-lg font-semibold text-gray-900">AI Recommendations</h3>
         </div>
         <div className="space-y-3">
@@ -109,7 +109,7 @@ export default function AIRecommendations() {
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
       <div className="flex items-center space-x-3 mb-6">
-        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+        <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center">
           <Sparkles className="h-4 w-4 text-white" />
         </div>
         <div>
@@ -123,7 +123,7 @@ export default function AIRecommendations() {
           const recEIPs = getEIPsForRecommendation(rec.eipNumbers);
           
           return (
-            <div key={rec.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+            <div key={rec.id} className="border border-gray-200 rounded-lg p-4 hover:border-slate-300 transition-colors">
               <div className="flex items-start space-x-3">
                 <div className="flex-shrink-0 mt-1">
                   {rec.icon}
@@ -136,7 +136,7 @@ export default function AIRecommendations() {
                     {recEIPs.map((eip) => (
                       <span
                         key={eip.number}
-                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors cursor-pointer"
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 hover:bg-slate-200 transition-colors cursor-pointer"
                       >
                         EIP-{eip.number}
                       </span>
@@ -165,7 +165,7 @@ export default function AIRecommendations() {
           </div>
           <button
             onClick={generateRecommendations}
-            className="text-xs text-blue-600 hover:text-blue-700 font-medium transition-colors"
+            className="text-xs text-slate-600 hover:text-slate-700 font-medium transition-colors"
           >
             Refresh recommendations
           </button>

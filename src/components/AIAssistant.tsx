@@ -148,11 +148,11 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-8 right-8 z-50 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 group"
+          className="fixed bottom-8 right-8 z-50 bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group border border-slate-700"
         >
           <div className="relative">
             <Bot className="h-8 w-8" />
-            <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent-500 rounded-full"></div>
           </div>
           <div className="absolute -top-16 right-0 bg-gray-900 text-white px-4 py-2 rounded-xl text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-lg">
             <div className="flex items-center space-x-2">
@@ -170,15 +170,15 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
           isMinimized ? 'w-80 h-16' : 'w-[420px] h-[650px]'
         }`}>
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-blue-600 text-white rounded-t-2xl">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-slate-800 text-white rounded-t-2xl">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <Bot className="h-6 w-6" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent-500 rounded-full"></div>
               </div>
               <div>
                 <span className="font-semibold text-lg">EIP Research AI</span>
-                <div className="flex items-center space-x-1 text-xs text-blue-100">
+                <div className="flex items-center space-x-1 text-xs text-slate-300">
                   <Sparkles className="h-3 w-3" />
                   <span>AI Assistant</span>
                 </div>
@@ -212,7 +212,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     <div
                       className={`max-w-[85%] p-4 rounded-2xl ${
                         message.type === 'user'
-                          ? 'bg-blue-600 text-white'
+                          ? 'bg-slate-800 text-white'
                           : 'bg-white text-gray-900 border border-gray-200 shadow-sm'
                       }`}
                     >
@@ -220,7 +220,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                         {message.type === 'assistant' ? formatMessage(message.content) : message.content}
                       </div>
                       <div className={`text-xs mt-2 ${
-                        message.type === 'user' ? 'text-blue-100' : 'text-gray-500'
+                        message.type === 'user' ? 'text-slate-300' : 'text-gray-500'
                       }`}>
                         {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </div>
@@ -234,9 +234,9 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     <div className="bg-white border border-gray-200 p-4 rounded-2xl shadow-sm">
                       <div className="flex items-center space-x-2">
                         <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                          <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                          <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                         </div>
                         <span className="text-sm text-gray-600">AI is thinking...</span>
                       </div>
@@ -253,7 +253,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                         <button
                           key={index}
                           onClick={() => handleSuggestionClick(suggestion)}
-                          className="text-left p-3 bg-white hover:bg-blue-50 rounded-lg text-sm text-gray-700 border border-gray-200 hover:border-blue-300 transition-all duration-200"
+                          className="text-left p-3 bg-white hover:bg-slate-50 rounded-lg text-sm text-gray-700 border border-gray-200 hover:border-slate-300 transition-all duration-200"
                         >
                           {suggestion}
                         </button>
@@ -274,13 +274,13 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Ask me anything about EIPs..."
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-transparent text-sm"
                     disabled={isLoading}
                   />
                   <button
                     onClick={handleSendMessage}
                     disabled={!inputValue.trim() || isLoading}
-                    className="bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[48px]"
+                    className="bg-slate-800 text-white p-3 rounded-xl hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center min-w-[48px]"
                   >
                     <Send className="h-4 w-4" />
                   </button>
@@ -306,7 +306,7 @@ export default function AIAssistant({ currentEIP }: AIAssistantProps) {
                     href="https://www.ethereumpapers.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center space-x-2 text-xs text-gray-600 hover:text-blue-600 transition-colors group"
+                    className="flex items-center justify-center space-x-2 text-xs text-gray-600 hover:text-slate-600 transition-colors group"
                     title="Check out ERP articles"
                   >
                     <img 
