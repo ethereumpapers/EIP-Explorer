@@ -7,6 +7,7 @@ import ErrorMessage from '../components/ErrorMessage';
 import { useEIPs } from '../hooks/useEIPs';
 import { useLiveData } from '../hooks/useLiveData';
 import { useProjects } from '../hooks/useProjects';
+import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
 
 export default function HomePage() {
   const { eips, loading: eipsLoading, error: eipsError, stats } = useEIPs();
@@ -14,6 +15,28 @@ export default function HomePage() {
   const { stats: projectStats } = useProjects();
   const [typedText, setTypedText] = useState('');
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  // Animated counters
+  const totalEIPs = useAnimatedCounter({ 
+    end: stats.total || 0, 
+    duration: 2000, 
+    delay: 500 
+  });
+  const finalStandards = useAnimatedCounter({ 
+    end: stats.byStatus?.['Final'] || 0, 
+    duration: 2000, 
+    delay: 800 
+  });
+  const activeProjects = useAnimatedCounter({ 
+    end: projectStats.total || 0, 
+    duration: 2000, 
+    delay: 1100 
+  });
+  const recentUpdates = useAnimatedCounter({ 
+    end: stats.recentlyUpdated || 0, 
+    duration: 2000, 
+    delay: 1400 
+  });
 
   const words = ['EIP Explorer', 'Standards Hub', 'Research Center', 'Innovation Lab'];
   const featuredEIPs = eips.filter(eip => [7702, 4844, 7212, 7579, 1559, 721].includes(eip.number)).slice(0, 6);
@@ -80,30 +103,30 @@ export default function HomePage() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-accent-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-accent-500/10">
-                <div className="text-4xl font-bold bg-gradient-to-r from-accent-400 to-accent-600 bg-clip-text text-transparent mb-2 tracking-tight">
-                  {stats.total || '---'}
+              <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/10">
+                <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-2 tracking-tight">
+                  {totalEIPs.count.toLocaleString()}
                 </div>
                 <div className="text-slate-300 text-sm font-medium">Total EIPs</div>
               </div>
               
               <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/10">
                 <div className="text-4xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent mb-2 tracking-tight">
-                  {stats.byStatus?.['Final'] || '---'}
+                  {finalStandards.count.toLocaleString()}
                 </div>
                 <div className="text-slate-300 text-sm font-medium">Final Standards</div>
               </div>
               
               <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10">
                 <div className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent mb-2 tracking-tight">
-                  {projectStats.total || '---'}
+                  {activeProjects.count.toLocaleString()}
                 </div>
                 <div className="text-slate-300 text-sm font-medium">Active Projects</div>
               </div>
               
               <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-orange-500/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/10">
                 <div className="text-4xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent mb-2 tracking-tight">
-                  {stats.recentlyUpdated || '---'}
+                  {recentUpdates.count.toLocaleString()}
                 </div>
                 <div className="text-slate-300 text-sm font-medium">Recent Updates</div>
               </div>

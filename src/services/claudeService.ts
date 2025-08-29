@@ -1,6 +1,5 @@
 // Anthropic Claude API service for EIP Explorer
-import Anthropic from '@anthropic-ai/sdk';
-import { huggingFaceService } from './huggingFaceService';
+// Using proxy approach - no direct SDK initialization in browser
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -19,30 +18,17 @@ interface EIP {
 }
 
 class ClaudeService {
-  private anthropic: Anthropic | null = null;
-  private useClaude: boolean = false;
-
   constructor() {
-    const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
-    if (apiKey) {
-      this.anthropic = new Anthropic({
-        apiKey: apiKey,
-      });
-      this.useClaude = true;
-    } else {
-      console.log('Anthropic API key not found. Using fallback service.');
-      this.useClaude = false;
-    }
+    console.log('✅ Claude service initialized - using proxy approach');
   }
 
   async generateResponse(
     messages: ChatMessage[], 
     currentEIP?: EIP | null
   ): Promise<string> {
-    if (!this.useClaude || !this.anthropic) {
-      // Fallback to Hugging Face service
-      return await huggingFaceService.generateResponse(messages, currentEIP);
-    }
+    // Always use the proxy approach instead of direct API calls
+    console.log('🚀 Using proxy approach for Claude API');
+    console.log('🚀 Input messages:', messages);
 
     try {
       // Get the last user message
@@ -52,26 +38,50 @@ class ClaudeService {
       }
 
       const userQuery = lastMessage.content;
+      console.log('🚀 Making Claude API call for:', userQuery);
       
       // Create a comprehensive system prompt
       const systemPrompt = this.createSystemPrompt(currentEIP);
+      console.log('📝 System prompt created:', systemPrompt.substring(0, 100) + '...');
       
       // Convert messages to Claude format
       const claudeMessages = messages.slice(-5).map(msg => ({
         role: msg.role as 'user' | 'assistant',
         content: msg.content
       }));
+      console.log('💬 Messages to send:', claudeMessages);
 
-      // Call Claude API
-      const response = await this.anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 2000,
-        system: systemPrompt,
-        messages: claudeMessages
+      // Call Claude API through proxy to avoid CORS issues
+      console.log('📡 Making fetch request to proxy...');
+      const response = await fetch('/api/anthropic/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'claude-3-5-sonnet-20241022',
+          max_tokens: 2000,
+          system: systemPrompt,
+          messages: claudeMessages
+        })
       });
 
+      console.log('📡 Response status:', response.status);
+      console.log('📡 Response ok:', response.ok);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('❌ HTTP error response:', errorText);
+        throw new Error(`HTTP error! status: ${response.status}, body: ${errorText}`);
+      }
+
+      const responseData = await response.json();
+      console.log('📡 Response data received:', responseData);
+      
+      console.log('🎉 Claude API response received successfully');
+
       // Extract the response content
-      const responseContent = response.content[0];
+      const responseContent = responseData.content[0];
       if (responseContent.type === 'text') {
         return responseContent.text;
       }
@@ -79,37 +89,64 @@ class ClaudeService {
       return "I apologize, but I'm having trouble processing your request. Please try again.";
       
     } catch (error) {
-      console.error('Claude API error:', error);
-      // Fallback to Hugging Face service on error
-      return await huggingFaceService.generateResponse(messages, currentEIP);
+      console.error('❌ Claude API error:', error);
+      console.error('❌ Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      });
+      // Return helpful error message
+      return "I'm experiencing some technical difficulties. Please try again in a moment.";
     }
   }
 
   private createSystemPrompt(currentEIP?: EIP | null): string {
-    const basePrompt = `You are an expert AI assistant for the EIP Explorer, a comprehensive platform for exploring Ethereum Improvement Proposals (EIPs). You help users understand, analyze, and navigate the world of Ethereum standards.
+    const basePrompt = `You are the EIP Explorer AI assistant. You help users with both casual conversation and deep technical knowledge about Ethereum Improvement Proposals (EIPs).
 
-## Your Role:
-- Provide accurate, detailed information about EIPs
-- Explain complex technical concepts in accessible terms
-- Help users find relevant EIPs for their needs
-- Offer implementation guidance and best practices
-- Share insights about adoption trends and ecosystem impact
+## Your Identity:
+- You are the EIP Explorer assistant
+- When introducing yourself, say: "Hi! I'm your EIP Explorer assistant. How can I help you?"
+- Never mention being "Claude" or "created by Anthropic"
+- You are specifically the EIP Explorer assistant
+
+## Your Personality:
+- Be warm, friendly, and conversational
+- Show genuine interest in helping users
+- Be approachable for both beginners and experts
+- Use natural, professional language
+- Be encouraging and supportive
+- Keep responses clean and professional
+
+## Your Expertise:
+- Deep knowledge of Ethereum Improvement Proposals (EIPs)
+- Understanding of blockchain technology and smart contracts
+- Knowledge of DeFi, NFTs, scaling solutions, and more
+- Ability to explain complex concepts in simple terms
+- Up-to-date information on Ethereum ecosystem developments
+
+## Conversation Style:
+- Start conversations warmly and professionally
+- Ask follow-up questions to better understand user needs
+- Provide examples and analogies when explaining complex topics
+- Be patient with beginners and detailed with experts
+- Balance technical accuracy with accessibility
+- Keep conversations focused and helpful
+
+## When Discussing EIPs:
+- Explain what each EIP does in clear language
+- Share real-world use cases and examples
+- Discuss implementation challenges and solutions
+- Compare related EIPs and their differences
+- Provide practical guidance for developers
+- Share insights about adoption and impact
 
 ## Response Guidelines:
-- Use clear, professional language
-- Structure responses with headers, bullet points, and code examples when relevant
-- Include emojis sparingly for better readability
-- Provide actionable insights and next steps
-- Be conversational but informative
+- Be conversational and natural
+- Use **bold** for emphasis on important points
+- Use \`code\` for technical terms and EIP numbers
+- Use bullet points for lists when helpful
 - Always be helpful and encouraging
-
-## Formatting:
-- Use ## for main headers
-- Use ### for subheaders
-- Use **bold** for emphasis
-- Use \`code\` for technical terms
-- Use bullet points for lists
-- Use emojis like ✅ ❌ ⚠️ 🔍 💡 🚀 for visual cues`;
+- Keep responses professional and informative`;
 
     if (currentEIP) {
       return `${basePrompt}
@@ -143,10 +180,19 @@ When responding, consider this EIP context and provide relevant insights, compar
   // Generate AI summary for EIPs
   async generateEIPSummary(eip: EIP): Promise<string> {
     if (!this.useClaude || !this.anthropic) {
-      // Fallback to Hugging Face service
-      return await huggingFaceService.generateResponse([
-        { role: 'user', content: `Generate a comprehensive summary for EIP-${eip.number}: ${eip.title}` }
-      ], eip);
+      // Return basic summary when Claude API is not available
+      return `## EIP-${eip.number}: ${eip.title}
+
+**Status:** ${eip.status}  
+**Category:** ${eip.category}  
+**Type:** ${eip.type}  
+**Authors:** ${eip.authors.join(', ')}  
+**Created:** ${new Date(eip.created).toLocaleDateString()}
+
+### Description
+${eip.description}
+
+This EIP is part of the Ethereum ecosystem and contributes to the platform's ongoing development.`;
     }
 
     try {
@@ -181,17 +227,26 @@ Make it accessible to both technical and non-technical audiences. Use clear head
       
     } catch (error) {
       console.error('Claude summary error:', error);
-      // Fallback to Hugging Face service
-      return await huggingFaceService.generateResponse([
-        { role: 'user', content: `Generate a comprehensive summary for EIP-${eip.number}: ${eip.title}` }
-      ], eip);
+      // Return basic summary on error
+      return `## EIP-${eip.number}: ${eip.title}
+
+**Status:** ${eip.status}  
+**Category:** ${eip.category}  
+**Type:** ${eip.type}  
+**Authors:** ${eip.authors.join(', ')}  
+**Created:** ${new Date(eip.created).toLocaleDateString()}
+
+### Description
+${eip.description}
+
+This EIP is part of the Ethereum ecosystem and contributes to the platform's ongoing development.`;
     }
   }
 
   // Generate recommendations
   async generateRecommendations(): Promise<string> {
     if (!this.useClaude || !this.anthropic) {
-      return "Using fallback recommendations";
+      return "## 🔥 Trending EIP Categories\n\n### 🎨 **NFT Standards**\n- EIP-721: Non-Fungible Token Standard\n- EIP-1155: Multi Token Standard\n- EIP-2981: NFT Royalty Standard\n\n### 🔐 **Account Abstraction**\n- EIP-4337: Account Abstraction (ERC-4337)\n- EIP-7702: Set EOA account code\n- EIP-3074: AUTH and AUTHCALL opcodes\n\n### ⚡ **Scaling Solutions**\n- EIP-4844: Proto-Danksharding\n- EIP-1559: Fee market reform\n- EIP-4488: Calldata gas reduction\n\n### 💰 **DeFi Innovation**\n- EIP-20: ERC-20 Token Standard\n- EIP-2612: Permit for gasless approvals\n- EIP-3156: Flash Loan Standard\n\nThese are some of the most important and trending EIPs in the Ethereum ecosystem!";
     }
 
     try {
@@ -230,9 +285,24 @@ Format as structured data that can be easily parsed.`;
       
     } catch (error) {
       console.error('Claude recommendations error:', error);
-      return "Using fallback recommendations";
+      return "## 🔥 Trending EIP Categories\n\nHere are some of the most important EIPs in the Ethereum ecosystem!";
     }
   }
 }
 
 export const claudeService = new ClaudeService();
+
+// Test function to verify the service is working
+export const testClaudeService = async () => {
+  console.log('🧪 Testing Claude service...');
+  try {
+    const response = await claudeService.generateResponse([
+      { role: 'user', content: 'Hello test' }
+    ]);
+    console.log('🧪 Test response:', response);
+    return response;
+  } catch (error) {
+    console.error('🧪 Test error:', error);
+    return null;
+  }
+};

@@ -55,10 +55,9 @@ class DuneService {
   }
 
   private async makeRequest(endpoint: string, options: RequestInit = {}): Promise<any> {
-    if (!this.API_KEY) {
-      console.warn('Dune API key not configured, using mock data');
-      return this.getMockData(endpoint);
-    }
+    // Dune API disabled - using mock data only
+    console.log('Dune API disabled - using mock data');
+    return this.getMockData(endpoint);
 
     try {
       const response = await fetch(`${this.API_BASE}${endpoint}`, {

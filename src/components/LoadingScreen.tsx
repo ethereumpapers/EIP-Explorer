@@ -42,7 +42,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
   }, [onLoadingComplete]);
 
   return (
-    <div className="loading-screen">
+    <div className="loading-screen min-h-screen bg-slate-900 flex items-center justify-center">
       <div className="text-center">
         {/* Logo */}
         <div className="mb-8">

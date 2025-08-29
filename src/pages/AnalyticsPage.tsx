@@ -7,11 +7,29 @@ import BreadcrumbNav from '../components/BreadcrumbNav';
 import { useEIPs } from '../hooks/useEIPs';
 import { useLiveData } from '../hooks/useLiveData';
 import { useProjects } from '../hooks/useProjects';
+import { useAnimatedCounter } from '../hooks/useAnimatedCounter';
 
 export default function AnalyticsPage() {
   const { stats: eipStats, loading: eipsLoading, error: eipsError } = useEIPs();
   const { metrics, loading: metricsLoading, error: metricsError, lastUpdated } = useLiveData();
   const { stats: projectStats } = useProjects();
+
+  // Animated counters for analytics
+  const totalEIPs = useAnimatedCounter({ 
+    end: eipStats.total || 0, 
+    duration: 2000, 
+    delay: 300 
+  });
+  const finalStandards = useAnimatedCounter({ 
+    end: eipStats.byStatus?.['Final'] || 0, 
+    duration: 2000, 
+    delay: 600 
+  });
+  const activeProjects = useAnimatedCounter({ 
+    end: projectStats.total || 0, 
+    duration: 2000, 
+    delay: 900 
+  });
 
   const statusDistribution = Object.entries(eipStats.byStatus).map(([status, count]) => ({
     status,
@@ -77,7 +95,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Total EIPs</p>
-                <p className="text-3xl font-bold text-blue-300">{eipStats.total.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-blue-300">{totalEIPs.count.toLocaleString()}</p>
               </div>
               <div className="bg-blue-900/40 p-3 rounded-lg">
                 <BarChart3 className="h-8 w-8 text-blue-400" />
@@ -93,7 +111,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Final Standards</p>
-                <p className="text-3xl font-bold text-green-400">{eipStats.byStatus['Final'] || 0}</p>
+                <p className="text-3xl font-bold text-green-400">{finalStandards.count.toLocaleString()}</p>
               </div>
               <div className="bg-green-900/40 p-3 rounded-lg">
                 <Activity className="h-8 w-8 text-green-400" />
@@ -109,7 +127,7 @@ export default function AnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-slate-400">Active Projects</p>
-                <p className="text-3xl font-bold text-purple-300">{projectStats.total.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-purple-300">{activeProjects.count.toLocaleString()}</p>
               </div>
               <div className="bg-purple-900/40 p-3 rounded-lg">
                 <Users className="h-8 w-8 text-purple-300" />
